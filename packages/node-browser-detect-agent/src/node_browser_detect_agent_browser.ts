@@ -1,4 +1,4 @@
-import { nodeBrowserDetectAgentGenerator } from "./node_browser_detect_agent";
+import { nodeBrowserDetectAgentGenerator } from "./node_browser_detect_agent_generator";
 import { nodeBrowserDetectAgentInfoGenerator } from "./node_browser_detect_agent_info";
 import { EnvConfig, EnvFunc } from "./type";
 
