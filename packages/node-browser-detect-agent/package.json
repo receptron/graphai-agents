@@ -9,7 +9,7 @@
     "./lib"
   ],
   "scripts": {
-    "build": "tsc && npx rollup -c && tsc-alias",
+    "build": "tsc && tsc-alias",
     "eslint": "eslint src --fix",
     "format": "prettier --write '{src,tests}/**/*.ts'",
     "doc": "npx agentdoc",
