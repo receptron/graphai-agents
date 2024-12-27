@@ -26,8 +26,12 @@ const nodeBrowserDetectAgentInfoGenerator = (nodeBrowserDetectAgent: AgentFuncti
 
 const nodeBrowserDetectAgentInfo: AgentFunctionInfo = {
   name: "nodeBrowserDetectAgent",
-  agent: async (__context) => { return {}; },
-  mock: async (__context) => { return {}; },
+  agent: async (__context) => {
+    return {};
+  },
+  mock: async (__context) => {
+    return {};
+  },
   samples: [
     {
       params: { a: "1" },
@@ -44,6 +48,5 @@ const nodeBrowserDetectAgentInfo: AgentFunctionInfo = {
   repository: "https://github.com/receptron/graphai/",
   license: "MIT",
 };
-
 
 export { nodeBrowserDetectAgentInfoGenerator, nodeBrowserDetectAgentInfo };

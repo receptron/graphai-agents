@@ -10,7 +10,7 @@ const envFunc: EnvFunc = () => {
   return { message: "isnode" };
 };
 
-const nodeBrowserDetectAgentBase: (context: AgentFunctionContext) => (envConf: EnvConfig, envFunc: EnvFunc) => Promise<any>  = ({  params, namedInputs }) => {
+const nodeBrowserDetectAgentBase: (context: AgentFunctionContext) => (envConf: EnvConfig, envFunc: EnvFunc) => Promise<any> = ({ params, namedInputs }) => {
   return async (envConf: EnvConfig, envFunc: EnvFunc) => {
     console.log(envConf);
     console.log(envFunc());
@@ -21,8 +21,8 @@ const nodeBrowserDetectAgentBase: (context: AgentFunctionContext) => (envConf: E
 export const nodeBrowserDetectAgent: AgentFunction = async (context) => {
   return await nodeBrowserDetectAgentBase(context)(envConf, envFunc);
 };
-  
-const retNodeBrowserDetectAgentInfo = {...nodeBrowserDetectAgentInfo};
+
+const retNodeBrowserDetectAgentInfo = { ...nodeBrowserDetectAgentInfo };
 retNodeBrowserDetectAgentInfo.agent = nodeBrowserDetectAgent;
 
 export default retNodeBrowserDetectAgentInfo;
