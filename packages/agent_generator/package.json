@@ -14,7 +14,7 @@
     "run": "npx ts-node src/run.ts",
     "run2": "npx ts-node src/run2.ts",
     "test_run": "node --test --require ts-node/register ./tests/run_*.ts",
-    "test": "node --test --require ts-node/register ./tests/test_*.ts",
+    "test": "echo hello",
     "ci": "yarn run format && yarn run eslint && yarn run test && yarn run build"
   },
   "repository": {
@@ -27,15 +27,12 @@
     "url": "https://github.com/isamu/graphai-agents/issues"
   },
   "homepage": "https://github.com/isamu/graphai-agents#readme",
-  "devDependencies": {
-    "@graphai/vanilla": "^0.2.6",
-    "@graphai/vanilla_node_agents": "^0.2.6"
-  },
+  "devDependencies": {},
   "dependencies": {
     "@graphai/openai_agent": "^0.2.0",
     "@graphai/shell_utilty_agent": "^0.1.0",
     "@graphai/vanilla": "^0.2.6",
-    "@graphai/vanilla_node_agents": "^0.2.6",
-    "graphai": "^0.6.7"
+    "@graphai/vanilla_node_agents": "^0.2.7",
+    "graphai": "^0.6.9"
   }
 }

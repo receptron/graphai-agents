@@ -1,6 +1,6 @@
 import { AgentFunction, AgentFunctionInfo } from "graphai";
 
-import { exec, spawn } from "child_process";
+import { spawn } from "child_process";
 import * as path from "node:path";
 
 export const runShellCommand = (commands: string[], path?: string): Promise<{ text?: string | unknown; error?: unknown; stderr?: unknown }> => {

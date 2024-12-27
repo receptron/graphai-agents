@@ -1,4 +1,3 @@
-import "dotenv/config";
 import { templateAgent } from "../src/template_agent";
 
 import test from "node:test";
