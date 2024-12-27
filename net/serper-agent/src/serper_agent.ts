@@ -176,7 +176,7 @@ const serperAgentInfo: AgentFunctionInfo = {
         peopleAlsoAsk: [
           {
             question: "What is the Apple Inc?",
-            snippet: "\"Inc.\" in Apple Inc. stands for \"Incorporated\".",
+            snippet: '"Inc." in Apple Inc. stands for "Incorporated".',
             title: "What does the 'Inc.' in Apple Inc. mean? - Quora",
             link: "https://www.quora.com/What-does-the-Inc-in-Apple-Inc-mean",
           },
