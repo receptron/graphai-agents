@@ -25,7 +25,7 @@
     "packages/*",
     "documents/*",
     "prompts/*",
-    "tts/*",
+    "voice/*",
     "system/*",
     "net/*"
   ],
