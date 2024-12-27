@@ -1,0 +1,30 @@
+{
+  "name": "@graphai/stt_openai_agent",
+  "version": "0.0.1",
+  "description": "OpenAI speach to text agent",
+  "main": "lib/index.js",
+  "files": [
+    "./lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:receptron/graphai-agents.git"
+  },
+  "scripts": {
+    "build": "tsc",
+    "eslint": "eslint src --fix",
+    "format": "prettier --write '{src,tests}/**/*.ts'",
+    "doc": "npx agentdoc",
+    "test_run": "node --test --require ts-node/register ./tests/run_*.ts",
+    "test": "echo nothing",
+    "ci": "yarn run format && yarn run eslint && yarn run test && yarn run build"
+  },
+  "author": "receptron team",
+  "license": "MIT",
+  "devDependencies": {},
+  "dependencies": {},
+  "types": "./lib/index.d.ts",
+  "directories": {
+    "lib": "lib"
+  }
+}
