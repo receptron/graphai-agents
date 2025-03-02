@@ -13,7 +13,7 @@ export const graphDataContent: GraphData = {
     success: {
       agent: "copyAgent",
       inputs: {
-        result: ":start",
+        result: ":start.text",
       },
       isResult: true,
     },
@@ -34,7 +34,7 @@ export const graphDataTextContent: GraphData = {
     success: {
       agent: "copyAgent",
       inputs: {
-        result: ":start",
+        result: ":start.text",
       },
       isResult: true,
     },
@@ -54,7 +54,7 @@ export const graphDataNoToken: GraphData = {
     success: {
       agent: "copyAgent",
       inputs: {
-        result: ":start",
+        result: ":start.text",
       },
       isResult: true,
     },
@@ -97,7 +97,7 @@ export const graphDataApiKeyFromEnv: GraphData = {
     success: {
       agent: "copyAgent",
       inputs: {
-        result: ":start",
+        result: ":start.text",
       },
       isResult: true,
     },
