@@ -2,7 +2,6 @@ import { pdf2textAgent } from "../src/";
 import fs from "fs";
 
 import test from "node:test";
-import assert from "node:assert";
 
 test("test pdf2textAgent: buffer, text", async () => {
   const path = __dirname + "/2410.14735v2.pdf";
@@ -14,7 +13,7 @@ test("test pdf2textAgent: buffer, text", async () => {
     namedInputs,
     params,
     filterParams: {},
-    debugInfo: { verbose: false, nodeId: "test", retry: 5 },
+    debugInfo: { verbose: false, nodeId: "test", retry: 5 } as any,
   })) as any;
 
   if (res) {
@@ -32,7 +31,7 @@ test("test pdf2textAgent: buffer, md", async () => {
     namedInputs,
     params,
     filterParams: {},
-    debugInfo: { verbose: false, nodeId: "test", retry: 5 },
+    debugInfo: { verbose: false, nodeId: "test", retry: 5 } as any,
   })) as any;
 
   if (res) {

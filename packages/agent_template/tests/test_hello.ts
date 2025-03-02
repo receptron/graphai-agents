@@ -6,7 +6,7 @@ import assert from "node:assert";
 test("test templateAgent", async () => {
   const namedInputs = {};
   const params = {};
-  const res = (await templateAgent({ namedInputs, params, filterParams: {}, debugInfo: { verbose: false, nodeId: "test", retry: 5 } })) as any;
+  const res = (await templateAgent({ namedInputs, params, filterParams: {}, debugInfo: { verbose: false, nodeId: "test", retry: 5 } } as any)) as any;
 
   if (res) {
     console.log(res);
