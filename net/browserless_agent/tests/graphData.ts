@@ -54,9 +54,7 @@ export const graphDataNoToken: GraphData = {
     success: {
       agent: "copyAgent",
       inputs: {
-        value: {
-          nodeId: "start",
-        },
+        result: ":start",
       },
       isResult: true,
     },
@@ -79,10 +77,7 @@ export const graphDataErrorResponse: GraphData = {
     error: {
       agent: "copyAgent",
       inputs: {
-        value: {
-          nodeId: "start",
-          propIds: ["onError"],
-        },
+        result: ":start",
       },
       isResult: true,
     },
