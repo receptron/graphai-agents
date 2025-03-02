@@ -1,37 +1,21 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.browserlessAgent = void 0;
-const browserlessAgent = async ({ namedInputs, params }) => {
+const graphai_1 = require("graphai");
+const browserlessAgent = async ({ namedInputs, params, config, }) => {
     const { url, text_content } = namedInputs;
+    (0, graphai_1.assert)(!!url, "browserlessAgent: url is required! set inputs: { url: 'https://example.com' }");
     const throwError = params?.throwError ?? false;
-    const browserlessEndpoint = "https://chrome.browserless.io";
-    const browserlessToken = params?.apiKey ?? (typeof process !== "undefined" && typeof process.env !== "undefined" ? process.env["BROWSERLESS_API_TOKEN"] : null);
+    const browserlessToken = params?.apiKey ?? (typeof config !== "undefined" && config.apiKey) ?? ((typeof process !== "undefined" && process?.env?.BROWSERLESS_API_TOKEN) || null);
     // Check if API token is provided
     if (!browserlessToken) {
         const errorMessage = "Browserless API token is required. Please set the BROWSERLESS_API_TOKEN environment variable.";
         throw new Error(errorMessage);
     }
-    let endpoint;
-    let requestBody;
-    if (text_content) {
-        // scrape endpoint to get text content of the body element
-        endpoint = `${browserlessEndpoint}/scrape?token=${browserlessToken}`;
-        requestBody = {
-            url,
-            elements: [
-                {
-                    selector: "body",
-                },
-            ],
-        };
-    }
-    else {
-        // content endpoint to get full HTML
-        endpoint = `${browserlessEndpoint}/content?token=${browserlessToken}`;
-        requestBody = {
-            url,
-        };
-    }
+    const baseUrl = "https://chrome.browserless.io";
+    const path = text_content ? "scrape" : "content";
+    const endpoint = `${baseUrl}/${path}?token=${browserlessToken}`;
+    const requestBody = text_content ? { url, elements: [{ selector: "body" }] } : { url };
     // Return request information in debug mode
     if (params?.debug) {
         return {
@@ -156,7 +140,7 @@ const browserlessAgentInfo = {
         },
     ],
     description: "An agent that uses Browserless.io to fetch web page content with JavaScript execution support for retrieving data from SPAs and dynamic content",
-    category: ["service"],
+    category: ["net"],
     author: "kawamataryo",
     repository: "https://github.com/receptron/graphai-agents",
     license: "MIT",

@@ -2,12 +2,14 @@ import { AgentFunction } from "graphai";
 export declare const nodeBrowserDetectAgent: AgentFunction;
 declare const retNodeBrowserDetectAgentInfo: {
     name: string;
-    agent: AgentFunction<any, any, any>;
-    mock: AgentFunction<any, any, any>;
+    agent: AgentFunction<any, any, any, any>;
+    mock: AgentFunction<any, any, any, any>;
     inputs?: any;
     output?: any;
-    outputFormat?: any;
     params?: any;
+    config?: any;
+    outputFormat?: any;
+    tools?: Record<string, any>[];
     samples: import("graphai").AgentFunctionInfoSample[];
     description: string;
     category: string[];
@@ -16,6 +18,7 @@ declare const retNodeBrowserDetectAgentInfo: {
     license: string;
     cacheType?: import("graphai/lib/type").CacheTypes;
     environmentVariables?: string[];
+    hasGraphData?: boolean;
     stream?: boolean;
     apiKeys?: string[];
     npms?: string[];
