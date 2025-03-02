@@ -26,11 +26,6 @@
   },
   "homepage": "https://github.com/receptron/graphai-agents#readme",
   "devDependencies": {
-    "undici": "^6.21.1",
-    "@receptron/test_utils": "1.0.1",
-    "@graphai/agent_filters": "0.2.2"
-  },
-  "dependencies": {
-    "graphai": "1.0.0"
+    "undici": "^6.21.1"
   }
 }
