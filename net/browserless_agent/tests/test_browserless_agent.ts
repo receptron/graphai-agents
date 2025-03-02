@@ -92,7 +92,9 @@ const cleanupEnvironment = () => {
 test("test browserless content", async () => {
   setupEnvironment();
   try {
-    const result = await graphDataTestRunner(
+    const result = await graphDataTestRunner<{
+      result: string;
+    }>(
       __dirname,
       __filename,
       graphDataContent,
@@ -101,7 +103,7 @@ test("test browserless content", async () => {
       false,
     );
 
-    const resultData = (result as any).success.result;
+    const resultData = result.success?.result;
     assert.equal(resultData, mockContentHtml, "Expected success result");
   } finally {
     cleanupEnvironment();
@@ -111,7 +113,9 @@ test("test browserless content", async () => {
 test("test browserless text content", async () => {
   setupEnvironment();
   try {
-    const result = await graphDataTestRunner(
+    const result = await graphDataTestRunner<{
+      result: string;
+    }>(
       __dirname,
       __filename,
       graphDataTextContent,
@@ -120,7 +124,7 @@ test("test browserless text content", async () => {
       false,
     );
 
-    const resultData = (result as any).success.result;
+    const resultData = result.success?.result;
     assert.equal(resultData, mockBody.data[0].results[0].text, "Expected success result");
   } finally {
     cleanupEnvironment();
@@ -149,7 +153,15 @@ test("test browserless error response", async () => {
   setupEnvironment();
 
   try {
-    const result = await graphDataTestRunner(
+    const result = await graphDataTestRunner<{
+      result: {
+        onError: {
+          message: string;
+          status?: number;
+          error: any;
+        };
+      };
+    }>(
       __dirname,
       __filename,
       graphDataErrorResponse,
@@ -158,8 +170,8 @@ test("test browserless error response", async () => {
       false,
     );
 
-    const resultData = (result as any).error.result;
-    assert.ok(resultData.onError, "Expected error result");
+    const resultData = result.error?.result;
+    assert.ok(resultData?.onError, "Expected error result");
   } finally {
     cleanupEnvironment();
   }
@@ -168,7 +180,9 @@ test("test browserless error response", async () => {
 test("test browserless api key from env", async () => {
   setupEnvironment();
   try {
-    const result = await graphDataTestRunner(
+    const result = await graphDataTestRunner<{
+      result: string;
+    }>(
       __dirname,
       __filename,
       graphDataApiKeyFromEnv,
@@ -177,7 +191,7 @@ test("test browserless api key from env", async () => {
       false,
     );
 
-    const resultData = (result as any).success.result;
+    const resultData = result?.success?.result;
     assert.equal(resultData, mockContentHtml, "Expected success result");
   } finally {
     cleanupEnvironment();
