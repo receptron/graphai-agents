@@ -52,24 +52,10 @@ export const browserlessAgent: AgentFunction<BrowserlessParams, BrowserlessResul
   // Build the endpoint with token
   const endpoint = `${browserlessEndpoint}?token=${browserlessToken}`;
 
-  // Select appropriate endpoint based on operation type
-  const operationType = operation || "content";
-  let apiPath: string;
-
-  switch (operationType) {
-  case "screenshot":
-    apiPath = "/screenshot";
-    break;
-  case "content":
-  default:
-    apiPath = "/content";
-    break;
-  }
-
-  const fullEndpoint = `${endpoint}${apiPath}`;
+  const fullEndpoint = `${endpoint}/${operation ?? "content"}`;
 
   // Build request body
-  const requestBody: Record<string, any> = {
+  const requestBody: Record<string, unknown> = {
     url,
     ...options,
   };
@@ -85,7 +71,7 @@ export const browserlessAgent: AgentFunction<BrowserlessParams, BrowserlessResul
       method: "POST",
       headers: headers || { "Content-Type": "application/json" },
       body: requestBody,
-    } as BrowserlessResult;
+    };
   }
 
   // API request options
@@ -119,7 +105,7 @@ export const browserlessAgent: AgentFunction<BrowserlessParams, BrowserlessResul
     }
 
     // Process result based on response type
-    const responseType = params?.type || (operationType === "screenshot" ? "buffer" : "text");
+    const responseType = params?.type || (operation === "screenshot" ? "buffer" : "text");
 
     switch (responseType) {
     case "json":
@@ -134,15 +120,15 @@ export const browserlessAgent: AgentFunction<BrowserlessParams, BrowserlessResul
     default:
       return (await response.text()) as BrowserlessResult;
     }
-  } catch (error: any) {
+  } catch (error) {
     if (throwError) {
       throw error;
     }
 
     return {
       onError: {
-        message: error.message || "Unknown error occurred",
-        error: error.toString(),
+        message: error instanceof Error ? error.message : "Unknown error occurred",
+        error: error instanceof Error ? error.toString() : String(error),
       },
     };
   }
@@ -245,8 +231,8 @@ const browserlessAgentInfo: AgentFunctionInfo = {
   description:
     "An agent that uses Browserless.io to fetch web page content and take screenshots of websites, with JavaScript execution support for retrieving data from SPAs and dynamic content",
   category: ["service"],
-  author: "Receptron",
-  repository: "https://github.com/receptron/graphai",
+  author: "kawamataryo",
+  repository: "https://github.com/receptron/graphai-agents",
   license: "MIT",
   environmentVariables: ["BROWSERLESS_API_TOKEN"],
 };
