@@ -1,7 +1,7 @@
 
 # @graphai/browserless_agent for GraphAI
 
-Browserless Agent is a GraphAI agent that uses [Browserless.io](https://www.browserless.io/) to scrape the web.
+
 
 ### Install
 
@@ -23,7 +23,54 @@ const result = await graph.run();
 ```
 
 ### Agents description
-- browserlessAgent - Browserless Agent
+- browserlessAgent - An agent that uses Browserless.io to fetch web page content with JavaScript execution support for retrieving data from SPAs and dynamic content
 
 ### Input/Output/Params Schema & samples
  - [browserlessAgent](https://github.com/receptron/graphai-agents/blob/main/docs/agentDocs/net/browserlessAgent.md)
+
+### Input/Params example
+ - browserlessAgent
+
+```typescript
+{
+  "inputs": {
+    "url": "https://www.example.com"
+  },
+  "params": {}
+}
+```
+
+
+```typescript
+{
+  "inputs": {
+    "url": "https://www.example.com",
+    "text_content": true
+  },
+  "params": {}
+}
+```
+
+
+```typescript
+{
+  "inputs": {
+    "url": "https://www.example.com"
+  },
+  "params": {
+    "debug": true
+  }
+}
+```
+
+
+### Environment Variables
+ - browserlessAgent
+   - BROWSERLESS_API_TOKEN
+
+
+
+
+
+
+
