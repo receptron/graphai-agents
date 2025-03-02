@@ -21,6 +21,17 @@ type BrowserlessResult =
       };
     };
 
+
+const getBrowserlessToken = (params: BrowserlessParams, config?: DefaultConfigData) => {
+  if (params?.apiKey) {
+    return params.apiKey;
+  }
+  if (config?.apiKey) {
+    return config.apiKey;
+  }
+  return typeof process !== "undefined" ? process?.env?.BROWSERLESS_API_TOKEN : null;
+};
+
 export const browserlessAgent: AgentFunction<BrowserlessParams, BrowserlessResult, BrowserlessInputs, DefaultConfigData> = async ({
   namedInputs,
   params,
@@ -31,8 +42,7 @@ export const browserlessAgent: AgentFunction<BrowserlessParams, BrowserlessResul
 
   const throwError = params?.throwError ?? false;
 
-  const browserlessToken =
-    params?.apiKey ?? (typeof config !== "undefined" && config.apiKey) ?? ((typeof process !== "undefined" && process?.env?.BROWSERLESS_API_TOKEN) || null);
+  const browserlessToken = getBrowserlessToken(params, config);
 
   // Check if API token is provided
   if (!browserlessToken) {

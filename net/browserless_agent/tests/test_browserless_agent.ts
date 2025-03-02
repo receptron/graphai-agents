@@ -2,7 +2,7 @@ import { graphDataTestRunner } from "@receptron/test_utils";
 import browserlessAgentInfo from "../src/browserless_agent";
 import { copyAgent } from "@graphai/vanilla";
 
-import { graphDataContent, graphDataNoToken, graphDataErrorResponse, graphDataTextContent } from "./graphData";
+import { graphDataContent, graphDataNoToken, graphDataErrorResponse, graphDataTextContent, graphDataApiKeyFromEnv } from "./graphData";
 
 import test from "node:test";
 import assert from "node:assert";
@@ -160,6 +160,25 @@ test("test browserless error response", async () => {
 
     const resultData = (result as any).error.result;
     assert.ok(resultData.onError, "Expected error result");
+  } finally {
+    cleanupEnvironment();
+  }
+});
+
+test("test browserless api key from env", async () => {
+  setupEnvironment();
+  try {
+    const result = await graphDataTestRunner(
+      __dirname,
+      __filename,
+      graphDataApiKeyFromEnv,
+      { browserlessAgent: browserlessAgentInfo, copyAgent } as any,
+      () => {},
+      false,
+    );
+
+    const resultData = (result as any).success.result;
+    assert.equal(resultData, mockContentHtml, "Expected success result");
   } finally {
     cleanupEnvironment();
   }
