@@ -83,3 +83,23 @@ export const graphDataErrorResponse: GraphData = {
     },
   },
 };
+
+// Graph for testing api key from env
+export const graphDataApiKeyFromEnv: GraphData = {
+  version: graphDataLatestVersion,
+  nodes: {
+    start: {
+      agent: "browserlessAgent",
+      inputs: {
+        url: "https://example.com",
+      },
+    },
+    success: {
+      agent: "copyAgent",
+      inputs: {
+        result: ":start",
+      },
+      isResult: true,
+    },
+  },
+};
