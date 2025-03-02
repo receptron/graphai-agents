@@ -193,7 +193,7 @@ const browserlessAgentInfo: AgentFunctionInfo = {
   ],
   description:
     "An agent that uses Browserless.io to fetch web page content with JavaScript execution support for retrieving data from SPAs and dynamic content",
-  category: ["service"],
+  category: ["net"],
   author: "kawamataryo",
   repository: "https://github.com/receptron/graphai-agents",
   license: "MIT",
