@@ -24,8 +24,12 @@
   "bugs": {
     "url": "https://github.com/receptron/graphai-agents/issues"
   },
-  "homepage": "https://github.com/receptron/graphai-agents#readme",
+  "homepage": "https://github.com/receptron/graphai-agents/blob/main/net/browserless_agent/README.md",
   "devDependencies": {
     "undici": "^6.21.1"
+  },
+  "types": "./lib/index.d.ts",
+  "directories": {
+    "lib": "lib"
   }
 }
