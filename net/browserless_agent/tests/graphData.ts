@@ -1,8 +1,8 @@
-import { GraphData } from "graphai";
+import { GraphData, graphDataLatestVersion } from "graphai";
 
 // Graph for testing content retrieval
 export const graphDataContent: GraphData = {
-  version: 1,
+  version: graphDataLatestVersion,
   nodes: {
     start: {
       agent: "browserlessAgent",
@@ -13,7 +13,7 @@ export const graphDataContent: GraphData = {
     success: {
       agent: "copyAgent",
       inputs: {
-        result: ":start"
+        result: ":start",
       },
       isResult: true,
     },
@@ -22,7 +22,7 @@ export const graphDataContent: GraphData = {
 
 // Graph for testing text content retrieval
 export const graphDataTextContent: GraphData = {
-  version: 1,
+  version: graphDataLatestVersion,
   nodes: {
     start: {
       agent: "browserlessAgent",
@@ -34,7 +34,7 @@ export const graphDataTextContent: GraphData = {
     success: {
       agent: "copyAgent",
       inputs: {
-        result: ":start"
+        result: ":start",
       },
       isResult: true,
     },
@@ -43,7 +43,7 @@ export const graphDataTextContent: GraphData = {
 
 // Graph for testing missing API token
 export const graphDataNoToken: GraphData = {
-  version: 1,
+  version: graphDataLatestVersion,
   nodes: {
     start: {
       agent: "browserlessAgent",
@@ -65,7 +65,7 @@ export const graphDataNoToken: GraphData = {
 
 // Graph for testing error response handling
 export const graphDataErrorResponse: GraphData = {
-  version: 1,
+  version: graphDataLatestVersion,
   nodes: {
     start: {
       agent: "browserlessAgent",

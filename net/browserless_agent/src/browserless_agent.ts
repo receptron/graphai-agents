@@ -1,4 +1,4 @@
-import { AgentFunction, AgentFunctionInfo, DefaultConfigData } from "graphai";
+import { AgentFunction, AgentFunctionInfo, assert, DefaultConfigData } from "graphai";
 
 interface BrowserlessInputs {
   url: string;
@@ -21,14 +21,18 @@ type BrowserlessResult =
       };
     };
 
-export const browserlessAgent: AgentFunction<BrowserlessParams, BrowserlessResult, BrowserlessInputs, DefaultConfigData> = async ({ namedInputs, params }) => {
+export const browserlessAgent: AgentFunction<BrowserlessParams, BrowserlessResult, BrowserlessInputs, DefaultConfigData> = async ({
+  namedInputs,
+  params,
+  config,
+}) => {
   const { url, text_content } = namedInputs;
+  assert(!!url, "browserlessAgent: url is required! set inputs: { url: 'https://example.com' }");
+
   const throwError = params?.throwError ?? false;
 
-  const browserlessEndpoint = "https://chrome.browserless.io";
-  const browserlessToken = params?.apiKey ??
-    (typeof process !== "undefined" &&
-     process?.env?.BROWSERLESS_API_TOKEN || null);
+  const browserlessToken =
+    params?.apiKey ?? (typeof config !== "undefined" && config.apiKey) ?? ((typeof process !== "undefined" && process?.env?.BROWSERLESS_API_TOKEN) || null);
 
   // Check if API token is provided
   if (!browserlessToken) {
@@ -36,32 +40,10 @@ export const browserlessAgent: AgentFunction<BrowserlessParams, BrowserlessResul
     throw new Error(errorMessage);
   }
 
-  let endpoint: string;
-  let requestBody: {
-    url: string;
-    elements?: {
-      selector: string;
-    }[];
-  };
-
-  if (text_content) {
-    // scrape endpoint to get text content of the body element
-    endpoint = `${browserlessEndpoint}/scrape?token=${browserlessToken}`;
-    requestBody = {
-      url,
-      elements: [
-        {
-          selector: "body",
-        },
-      ],
-    };
-  } else {
-    // content endpoint to get full HTML
-    endpoint = `${browserlessEndpoint}/content?token=${browserlessToken}`;
-    requestBody = {
-      url,
-    };
-  }
+  const baseUrl = "https://chrome.browserless.io";
+  const path = text_content ? "scrape" : "content";
+  const endpoint = `${baseUrl}/${path}?token=${browserlessToken}`;
+  const requestBody = text_content ? { url, elements: [{ selector: "body" }] } : { url };
 
   // Return request information in debug mode
   if (params?.debug) {
