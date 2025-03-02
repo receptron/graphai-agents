@@ -13,8 +13,8 @@ test("test pdf2textAgent: buffer, text", async () => {
     namedInputs,
     params,
     filterParams: {},
-    debugInfo: { verbose: false, nodeId: "test", retry: 5 } as any,
-  })) as any;
+    debugInfo: { verbose: false, nodeId: "test", retry: 5, state: "executing", subGraphs: new Map() },
+  }));
 
   if (res) {
     console.log(res);
@@ -31,8 +31,8 @@ test("test pdf2textAgent: buffer, md", async () => {
     namedInputs,
     params,
     filterParams: {},
-    debugInfo: { verbose: false, nodeId: "test", retry: 5 } as any,
-  })) as any;
+    debugInfo: { verbose: false, nodeId: "test", retry: 5, state: "executing", subGraphs: new Map() },
+  }));
 
   if (res) {
     console.log(res.text);
