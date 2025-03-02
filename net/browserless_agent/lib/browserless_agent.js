@@ -2,11 +2,20 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.browserlessAgent = void 0;
 const graphai_1 = require("graphai");
+const getBrowserlessToken = (params, config) => {
+    if (params?.apiKey) {
+        return params.apiKey;
+    }
+    if (config?.apiKey) {
+        return config.apiKey;
+    }
+    return typeof process !== "undefined" ? process?.env?.BROWSERLESS_API_TOKEN : null;
+};
 const browserlessAgent = async ({ namedInputs, params, config, }) => {
     const { url, text_content } = namedInputs;
     (0, graphai_1.assert)(!!url, "browserlessAgent: url is required! set inputs: { url: 'https://example.com' }");
     const throwError = params?.throwError ?? false;
-    const browserlessToken = params?.apiKey ?? (typeof config !== "undefined" && config.apiKey) ?? ((typeof process !== "undefined" && process?.env?.BROWSERLESS_API_TOKEN) || null);
+    const browserlessToken = getBrowserlessToken(params, config);
     // Check if API token is provided
     if (!browserlessToken) {
         const errorMessage = "Browserless API token is required. Please set the BROWSERLESS_API_TOKEN environment variable.";
