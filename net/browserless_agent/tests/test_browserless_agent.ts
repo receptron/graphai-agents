@@ -94,14 +94,7 @@ test("test browserless content", async () => {
   try {
     const result = await graphDataTestRunner<{
       result: string;
-    }>(
-      __dirname,
-      __filename,
-      graphDataContent,
-      { browserlessAgent: browserlessAgentInfo, copyAgent } as any,
-      () => {},
-      false,
-    );
+    }>(__dirname, __filename, graphDataContent, { browserlessAgent: browserlessAgentInfo, copyAgent } as any, () => {}, false);
 
     const resultData = result.success?.result;
     assert.equal(resultData, mockContentHtml, "Expected success result");
@@ -115,14 +108,7 @@ test("test browserless text content", async () => {
   try {
     const result = await graphDataTestRunner<{
       result: string;
-    }>(
-      __dirname,
-      __filename,
-      graphDataTextContent,
-      { browserlessAgent: browserlessAgentInfo, copyAgent } as any,
-      () => {},
-      false,
-    );
+    }>(__dirname, __filename, graphDataTextContent, { browserlessAgent: browserlessAgentInfo, copyAgent } as any, () => {}, false);
 
     const resultData = result.success?.result;
     assert.equal(resultData, mockBody.data[0].results[0].text, "Expected success result");
@@ -161,14 +147,7 @@ test("test browserless error response", async () => {
           error: any;
         };
       };
-    }>(
-      __dirname,
-      __filename,
-      graphDataErrorResponse,
-      { browserlessAgent: browserlessAgentInfo, copyAgent } as any,
-      () => {},
-      false,
-    );
+    }>(__dirname, __filename, graphDataErrorResponse, { browserlessAgent: browserlessAgentInfo, copyAgent } as any, () => {}, false);
 
     const resultData = result.error?.result;
     assert.ok(resultData?.onError, "Expected error result");
@@ -182,14 +161,7 @@ test("test browserless api key from env", async () => {
   try {
     const result = await graphDataTestRunner<{
       result: string;
-    }>(
-      __dirname,
-      __filename,
-      graphDataApiKeyFromEnv,
-      { browserlessAgent: browserlessAgentInfo, copyAgent } as any,
-      () => {},
-      false,
-    );
+    }>(__dirname, __filename, graphDataApiKeyFromEnv, { browserlessAgent: browserlessAgentInfo, copyAgent } as any, () => {}, false);
 
     const resultData = result?.success?.result;
     assert.equal(resultData, mockContentHtml, "Expected success result");

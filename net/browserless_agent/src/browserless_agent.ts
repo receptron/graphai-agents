@@ -21,7 +21,6 @@ type BrowserlessResult =
       };
     };
 
-
 const getBrowserlessToken = (params: BrowserlessParams, config?: DefaultConfigData) => {
   if (params?.apiKey) {
     return params.apiKey;
