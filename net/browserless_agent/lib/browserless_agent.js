@@ -60,10 +60,15 @@ const browserlessAgent = async ({ namedInputs, params, config, }) => {
         }
         if (text_content) {
             const jsonResponse = await response.json();
-            return jsonResponse.data[0].results[0].text;
+            return {
+                text: jsonResponse.data[0].results[0].text,
+            };
         }
         else {
-            return response.text();
+            const textResponse = await response.text();
+            return {
+                text: textResponse,
+            };
         }
     }
     catch (error) {
@@ -115,7 +120,12 @@ const browserlessAgentInfo = {
         required: ["url"],
     },
     output: {
-        type: "string",
+        type: "object",
+        properties: {
+            text: {
+                type: "string",
+            },
+        },
     },
     samples: [
         {
@@ -123,7 +133,9 @@ const browserlessAgentInfo = {
                 url: "https://www.example.com",
             },
             params: {},
-            result: "<html><body>Hello, world!</body></html>",
+            result: {
+                text: "<html><body>Hello, world!</body></html>",
+            },
         },
         {
             inputs: {
@@ -131,7 +143,9 @@ const browserlessAgentInfo = {
                 text_content: true,
             },
             params: {},
-            result: "Hello, world!",
+            result: {
+                text: "Hello, world!",
+            },
         },
         {
             inputs: {
