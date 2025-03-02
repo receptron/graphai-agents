@@ -2,19 +2,23 @@ import { graphDataTestRunner } from "@receptron/test_utils";
 import browserlessAgentInfo from "../src/browserless_agent";
 import { copyAgent } from "@graphai/vanilla";
 
-import { graphDataContent, graphDataScreenshot, graphDataNoToken, graphDataErrorResponse } from "./graphData";
+import { graphDataContent, graphDataNoToken, graphDataErrorResponse, graphDataTextContent } from "./graphData";
 
 import test from "node:test";
 import assert from "node:assert";
 import { MockAgent, setGlobalDispatcher, getGlobalDispatcher } from "undici";
 
 // Mock response data
-const mockContentResponse = {
-  title: "Test Page",
-  content: "This is test content",
-};
-
 const mockContentHtml = "<html><body>This is test content</body></html>";
+const mockBody = {
+  data: [
+    {
+      results: [
+        { text: "This is test content" },
+      ],
+    },
+  ],
+};
 
 // Save the original global dispatcher
 const originalDispatcher = getGlobalDispatcher();
@@ -33,17 +37,7 @@ const setupEnvironment = () => {
   // Set up the mock pool
   const mockPool = mockAgent.get("https://chrome.browserless.io");
 
-  // Mock the content endpoint
-  mockPool
-    .intercept({
-      path: "/content?token=test_token",
-      method: "POST",
-    })
-    .reply(200, mockContentResponse, {
-      headers: { "content-type": "application/json" },
-    });
-
-  // Mock the endpoint for text responses
+  // Mock the content endpoint for regular URL requests
   mockPool
     .intercept({
       path: "/content?token=test_token",
@@ -51,24 +45,34 @@ const setupEnvironment = () => {
       body: (body) => {
         try {
           const parsedBody = JSON.parse(body.toString());
-          return parsedBody.url === "https://example.com/text";
+          return parsedBody.url === "https://example.com";
         } catch (__e) {
           return false;
         }
-      },
+      }
     })
     .reply(200, mockContentHtml, {
       headers: { "content-type": "text/html" },
     });
 
-  // Mock the screenshot endpoint
+  // Mock the endpoint for text responses
   mockPool
     .intercept({
-      path: "/screenshot?token=test_token",
+      path: "/scrape?token=test_token",
       method: "POST",
+      body: (body) => {
+        try {
+          const parsedBody = JSON.parse(body.toString());
+          return parsedBody.elements &&
+                 parsedBody.elements[0] &&
+                 parsedBody.elements[0].selector === "body";
+        } catch (__e) {
+          return false;
+        }
+      },
     })
-    .reply(200, Buffer.from([0, 1, 2, 3, 4]), {
-      headers: { "content-type": "image/png" },
+    .reply(200, mockBody, {
+      headers: { "content-type": "text/plain" },
     });
 
   // Mock error responses
@@ -79,7 +83,7 @@ const setupEnvironment = () => {
       body: (body) => {
         try {
           const parsedBody = JSON.parse(body.toString());
-          return parsedBody.url && parsedBody.url.includes("error");
+          return parsedBody.url === "https://error.example.com";
         } catch (__e) {
           return false;
         }
@@ -109,27 +113,28 @@ test("test browserless content", async () => {
     );
 
     // Basic success check
-    assert.ok(result.success, "Expected success result");
+    const resultData = (result as any).success.result;
+    assert.equal(resultData, mockContentHtml, "Expected success result");
   } finally {
     cleanupEnvironment();
   }
 });
 
-test("test browserless screenshot", async () => {
+test("test browserless text content", async () => {
   setupEnvironment();
-
   try {
     const result = await graphDataTestRunner(
       __dirname,
       __filename,
-      graphDataScreenshot,
+      graphDataTextContent,
       { browserlessAgent: browserlessAgentInfo, copyAgent } as any,
       () => {},
       false,
     );
 
     // Basic success check
-    assert.ok(result.success, "Expected success result");
+    const resultData = (result as any).success.result;
+    assert.equal(resultData, mockBody.data[0].results[0].text, "Expected success result");
   } finally {
     cleanupEnvironment();
   }

@@ -8,48 +8,33 @@ export const graphDataContent: GraphData = {
       agent: "browserlessAgent",
       inputs: {
         url: "https://example.com",
-        operation: "content",
-      },
-      params: {
-        type: "json",
       },
     },
     success: {
       agent: "copyAgent",
       inputs: {
-        value: {
-          nodeId: "start",
-        },
+        result: ":start"
       },
       isResult: true,
     },
   },
 };
 
-// Graph for testing screenshot
-export const graphDataScreenshot: GraphData = {
+// Graph for testing text content retrieval
+export const graphDataTextContent: GraphData = {
   version: 1,
   nodes: {
     start: {
       agent: "browserlessAgent",
       inputs: {
         url: "https://example.com",
-        operation: "screenshot",
-        options: {
-          fullPage: true,
-          type: "png",
-        },
-      },
-      params: {
-        type: "buffer",
+        text_content: true,
       },
     },
     success: {
       agent: "copyAgent",
       inputs: {
-        value: {
-          nodeId: "start",
-        },
+        result: ":start"
       },
       isResult: true,
     },
@@ -64,7 +49,6 @@ export const graphDataNoToken: GraphData = {
       agent: "browserlessAgent",
       inputs: {
         url: "https://example.com",
-        operation: "content",
       },
     },
     success: {
@@ -87,7 +71,6 @@ export const graphDataErrorResponse: GraphData = {
       agent: "browserlessAgent",
       inputs: {
         url: "https://error.example.com",
-        operation: "content",
       },
       params: {
         throwError: false,

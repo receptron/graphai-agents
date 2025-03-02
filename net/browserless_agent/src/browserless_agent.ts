@@ -2,32 +2,17 @@ import { AgentFunction, AgentFunctionInfo, DefaultConfigData } from "graphai";
 
 interface BrowserlessInputs {
   url: string;
-  operation?: "content" | "screenshot";
-  options?: Record<string, any>;
-  headers?: Record<string, string>;
-  cookies?: Array<{
-    name: string;
-    value: string;
-    domain?: string;
-  }>;
-}
-
-// Type for the buffer response from screenshot operations
-interface BufferResponse {
-  base64: string;
-  contentType: string;
+  text_content?: boolean;
 }
 
 interface BrowserlessParams {
+  apiKey?: string;
   debug?: boolean;
-  type?: "json" | "text" | "buffer";
   throwError?: boolean;
 }
 
 type BrowserlessResult =
-  | object
   | string
-  | BufferResponse
   | {
       onError?: {
         message: string;
@@ -37,11 +22,13 @@ type BrowserlessResult =
     };
 
 export const browserlessAgent: AgentFunction<BrowserlessParams, BrowserlessResult, BrowserlessInputs, DefaultConfigData> = async ({ namedInputs, params }) => {
-  const { url, operation, options, headers, cookies } = namedInputs;
+  const { url, text_content } = namedInputs;
   const throwError = params?.throwError ?? false;
 
   const browserlessEndpoint = "https://chrome.browserless.io";
-  const browserlessToken = process.env.BROWSERLESS_API_TOKEN;
+  const browserlessToken = params?.apiKey ??
+    (typeof process !== "undefined" &&
+     process?.env?.BROWSERLESS_API_TOKEN || null);
 
   // Check if API token is provided
   if (!browserlessToken) {
@@ -49,27 +36,39 @@ export const browserlessAgent: AgentFunction<BrowserlessParams, BrowserlessResul
     throw new Error(errorMessage);
   }
 
-  // Build the endpoint with token
-  const endpoint = `${browserlessEndpoint}?token=${browserlessToken}`;
-
-  const fullEndpoint = `${endpoint}/${operation ?? "content"}`;
-
-  // Build request body
-  const requestBody: Record<string, unknown> = {
-    url,
-    ...options,
+  let endpoint: string;
+  let requestBody: {
+    url: string;
+    elements?: {
+      selector: string;
+    }[];
   };
 
-  if (cookies && Array.isArray(cookies) && cookies.length > 0) {
-    requestBody.cookies = cookies;
+  if (text_content) {
+    // scrape endpoint to get text content of the body element
+    endpoint = `${browserlessEndpoint}/scrape?token=${browserlessToken}`;
+    requestBody = {
+      url,
+      elements: [
+        {
+          selector: "body",
+        },
+      ],
+    };
+  } else {
+    // content endpoint to get full HTML
+    endpoint = `${browserlessEndpoint}/content?token=${browserlessToken}`;
+    requestBody = {
+      url,
+    };
   }
 
   // Return request information in debug mode
   if (params?.debug) {
     return {
-      url: fullEndpoint,
+      url: endpoint,
       method: "POST",
-      headers: headers || { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json" },
       body: requestBody,
     };
   }
@@ -79,13 +78,12 @@ export const browserlessAgent: AgentFunction<BrowserlessParams, BrowserlessResul
     method: "POST",
     headers: new Headers({
       "Content-Type": "application/json",
-      ...(headers || {}),
     }),
     body: JSON.stringify(requestBody),
   };
 
   try {
-    const response = await fetch(fullEndpoint, fetchOptions);
+    const response = await fetch(endpoint, fetchOptions);
 
     if (!response.ok) {
       const status = response.status;
@@ -104,21 +102,11 @@ export const browserlessAgent: AgentFunction<BrowserlessParams, BrowserlessResul
       };
     }
 
-    // Process result based on response type
-    const responseType = params?.type || (operation === "screenshot" ? "buffer" : "text");
-
-    switch (responseType) {
-    case "json":
-      return (await response.json()) as BrowserlessResult;
-    case "text":
-      return (await response.text()) as BrowserlessResult;
-    case "buffer":
-      return {
-        base64: Buffer.from(await response.arrayBuffer()).toString("base64"),
-        contentType: response.headers.get("Content-Type") || "application/octet-stream",
-      } as BufferResponse;
-    default:
-      return (await response.text()) as BrowserlessResult;
+    if (text_content) {
+      const jsonResponse = await response.json();
+      return jsonResponse.data[0].results[0].text;
+    } else {
+      return response.text();
     }
   } catch (error) {
     if (throwError) {
@@ -138,6 +126,23 @@ const browserlessAgentInfo: AgentFunctionInfo = {
   name: "browserlessAgent",
   agent: browserlessAgent,
   mock: browserlessAgent,
+  params: {
+    type: "object",
+    properties: {
+      apiKey: {
+        type: "string",
+        description: "Browserless API key",
+      },
+      debug: {
+        type: "boolean",
+        description: "Enable debug mode",
+      },
+      throwError: {
+        type: "boolean",
+        description: "Throw error if the request fails",
+      },
+    },
+  },
   inputs: {
     type: "object",
     properties: {
@@ -145,52 +150,35 @@ const browserlessAgentInfo: AgentFunctionInfo = {
         type: "string",
         description: "URL of the web page to scrape or manipulate",
       },
-      operation: {
-        type: "string",
-        enum: ["content", "screenshot"],
-        description: "Type of operation to perform (content or screenshot)",
-      },
-      options: {
-        type: "object",
-        description: "Additional options for the operation (e.g., screenshot format settings)",
-      },
-      headers: {
-        type: "object",
-        description: "HTTP request headers",
-      },
-      cookies: {
-        type: "array",
-        items: {
-          type: "object",
-          properties: {
-            name: { type: "string" },
-            value: { type: "string" },
-            domain: { type: "string" },
-          },
-        },
-        description: "Cookies to use with the request",
+      text_content: {
+        type: "boolean",
+        description: "If true, returns only the text content of the body element of the page, otherwise returns the full HTML",
       },
     },
     required: ["url"],
   },
   output: {
-    oneOf: [
-      { type: "object" },
-      { type: "string" },
-      {
-        type: "object",
-        properties: {
-          base64: { type: "string" },
-          contentType: { type: "string" },
-        },
-      },
-    ],
+    type: "string",
   },
   samples: [
     {
       inputs: {
         url: "https://www.example.com",
-        operation: "content",
+      },
+      params: {},
+      result: "<html><body>Hello, world!</body></html>",
+    },
+    {
+      inputs: {
+        url: "https://www.example.com",
+        text_content: true,
+      },
+      params: {},
+      result: "Hello, world!",
+    },
+    {
+      inputs: {
+        url: "https://www.example.com",
       },
       params: {
         debug: true,
@@ -202,34 +190,9 @@ const browserlessAgentInfo: AgentFunctionInfo = {
         body: { url: "https://www.example.com" },
       },
     },
-    {
-      inputs: {
-        url: "https://www.example.com",
-        operation: "screenshot",
-        options: {
-          fullPage: true,
-          type: "jpeg",
-          quality: 90,
-        },
-      },
-      params: {
-        debug: true,
-      },
-      result: {
-        url: "https://chrome.browserless.io/screenshot",
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: {
-          url: "https://www.example.com",
-          fullPage: true,
-          type: "jpeg",
-          quality: 90,
-        },
-      },
-    },
   ],
   description:
-    "An agent that uses Browserless.io to fetch web page content and take screenshots of websites, with JavaScript execution support for retrieving data from SPAs and dynamic content",
+    "An agent that uses Browserless.io to fetch web page content with JavaScript execution support for retrieving data from SPAs and dynamic content",
   category: ["service"],
   author: "kawamataryo",
   repository: "https://github.com/receptron/graphai-agents",
