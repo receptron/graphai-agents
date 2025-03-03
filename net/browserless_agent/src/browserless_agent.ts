@@ -12,12 +12,23 @@ interface BrowserlessParams {
 }
 
 type BrowserlessResult =
-  | string
   | {
-      onError?: {
+      text: string;
+    }
+  | {
+      onError: {
         message: string;
+        error: string;
         status?: number;
-        error: any;
+      };
+    }
+  | {
+      url: string;
+      method: string;
+      headers: Record<string, string>;
+      body: {
+        url: string;
+        elements?: { selector: string }[];
       };
     };
 
