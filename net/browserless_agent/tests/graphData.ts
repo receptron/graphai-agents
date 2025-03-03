@@ -103,3 +103,26 @@ export const graphDataApiKeyFromEnv: GraphData = {
     },
   },
 };
+
+// Graph for testing text_content in params
+export const graphDataTextContentInParams: GraphData = {
+  version: graphDataLatestVersion,
+  nodes: {
+    start: {
+      agent: "browserlessAgent",
+      inputs: {
+        url: "https://example.com",
+      },
+      params: {
+        text_content: true,
+      },
+    },
+    success: {
+      agent: "copyAgent",
+      inputs: {
+        result: ":start.text",
+      },
+      isResult: true,
+    },
+  },
+};

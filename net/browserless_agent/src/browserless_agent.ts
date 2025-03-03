@@ -9,15 +9,27 @@ interface BrowserlessParams {
   apiKey?: string;
   debug?: boolean;
   throwError?: boolean;
+  text_content?: boolean;
 }
 
 type BrowserlessResult =
-  | string
   | {
-      onError?: {
+      text: string;
+    }
+  | {
+      onError: {
         message: string;
+        error: string;
         status?: number;
-        error: any;
+      };
+    }
+  | {
+      url: string;
+      method: string;
+      headers: Record<string, string>;
+      body: {
+        url: string;
+        elements?: { selector: string }[];
       };
     };
 
@@ -37,7 +49,10 @@ export const browserlessAgent: AgentFunction<BrowserlessParams, BrowserlessResul
   config,
 }) => {
   const { url, text_content } = namedInputs;
+
   assert(!!url, "browserlessAgent: url is required! set inputs: { url: 'https://example.com' }");
+
+  const shouldExtractTextContent = text_content ?? params?.text_content ?? false;
 
   const throwError = params?.throwError ?? false;
 
@@ -50,9 +65,9 @@ export const browserlessAgent: AgentFunction<BrowserlessParams, BrowserlessResul
   }
 
   const baseUrl = "https://chrome.browserless.io";
-  const path = text_content ? "scrape" : "content";
+  const path = shouldExtractTextContent ? "scrape" : "content";
   const endpoint = `${baseUrl}/${path}?token=${browserlessToken}`;
-  const requestBody = text_content ? { url, elements: [{ selector: "body" }] } : { url };
+  const requestBody = shouldExtractTextContent ? { url, elements: [{ selector: "body" }] } : { url };
 
   // Return request information in debug mode
   if (params?.debug) {
@@ -93,7 +108,7 @@ export const browserlessAgent: AgentFunction<BrowserlessParams, BrowserlessResul
       };
     }
 
-    if (text_content) {
+    if (shouldExtractTextContent) {
       const jsonResponse = await response.json();
       return {
         text: jsonResponse.data[0].results[0].text,
@@ -136,6 +151,10 @@ const browserlessAgentInfo: AgentFunctionInfo = {
       throwError: {
         type: "boolean",
         description: "Throw error if the request fails",
+      },
+      text_content: {
+        type: "boolean",
+        description: "If true, returns only the text content of the body element of the page, otherwise returns the full HTML",
       },
     },
   },

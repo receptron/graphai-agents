@@ -7,12 +7,25 @@ interface BrowserlessParams {
     apiKey?: string;
     debug?: boolean;
     throwError?: boolean;
+    text_content?: boolean;
 }
-type BrowserlessResult = string | {
-    onError?: {
+type BrowserlessResult = {
+    text: string;
+} | {
+    onError: {
         message: string;
+        error: string;
         status?: number;
-        error: any;
+    };
+} | {
+    url: string;
+    method: string;
+    headers: Record<string, string>;
+    body: {
+        url: string;
+        elements?: {
+            selector: string;
+        }[];
     };
 };
 export declare const browserlessAgent: AgentFunction<BrowserlessParams, BrowserlessResult, BrowserlessInputs, DefaultConfigData>;
