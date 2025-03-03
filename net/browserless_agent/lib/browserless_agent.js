@@ -14,6 +14,7 @@ const getBrowserlessToken = (params, config) => {
 const browserlessAgent = async ({ namedInputs, params, config, }) => {
     const { url, text_content } = namedInputs;
     (0, graphai_1.assert)(!!url, "browserlessAgent: url is required! set inputs: { url: 'https://example.com' }");
+    const shouldExtractTextContent = text_content ?? params?.text_content ?? false;
     const throwError = params?.throwError ?? false;
     const browserlessToken = getBrowserlessToken(params, config);
     // Check if API token is provided
@@ -22,9 +23,9 @@ const browserlessAgent = async ({ namedInputs, params, config, }) => {
         throw new Error(errorMessage);
     }
     const baseUrl = "https://chrome.browserless.io";
-    const path = text_content ? "scrape" : "content";
+    const path = shouldExtractTextContent ? "scrape" : "content";
     const endpoint = `${baseUrl}/${path}?token=${browserlessToken}`;
-    const requestBody = text_content ? { url, elements: [{ selector: "body" }] } : { url };
+    const requestBody = shouldExtractTextContent ? { url, elements: [{ selector: "body" }] } : { url };
     // Return request information in debug mode
     if (params?.debug) {
         return {
@@ -58,7 +59,7 @@ const browserlessAgent = async ({ namedInputs, params, config, }) => {
                 },
             };
         }
-        if (text_content) {
+        if (shouldExtractTextContent) {
             const jsonResponse = await response.json();
             return {
                 text: jsonResponse.data[0].results[0].text,
@@ -102,6 +103,10 @@ const browserlessAgentInfo = {
             throwError: {
                 type: "boolean",
                 description: "Throw error if the request fails",
+            },
+            text_content: {
+                type: "boolean",
+                description: "If true, returns only the text content of the body element of the page, otherwise returns the full HTML",
             },
         },
     },
