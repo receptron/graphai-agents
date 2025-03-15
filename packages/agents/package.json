@@ -28,6 +28,8 @@
   "dependencies": {
     "@graphai/arxiv_agent": "^0.0.2",
     "@graphai/awesome_chatgpt_prompts_agent": "^0.0.1",
+    "@graphai/brave_search_agent": "^0.0.1",
+    "@graphai/browserless_agent": "^0.0.3",
     "@graphai/pdf2text_agent": "^0.2.0",
     "@graphai/prompts": "^0.0.1",
     "@graphai/serper_agent": "^0.0.1",

@@ -1,5 +1,7 @@
 export * from "@graphai/pdf2text_agent";
 export * from "@graphai/arxiv_agent";
+export * from "@graphai/brave_search_agent";
+export * from "@graphai/browserless_agent";
 export * from "@graphai/serper_agent";
 export * from "@graphai/slack_agent";
 export * from "@graphai/awesome_chatgpt_prompts_agent";
