@@ -1,3 +1,4 @@
+import { GraphAIOnError } from "@graphai/agent_utils";
 import { AgentFunction, AgentFunctionInfo, assert, DefaultConfigData } from "graphai";
 
 interface BraveSearchInputs {
@@ -22,13 +23,7 @@ type BraveSearchResponse =
   | {
       items: BraveSearchResult[];
     }
-  | {
-      onError: {
-        message: string;
-        error: string;
-        status?: number;
-      };
-    }
+  | GraphAIOnError<string>
   | {
       url: string;
       method: string;
