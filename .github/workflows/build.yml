@@ -37,7 +37,7 @@ jobs:
     - name: Commit 
       run: |
         if [ $(git diff --name-only --cached | wc -l) != 0 ]; then
-          git commit -m "Update lib or docs" packages/*/lib/ net/*/lib/ prompts/*/lib/*
+          git commit -m "Update lib or docs" packages/*/lib/ net/*/lib/ prompts/*/lib/* docs
           git push origin main
         else
           echo "No change on lib"
