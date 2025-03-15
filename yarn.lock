@@ -88,6 +88,11 @@
   resolved "https://registry.yarnpkg.com/@graphai/agent_utils/-/agent_utils-0.0.3.tgz#95dff049247c4ad0da20443062654fb1826061f7"
   integrity sha512-dybbO54rI9E1XfNaHhxLT9xES7G9KC2mXyDYaKvvcDF3bSF6/870CzQb3AOxqzy6WadkKPO+oFye85RM8uNaHg==
 
+"@graphai/agent_utils@^0.0.9":
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/@graphai/agent_utils/-/agent_utils-0.0.9.tgz#a293a245e8f3b89abca118ee3608d0ea51ed69a3"
+  integrity sha512-hH7kLQ0UMI2vqcm1z6NGCX2veVNxzdF4DwSYk0Nvhxqv4Y9Joqv9vXvLWq+wH/009bTiBFR2qmVYFW8xvsAUlA==
+
 "@graphai/llm_utils@^0.2.0":
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/@graphai/llm_utils/-/llm_utils-0.2.0.tgz#03de706c5dc91f4650fa540bb75a15646dc79d88"
