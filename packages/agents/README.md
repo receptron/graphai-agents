@@ -17,6 +17,8 @@ import { GraphAI } from "graphai";
 import { 
   arxivAgent,
   awesomeChatgptPromptsAgent,
+  braveSearchAgent,
+  browserlessAgent,
   pdf2textAgent,
   promptsAgent,
   serperAgent,
@@ -28,6 +30,8 @@ import {
 const agents = { 
   arxivAgent,
   awesomeChatgptPromptsAgent,
+  braveSearchAgent,
+  browserlessAgent,
   pdf2textAgent,
   promptsAgent,
   serperAgent,
@@ -43,6 +47,8 @@ const result = await graph.run();
 ### Agents description
 - arxivAgent - Arxiv Agent
 - awesomeChatgptPromptsAgent - awesomeChatgptPrompts Agent
+- braveSearchAgent - An agent that uses the Brave Search API. https://api-dashboard.search.brave.com/app/documentation/web-search/get-started
+- browserlessAgent - An agent that uses Browserless.io to fetch web page content with JavaScript execution support for retrieving data from SPAs and dynamic content
 - pdf2textAgent - Pdf2text Agent
 - promptsAgent - Prompts Agent
 - serperAgent - serper agent
@@ -53,6 +59,8 @@ const result = await graph.run();
 ### Input/Output/Params Schema & samples
  - [arxivAgent](https://github.com/receptron/graphai-agents/blob/main/docs/agentDocs/net/arxivAgent.md)
  - [awesomeChatgptPromptsAgent](https://github.com/receptron/graphai-agents/blob/main/docs/agentDocs/prompt/awesomeChatgptPromptsAgent.md)
+ - [braveSearchAgent](https://github.com/receptron/graphai-agents/blob/main/docs/agentDocs/net/braveSearchAgent.md)
+ - [browserlessAgent](https://github.com/receptron/graphai-agents/blob/main/docs/agentDocs/net/browserlessAgent.md)
  - [pdf2textAgent](https://github.com/receptron/graphai-agents/blob/main/docs/agentDocs/documents/pdf2textAgent.md)
  - [promptsAgent](https://github.com/receptron/graphai-agents/blob/main/docs/agentDocs/prompt/promptsAgent.md)
  - [serperAgent](https://github.com/receptron/graphai-agents/blob/main/docs/agentDocs/net/serperAgent.md)
@@ -91,6 +99,77 @@ const result = await graph.run();
   "inputs": {},
   "params": {
     "promptKey": "travelGuide"
+  }
+}
+```
+
+ - braveSearchAgent
+
+```typescript
+{
+  "inputs": {
+    "query": "GraphAI framework"
+  },
+  "params": {}
+}
+```
+
+
+```typescript
+{
+  "inputs": {
+    "query": "GraphAI vs TensorFlow",
+    "search_args": {
+      "country": "JP",
+      "language": "ja"
+    }
+  },
+  "params": {}
+}
+```
+
+
+```typescript
+{
+  "inputs": {
+    "query": "GraphAI tutorials"
+  },
+  "params": {
+    "debug": true
+  }
+}
+```
+
+ - browserlessAgent
+
+```typescript
+{
+  "inputs": {
+    "url": "https://www.example.com"
+  },
+  "params": {}
+}
+```
+
+
+```typescript
+{
+  "inputs": {
+    "url": "https://www.example.com",
+    "text_content": true
+  },
+  "params": {}
+}
+```
+
+
+```typescript
+{
+  "inputs": {
+    "url": "https://www.example.com"
+  },
+  "params": {
+    "debug": true
   }
 }
 ```
@@ -159,6 +238,10 @@ const result = await graph.run();
 
 
 ### Environment Variables
+ - braveSearchAgent
+   - BRAVE_SEARCH_API_TOKEN
+ - browserlessAgent
+   - BROWSERLESS_API_TOKEN
  - serperAgent
    - SERPER_API_KEY
  - ttsNijivoiceAgent
@@ -169,6 +252,8 @@ const result = await graph.run();
 ### Related Agent Packages
  - [@graphai/arxiv_agent](https://www.npmjs.com/package/@graphai/arxiv_agent)
  - [@graphai/awesome_chatgpt_prompts_agent](https://www.npmjs.com/package/@graphai/awesome_chatgpt_prompts_agent)
+ - [@graphai/brave_search_agent](https://www.npmjs.com/package/@graphai/brave_search_agent)
+ - [@graphai/browserless_agent](https://www.npmjs.com/package/@graphai/browserless_agent)
  - [@graphai/pdf2text_agent](https://www.npmjs.com/package/@graphai/pdf2text_agent)
  - [@graphai/serper_agent](https://www.npmjs.com/package/@graphai/serper_agent)
  - [@graphai/slack_agent](https://www.npmjs.com/package/@graphai/slack_agent)
