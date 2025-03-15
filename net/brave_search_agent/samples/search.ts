@@ -8,7 +8,7 @@ const graph_data: GraphData = {
   version: 0.5,
   nodes: {
     input: {
-      value: { content: "Graph AI" },
+      value: { content: "GraphAI" },
     },
     braveSearch: {
       agent: "braveSearchAgent",
