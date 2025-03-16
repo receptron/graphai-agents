@@ -1,3 +1,4 @@
+import "dotenv/config";
 import { sttOpenaiAgent } from "../src/index";
 import path from "path";
 import fs from "fs";
@@ -14,6 +15,8 @@ const main = async () => {
       retry: 1,
       nodeId: "",
       verbose: true,
+      state: "",
+      subGraphs: new Map()
     },
     filterParams: [],
   });
