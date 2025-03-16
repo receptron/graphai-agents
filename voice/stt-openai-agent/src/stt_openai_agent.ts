@@ -2,8 +2,8 @@ import { AgentFunction, AgentFunctionInfo } from "graphai";
 import OpenAI from "openai";
 
 export const sttOpenaiAgent: AgentFunction = async ({ params, namedInputs }) => {
-  const { stream, model, throwError } = { ...params, ...namedInputs };
-  const openai = new OpenAI();
+  const { stream, model, apiKey, throwError } = { ...params, ...namedInputs };
+  const openai = new OpenAI({ apiKey });
 
   try {
     const transcription = await openai.audio.transcriptions.create({
@@ -35,6 +35,7 @@ const sttOpenaiAgentInfo: AgentFunctionInfo = {
   author: "receptron team",
   repository: "https://github.com/receptron/graphai-agents/",
   license: "MIT",
+  // environmentVariables: ["OPENAI_API_KEY"],
 };
 
 export default sttOpenaiAgentInfo;
