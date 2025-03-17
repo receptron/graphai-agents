@@ -4,6 +4,6 @@
 
 # Contribution
 
-Create an agent in a suitable dir.
-After completing the implementation, update packages/agents/
-It will be included in the meta package @graphai/extra-agents
+- Create an agent in a suitable dir.
+- After completing the implementation, update packages/agents/
+- It will be included in the meta package @graphai/extra-agents
