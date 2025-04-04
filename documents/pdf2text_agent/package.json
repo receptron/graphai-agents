@@ -27,6 +27,6 @@
   "homepage": "https://github.com/receptron/graphai-agents#readme",
   "devDependencies": {},
   "dependencies": {
-    "@opendocsg/pdf2md": "^0.2.0"
+    "@opendocsg/pdf2md": "^0.2.1"
   }
 }
