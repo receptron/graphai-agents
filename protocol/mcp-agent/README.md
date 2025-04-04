@@ -1,12 +1,12 @@
 
-# mcp_agent for GraphAI
+# @graphai/mcp_agent for GraphAI
 
 Model Context Protocol
 
 ### Install
 
 ```sh
-yarn add mcp_agent
+yarn add @graphai/mcp_agent
 ```
 
 ### Configuring each service via `mcpConfig`
@@ -49,7 +49,7 @@ Be sure to explicitly disconnect from the MCP server when your batch job or serv
 
 ```typescript
 import { GraphAI } from "graphai";
-import { mcpToolsCallAgent, mcpToolsListAgent } from "mcp_agent";
+import { mcpToolsCallAgent, mcpToolsListAgent } from "@graphai/mcp_agent";
 
 const agents = { mcpToolsCallAgent, mcpToolsListAgent };
 
