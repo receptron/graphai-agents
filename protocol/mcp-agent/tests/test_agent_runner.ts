@@ -3,10 +3,10 @@ import { agentTestRunner } from "@receptron/test_utils/lib/agent_test_runner";
 
 import { mcpInit, toolsList, toolsCall, close } from "../src/mcp";
 import { setTimeout } from "timers/promises";
-import { path, mcpConfig2 } from "./common";
+import { path, mcpConfig } from "./common";
 
 const main = async () => {
-  await mcpInit(mcpConfig2);
+  await mcpInit(mcpConfig);
   await setTimeout(2000);
 
   for await (const agentInfo of Object.values(packages)) {

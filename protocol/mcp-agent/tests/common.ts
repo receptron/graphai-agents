@@ -10,10 +10,3 @@ export const mcpConfig = {
     args: [path],
   },
 };
-
-export const mcpConfig2 = {
-  filesystem: {
-    command: __dirname + "/../../../node_modules/@modelcontextprotocol/server-filesystem/dist/index.js",
-    args: [path],
-  },
-};

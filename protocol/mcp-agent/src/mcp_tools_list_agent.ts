@@ -1,8 +1,8 @@
 import { AgentFunction, AgentFunctionInfo } from "graphai";
 import { toolsList } from "./mcp";
 
-export const mcpToolsListAgent: AgentFunction = async () => {
-  const tools = await toolsList();
+export const mcpToolsListAgent: AgentFunction<{services?: string[]}> = async ({params}) => {
+  const tools = await toolsList(params.services || []);
   return { tools };
 };
 
@@ -13,7 +13,9 @@ const mcpToolsListAgentInfo: AgentFunctionInfo = {
 
   samples: [
     {
-      params: {},
+      params: {
+        services: ["filesystem"]
+      },
       inputs: {},
       result: {
         tools: [
