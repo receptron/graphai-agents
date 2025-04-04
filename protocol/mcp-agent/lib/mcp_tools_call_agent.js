@@ -30,9 +30,9 @@ const mcpToolsCallAgentInfo = {
                     content: [
                         {
                             text: "[FILE] 1.txt\n[FILE] 2.txt",
-                            type: "text"
-                        }
-                    ]
+                            type: "text",
+                        },
+                    ],
                 },
             },
         },

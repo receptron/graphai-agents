@@ -39,7 +39,7 @@ const result = await graph.run();
     "tools": {
       "name": "filesystem--list_directory",
       "arguments": {
-        "path": "/Users/isamu/ss/llm/graphai-agents/protocol/mcp-agent/lib/../tests/sample"
+        "path": "/home/runner/work/graphai-agents/graphai-agents/protocol/mcp-agent/lib/../tests/sample"
       }
     }
   },
@@ -52,7 +52,11 @@ const result = await graph.run();
 ```typescript
 {
   "inputs": {},
-  "params": {}
+  "params": {
+    "services": [
+      "filesystem"
+    ]
+  }
 }
 ```
 
