@@ -33,23 +33,25 @@ export const mcpInit = async (_mcpConfig: MCPConfig) => {
   );
 };
 
-export const close = () => {
+export const mcpClose = () => {
   Object.keys(mcpConfig).map(async (serviceName) => {
     const client = mcpClents[serviceName];
     client.close();
   });
 };
 
-export const toolsList = async () => {
+export const toolsList = async (services: string[] = []) => {
   const ret: { name: string; description?: string; inputSchema: unknown }[] = [];
   await Promise.all(
     Object.keys(mcpConfig).map(async (serviceName) => {
       const client = mcpClents[serviceName];
-      const toolsResponse = await client.request({ method: "tools/list" }, ListToolsResultSchema);
-      toolsResponse.tools.map((tool) => {
-        tool["name"] = [serviceName, tool["name"]].join("--");
-        ret.push(tool);
-      });
+      if (services.length === 0 || services.includes(serviceName)) {
+        const toolsResponse = await client.request({ method: "tools/list" }, ListToolsResultSchema);
+        toolsResponse.tools.map((tool) => {
+          tool["name"] = [serviceName, tool["name"]].join("--");
+          ret.push(tool);
+        });
+      }
     }),
   );
   return ret;

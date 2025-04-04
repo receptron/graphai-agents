@@ -1,4 +1,4 @@
-import { mcpInit, toolsList, toolsCall, close } from "../src/mcp";
+import { mcpInit, toolsList, toolsCall, mcpClose } from "../src/mcp";
 import { setTimeout } from "timers/promises";
 import { path, mcpConfig } from "./common";
 
@@ -16,7 +16,7 @@ const main = async () => {
   };
   const ret = await toolsCall(tools_data);
   console.log(ret);
-  close();
+  mcpClose();
 };
 
 main();

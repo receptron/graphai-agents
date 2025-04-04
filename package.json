@@ -32,9 +32,10 @@
   ],
   "devDependencies": {
     "@graphai/agent_filters": "0.2.2",
+    "@graphai/agent_utils": "^0.0.9",
+    "@graphai/openai_agent": "^1.0.2",
     "@graphai/vanilla": "^1.0.0",
     "@graphai/vanilla_node_agents": "^0.2.7",
-    "@graphai/agent_utils": "^0.0.9",
     "@receptron/agentdoc": "^0.0.10",
     "@receptron/test_utils": "^1.0.1",
     "@rollup/plugin-commonjs": "^28.0.2",
