@@ -37,10 +37,10 @@ const mcpToolsCallAgentInfo: AgentFunctionInfo = {
       },
     },
   ],
-  description: "Model Context Protocol",
+  description: "Model Context Protocol Tools/Call Agent",
   category: ["protocol"],
   author: "isamu arimoto",
-  repository: "https://github.com/receptron/graphai/",
+  repository: "https://github.com/receptron/graphai-agents",
   license: "MIT",
 };
 
