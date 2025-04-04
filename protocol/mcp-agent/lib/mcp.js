@@ -1,22 +1,22 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.toolsCall = exports.toolsList = exports.close = exports.mcpInit = void 0;
+exports.toolsCall = exports.toolsList = exports.mcpClose = exports.mcpInit = void 0;
 const types_js_1 = require("@modelcontextprotocol/sdk/types.js");
 const index_js_1 = require("@modelcontextprotocol/sdk/client/index.js");
 const stdio_js_1 = require("@modelcontextprotocol/sdk/client/stdio.js");
 const mcpClents = {};
-let mcpConfig = null;
+let mcpConfig = {};
 const mcpInit = async (_mcpConfig) => {
     mcpConfig = _mcpConfig;
     await Promise.all(Object.keys(mcpConfig).map(async (serviceName) => {
-        const config = mcpConfig[serviceName];
+        const config = (mcpConfig ?? {})[serviceName];
         const transport = new stdio_js_1.StdioClientTransport({
             command: config.command,
             args: config.args,
         });
         const client = new index_js_1.Client({
             name: serviceName,
-            version: "1.0.0",
+            version: "0.0.1",
         }, {
             capabilities: {},
         });
@@ -26,22 +26,24 @@ const mcpInit = async (_mcpConfig) => {
     }));
 };
 exports.mcpInit = mcpInit;
-const close = () => {
+const mcpClose = () => {
     Object.keys(mcpConfig).map(async (serviceName) => {
         const client = mcpClents[serviceName];
         client.close();
     });
 };
-exports.close = close;
-const toolsList = async () => {
+exports.mcpClose = mcpClose;
+const toolsList = async (services = []) => {
     const ret = [];
     await Promise.all(Object.keys(mcpConfig).map(async (serviceName) => {
         const client = mcpClents[serviceName];
-        const toolsResponse = await client.request({ method: "tools/list" }, types_js_1.ListToolsResultSchema);
-        toolsResponse.tools.map((tool) => {
-            tool["name"] = [serviceName, tool["name"]].join("--");
-            ret.push(tool);
-        });
+        if (services.length === 0 || services.includes(serviceName)) {
+            const toolsResponse = await client.request({ method: "tools/list" }, types_js_1.ListToolsResultSchema);
+            toolsResponse.tools.map((tool) => {
+                tool["name"] = [serviceName, tool["name"]].join("--");
+                ret.push(tool);
+            });
+        }
     }));
     return ret;
 };
