@@ -1,7 +1,7 @@
 import { AgentFunction, AgentFunctionInfo } from "graphai";
 import { toolsList } from "./mcp";
 
-export const mcpToolsListAgent: AgentFunction = async ({ params, namedInputs }) => {
+export const mcpToolsListAgent: AgentFunction = async () => {
   const tools = await toolsList();
   return { tools };
 };

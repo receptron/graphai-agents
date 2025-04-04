@@ -1,7 +1,7 @@
 import { AgentFunction, AgentFunctionInfo } from "graphai";
 import { toolsCall } from "./mcp";
 
-export const mcpToolsCallAgent: AgentFunction = async ({ params, namedInputs }) => {
+export const mcpToolsCallAgent: AgentFunction = async ({ namedInputs }) => {
   const { name, arguments: mcpArguments } = namedInputs.tools;
   const response = await toolsCall({ name, arguments: mcpArguments });
   return {
@@ -29,10 +29,10 @@ const mcpToolsCallAgentInfo: AgentFunctionInfo = {
         response: {
           content: [
             {
-              text: '[FILE] 1.txt\n[FILE] 2.txt',
-              type: 'text'
-            }
-          ]
+              text: "[FILE] 1.txt\n[FILE] 2.txt",
+              type: "text",
+            },
+          ],
         },
       },
     },
