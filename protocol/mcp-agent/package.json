@@ -1,5 +1,5 @@
 {
-  "name": "mcp_agent",
+  "name": "@graphai/mcp_agent",
   "version": "0.0.1",
   "description": "Model Context Protocol",
   "main": "lib/index.js",
