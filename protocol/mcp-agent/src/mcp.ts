@@ -33,7 +33,7 @@ export const mcpInit = async (_mcpConfig: MCPConfig) => {
   );
 };
 
-export const close = () => {
+export const mcpClose = () => {
   Object.keys(mcpConfig).map(async (serviceName) => {
     const client = mcpClents[serviceName];
     client.close();
