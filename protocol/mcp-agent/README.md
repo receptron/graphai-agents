@@ -58,8 +58,8 @@ const result = await graph.run();
 ```
 
 ### Agents description
-- mcpToolsCallAgent - Model Context Protocol
-- mcpToolsListAgent - Model Context Protocol
+- mcpToolsCallAgent - Model Context Protocol Tools/Call Agent
+- mcpToolsListAgent - Model Context Protocol Tools/List Agent
 
 ### Input/Output/Params Schema & samples
  - [mcpToolsCallAgent](https://github.com/receptron/graphai/blob/main/docs/agentDocs/protocol/mcpToolsCallAgent.md)

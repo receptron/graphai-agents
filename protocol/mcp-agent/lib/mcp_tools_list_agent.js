@@ -467,10 +467,10 @@ const mcpToolsListAgentInfo = {
             },
         },
     ],
-    description: "Model Context Protocol",
+    description: "Model Context Protocol Tools/List Agent",
     category: ["protocol"],
     author: "isamu arimoto",
-    repository: "https://github.com/receptron/graphai/",
+    repository: "https://github.com/receptron/graphai-agents",
     license: "MIT",
 };
 exports.default = mcpToolsListAgentInfo;
