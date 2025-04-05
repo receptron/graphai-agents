@@ -1,7 +1,6 @@
-import { AgentFunction, AgentFunctionInfo } from "graphai";
+import { AgentFunctionInfo } from "graphai";
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { createToolsList } from "./mcp";
-import { create } from "domain";
 
 export const createMcpToolsListAgent = (mcpClents: Record<string, Client>) => {
   const toolsList = createToolsList(mcpClents);
