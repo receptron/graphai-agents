@@ -13,7 +13,8 @@ export const createMcpToolsCallAgent = (mcpClents: Record<string, Client>) => {
   };
 };
 
-export const createMcpToolsCallAgentInfo = (mcpToolsCallAgent: AgentFunction) => {
+export const createMcpToolsCallAgentInfo = (mcpClents: Record<string, Client>): AgentFunctionInfo => {
+  const mcpToolsCallAgent = createMcpToolsCallAgent(mcpClents);
   return {
     name: "mcpToolsCallAgent",
     agent: mcpToolsCallAgent,
@@ -49,3 +50,5 @@ export const createMcpToolsCallAgentInfo = (mcpToolsCallAgent: AgentFunction) =>
     license: "MIT",
   };
 };
+
+export default createMcpToolsCallAgentInfo;

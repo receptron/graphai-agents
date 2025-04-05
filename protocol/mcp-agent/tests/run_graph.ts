@@ -1,6 +1,6 @@
 import "dotenv/config";
 
-import { mcpToolsListAgent, mcpToolsCallAgent, mcpInit, mcpClose } from "../src/index";
+import { createMcpToolsListAgent, createMcpToolsCallAgent, mcpInit, mcpClose } from "../src/index";
 import * as vanilla from "@graphai/vanilla";
 import { openAIAgent } from "@graphai/openai_agent";
 
@@ -10,7 +10,7 @@ import { mcpConfig, path } from "./common";
 import { GraphAI } from "graphai";
 
 const main = async () => {
-  await mcpInit(mcpConfig);
+  const mpcClients = await mcpInit(mcpConfig);
   await setTimeout(2000);
 
   const graphData = {
@@ -37,12 +37,14 @@ const main = async () => {
       },
     },
   };
+  const mcpToolsListAgent = createMcpToolsListAgent(mpcClients);
+  const mcpToolsCallAgent = createMcpToolsCallAgent(mpcClients);
   const graphai = new GraphAI(graphData, { ...vanilla, mcpToolsListAgent, mcpToolsCallAgent, openAIAgent });
   const result = await graphai.run();
   console.log(result);
 
   await setTimeout(500);
-  mcpClose();
+  mcpClose(mpcClients);
 };
 
 main();
