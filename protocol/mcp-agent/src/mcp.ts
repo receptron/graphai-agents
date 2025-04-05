@@ -82,7 +82,7 @@ export const toolsList = async (services: string[] = []) => {
 };
 
 export const toolsCall = async (tools: { name: string; arguments: unknown }) => {
-  const { mcpConfig, mcpClients } = getConfig();
+  const { mcpClients } = getConfig();
 
   const { name, arguments: llmArguments } = tools;
   const [serviceName, tools_name] = name.split("--");
