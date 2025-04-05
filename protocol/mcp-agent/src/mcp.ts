@@ -5,11 +5,32 @@ import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js"
 
 type MCPConfig = Record<string, { command: string; args: string[] }>;
 
-const mcpClents: Record<string, Client> = {};
-let mcpConfig: MCPConfig = {};
+const createConfigManager = () => {
+  let mcpConfig: MCPConfig = {};
+  const mcpClents: Record<string, Client> = {};
+
+  const setConfig = (_config: MCPConfig) => {
+    mcpConfig = _config;
+  };
+
+  const getConfig = () => {
+    return {
+      mcpConfig,
+      mcpClents,
+    };
+  };
+
+  return {
+    setConfig,
+    getConfig,
+  };
+};
+
+const { setConfig, getConfig } = createConfigManager();
 
 export const mcpInit = async (_mcpConfig: MCPConfig) => {
-  mcpConfig = _mcpConfig;
+  setConfig(_mcpConfig);
+  const { mcpConfig, mcpClents } = getConfig();
   await Promise.all(
     Object.keys(mcpConfig).map(async (serviceName) => {
       const config = (mcpConfig ?? {})[serviceName];
@@ -34,6 +55,7 @@ export const mcpInit = async (_mcpConfig: MCPConfig) => {
 };
 
 export const mcpClose = () => {
+  const { mcpConfig, mcpClents } = getConfig();
   Object.keys(mcpConfig).map(async (serviceName) => {
     const client = mcpClents[serviceName];
     client.close();
@@ -41,6 +63,8 @@ export const mcpClose = () => {
 };
 
 export const toolsList = async (services: string[] = []) => {
+  const { mcpConfig, mcpClents } = getConfig();
+
   const ret: { name: string; description?: string; inputSchema: unknown }[] = [];
   await Promise.all(
     Object.keys(mcpConfig).map(async (serviceName) => {
@@ -58,6 +82,8 @@ export const toolsList = async (services: string[] = []) => {
 };
 
 export const toolsCall = async (tools: { name: string; arguments: unknown }) => {
+  const { mcpConfig, mcpClents } = getConfig();
+
   const { name, arguments: llmArguments } = tools;
   const [serviceName, tools_name] = name.split("--");
   const client = mcpClents[serviceName];
