@@ -5,7 +5,7 @@ import { create } from "domain";
 
 export const createMcpToolsListAgent = (mcpClents: Record<string, Client>) => {
   const toolsList = createToolsList(mcpClents);
-  return async ({ params } : { params: any }) => {
+  return async ({ params }: { params: any }) => {
     const tools = await toolsList(params.services || []);
     const llmTools = tools.map((tool) => {
       return {
@@ -19,7 +19,7 @@ export const createMcpToolsListAgent = (mcpClents: Record<string, Client>) => {
   };
 };
 
-const createMcpToolsListAgentInfo = (mcpClents: Record<string, Client>):AgentFunctionInfo => {
+const createMcpToolsListAgentInfo = (mcpClents: Record<string, Client>): AgentFunctionInfo => {
   const mcpToolsListAgent = createMcpToolsListAgent(mcpClents);
   return {
     name: "mcpToolsListAgent",

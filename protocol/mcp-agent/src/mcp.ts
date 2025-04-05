@@ -75,7 +75,7 @@ export const createToolsCall = (mcpClents: Record<string, Client>) => {
       CallToolResultSchema,
     );
     return resourceContent;
-  }
+  };
 };
 
 /*
