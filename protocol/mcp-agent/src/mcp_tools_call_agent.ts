@@ -1,4 +1,4 @@
-import { AgentFunction, AgentFunctionInfo } from "graphai";
+import { AgentFunctionInfo } from "graphai";
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { createToolsCall } from "./mcp";
 
