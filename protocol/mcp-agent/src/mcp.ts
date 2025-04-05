@@ -5,11 +5,9 @@ import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js"
 
 type MCPConfig = Record<string, { command: string; args: string[] }>;
 
-const mcpClents: Record<string, Client> = {};
-let mcpConfig: MCPConfig = {};
-
 export const mcpInit = async (_mcpConfig: MCPConfig) => {
-  mcpConfig = _mcpConfig;
+  const mcpClents: Record<string, Client> = {};
+  const mcpConfig = _mcpConfig;
   await Promise.all(
     Object.keys(mcpConfig).map(async (serviceName) => {
       const config = (mcpConfig ?? {})[serviceName];
@@ -31,48 +29,53 @@ export const mcpInit = async (_mcpConfig: MCPConfig) => {
       return;
     }),
   );
+  return mcpClents;
 };
 
-export const mcpClose = () => {
-  Object.keys(mcpConfig).map(async (serviceName) => {
+export const mcpClose = (mcpClents: Record<string, Client>) => {
+  Object.keys(mcpClents).map(async (serviceName) => {
     const client = mcpClents[serviceName];
     client.close();
   });
 };
 
-export const toolsList = async (services: string[] = []) => {
-  const ret: { name: string; description?: string; inputSchema: unknown }[] = [];
-  await Promise.all(
-    Object.keys(mcpConfig).map(async (serviceName) => {
-      const client = mcpClents[serviceName];
-      if (services.length === 0 || services.includes(serviceName)) {
-        const toolsResponse = await client.request({ method: "tools/list" }, ListToolsResultSchema);
-        toolsResponse.tools.map((tool) => {
-          tool["name"] = [serviceName, tool["name"]].join("--");
-          ret.push(tool);
-        });
-      }
-    }),
-  );
-  return ret;
+export const createToolsList = (mcpClents: Record<string, Client>) => {
+  return async (services: string[] = []) => {
+    const ret: { name: string; description?: string; inputSchema: unknown }[] = [];
+    await Promise.all(
+      Object.keys(mcpClents).map(async (serviceName) => {
+        const client = mcpClents[serviceName];
+        if (services.length === 0 || services.includes(serviceName)) {
+          const toolsResponse = await client.request({ method: "tools/list" }, ListToolsResultSchema);
+          toolsResponse.tools.map((tool) => {
+            tool["name"] = [serviceName, tool["name"]].join("--");
+            ret.push(tool);
+          });
+        }
+      }),
+    );
+    return ret;
+  };
 };
 
-export const toolsCall = async (tools: { name: string; arguments: unknown }) => {
-  const { name, arguments: llmArguments } = tools;
-  const [serviceName, tools_name] = name.split("--");
-  const client = mcpClents[serviceName];
+export const createToolsCall = (mcpClents: Record<string, Client>) => {
+  return async (tools: { name: string; arguments: unknown }) => {
+    const { name, arguments: llmArguments } = tools;
+    const [serviceName, tools_name] = name.split("--");
+    const client = mcpClents[serviceName];
 
-  const resourceContent = await client.request(
-    {
-      method: "tools/call",
-      params: {
-        name: tools_name,
-        arguments: llmArguments,
+    const resourceContent = await client.request(
+      {
+        method: "tools/call",
+        params: {
+          name: tools_name,
+          arguments: llmArguments,
+        },
       },
-    },
-    CallToolResultSchema,
-  );
-  return resourceContent;
+      CallToolResultSchema,
+    );
+    return resourceContent;
+  }
 };
 
 /*
