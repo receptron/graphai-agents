@@ -5,11 +5,11 @@ import fs from "fs";
 
 const main = async () => {
   const filePath = path.resolve(path.join(__dirname, "test.m4a"));
-  const file = fs.createReadStream(filePath);
+  const inputStream = fs.createReadStream(filePath);
   const res = await sttOpenaiAgent.agent({
     params: {},
     namedInputs: {
-      inputStream: file,
+      inputStream,
     },
     debugInfo: {
       retry: 1,
