@@ -3,13 +3,14 @@ import { ListToolsResultSchema, CallToolResultSchema } from "@modelcontextprotoc
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
 
+export const mcpClientsDefaultKey = "mcpClients";
 type MCPConfig = Record<string, { command: string; args: string[] }>;
-
-const mcpClents: Record<string, Client> = {};
-let mcpConfig: MCPConfig = {};
+type MCPClients = Record<string, Client>;
 
 export const mcpInit = async (_mcpConfig: MCPConfig) => {
-  mcpConfig = _mcpConfig;
+  const mcpClients: MCPClients = {};
+  const mcpConfig = _mcpConfig;
+
   await Promise.all(
     Object.keys(mcpConfig).map(async (serviceName) => {
       const config = (mcpConfig ?? {})[serviceName];
@@ -27,24 +28,25 @@ export const mcpInit = async (_mcpConfig: MCPConfig) => {
         },
       );
       await client.connect(transport);
-      mcpClents[serviceName] = client;
+      mcpClients[serviceName] = client;
       return;
     }),
   );
+  return mcpClients;
 };
 
-export const mcpClose = () => {
-  Object.keys(mcpConfig).map(async (serviceName) => {
-    const client = mcpClents[serviceName];
+export const mcpClose = (mcpClients: MCPClients) => {
+  Object.keys(mcpClients).map(async (serviceName) => {
+    const client = mcpClients[serviceName];
     client.close();
   });
 };
 
-export const toolsList = async (services: string[] = []) => {
+export const toolsList = async (mcpClients: MCPClients, services: string[] = []) => {
   const ret: { name: string; description?: string; inputSchema: unknown }[] = [];
   await Promise.all(
-    Object.keys(mcpConfig).map(async (serviceName) => {
-      const client = mcpClents[serviceName];
+    Object.keys(mcpClients).map(async (serviceName) => {
+      const client = mcpClients[serviceName];
       if (services.length === 0 || services.includes(serviceName)) {
         const toolsResponse = await client.request({ method: "tools/list" }, ListToolsResultSchema);
         toolsResponse.tools.map((tool) => {
@@ -57,10 +59,10 @@ export const toolsList = async (services: string[] = []) => {
   return ret;
 };
 
-export const toolsCall = async (tools: { name: string; arguments: unknown }) => {
+export const toolsCall = async (mcpClients: MCPClients, tools: { name: string; arguments: unknown }) => {
   const { name, arguments: llmArguments } = tools;
   const [serviceName, tools_name] = name.split("--");
-  const client = mcpClents[serviceName];
+  const client = mcpClients[serviceName];
 
   const resourceContent = await client.request(
     {
@@ -79,7 +81,7 @@ export const toolsCall = async (tools: { name: string; arguments: unknown }) => 
 const resources = async () => {
   await Promise.all(
     Object.keys(mcpConfig).map(async (serviceName) => {
-      const client = mcpClents[serviceName];
+      const client = mcpClients[serviceName];
       try {
         const resourcesList = await client.request({ method: "resources/list" }, ListResourcesResultSchema);
         console.log(resourcesList);

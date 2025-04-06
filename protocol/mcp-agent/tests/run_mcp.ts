@@ -3,9 +3,9 @@ import { setTimeout } from "timers/promises";
 import { path, mcpConfig } from "./common";
 
 const main = async () => {
-  await mcpInit(mcpConfig);
+  const mcpClients = await mcpInit(mcpConfig);
   await setTimeout(2000);
-  const tools = await toolsList();
+  const tools = await toolsList(mcpClients);
   // console.log(JSON.stringify(tools, null, 2));
 
   const tools_data = {
@@ -14,9 +14,9 @@ const main = async () => {
       path: path,
     },
   };
-  const ret = await toolsCall(tools_data);
-  console.log(ret);
-  mcpClose();
+  const ret = await toolsCall(mcpClients, tools_data);
+  // console.log(ret);
+  mcpClose(mcpClients);
 };
 
 main();

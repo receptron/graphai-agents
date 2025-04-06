@@ -1,9 +1,16 @@
-import { AgentFunction, AgentFunctionInfo } from "graphai";
-import { toolsCall } from "./mcp";
+import { assert } from "graphai";
+import type { AgentFunction, AgentFunctionInfo } from "graphai";
+import { toolsCall, mcpClientsDefaultKey } from "./mcp";
 
-export const mcpToolsCallAgent: AgentFunction = async ({ namedInputs }) => {
+export const mcpToolsCallAgent: AgentFunction<{ mcpClientsKey?: string }> = async ({ namedInputs, config, params }) => {
+  const mcpClientsKey = params.mcpClientsKey ?? mcpClientsDefaultKey;
+  const mcpClients = (config ?? {})[mcpClientsKey];
+
+  assert(!!mcpClients, "mcpToolsCallAgent: no mcpClients");
+  assert(Object.keys(mcpClients).length > 0, "mcpToolsCallAgent: no mcpClients");
+
   const { name, arguments: mcpArguments } = namedInputs.tools;
-  const response = await toolsCall({ name, arguments: mcpArguments });
+  const response = await toolsCall(mcpClients, { name, arguments: mcpArguments });
   return {
     response,
   };
@@ -17,6 +24,27 @@ const mcpToolsCallAgentInfo: AgentFunctionInfo = {
   samples: [
     {
       params: {},
+      inputs: {
+        tools: {
+          name: "filesystem--list_directory",
+          arguments: {
+            path: __dirname + "/../tests/sample",
+          },
+        },
+      },
+      result: {
+        response: {
+          content: [
+            {
+              text: "[FILE] 1.txt\n[FILE] 2.txt",
+              type: "text",
+            },
+          ],
+        },
+      },
+    },
+    {
+      params: { mcpClientsKey: "key" },
       inputs: {
         tools: {
           name: "filesystem--list_directory",
