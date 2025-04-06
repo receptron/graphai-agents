@@ -1,9 +1,12 @@
 import { AgentFunction, AgentFunctionInfo } from "graphai";
 import { toolsCall } from "./mcp";
 
-export const mcpToolsCallAgent: AgentFunction = async ({ namedInputs }) => {
+export const mcpToolsCallAgent: AgentFunction = async ({ namedInputs, config, params }) => {
+  const mcpClientsKey = params.mcpClientsKey || "mcpClients";
+  const mcpClients = (config ?? {})[mcpClientsKey];
+
   const { name, arguments: mcpArguments } = namedInputs.tools;
-  const response = await toolsCall({ name, arguments: mcpArguments });
+  const response = await toolsCall(mcpClients, { name, arguments: mcpArguments });
   return {
     response,
   };

@@ -6,16 +6,17 @@ import { setTimeout } from "timers/promises";
 import { mcpConfig } from "./common";
 
 const main = async () => {
-  await mcpInit(mcpConfig);
+  const mcpClients = await mcpInit(mcpConfig);
   await setTimeout(2000);
 
+  const config = { mcpClients };
   for await (const agentInfo of Object.values(packages)) {
     if ("name" in agentInfo && "agent" in agentInfo) {
-      await agentTestRunner(agentInfo);
+      await agentTestRunner(agentInfo, config);
     }
   }
   await setTimeout(500);
-  mcpClose();
+  mcpClose(mcpClients);
 };
 
 main();
