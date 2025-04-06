@@ -3,6 +3,7 @@ import { ListToolsResultSchema, CallToolResultSchema } from "@modelcontextprotoc
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
 
+export const mcpClientsDefaultKey = "mcpClients";
 type MCPConfig = Record<string, { command: string; args: string[] }>;
 type MCPClients = Record<string, Client>;
 

@@ -1,8 +1,8 @@
 import { AgentFunction, AgentFunctionInfo } from "graphai";
-import { toolsCall } from "./mcp";
+import { toolsCall, mcpClientsDefaultKey } from "./mcp";
 
-export const mcpToolsCallAgent: AgentFunction = async ({ namedInputs, config, params }) => {
-  const mcpClientsKey = params.mcpClientsKey || "mcpClients";
+export const mcpToolsCallAgent: AgentFunction<{ mcpClientsKey?: string }> = async ({ namedInputs, config, params }) => {
+  const mcpClientsKey = params.mcpClientsKey ?? mcpClientsDefaultKey;
   const mcpClients = (config ?? {})[mcpClientsKey];
 
   const { name, arguments: mcpArguments } = namedInputs.tools;
@@ -20,6 +20,27 @@ const mcpToolsCallAgentInfo: AgentFunctionInfo = {
   samples: [
     {
       params: {},
+      inputs: {
+        tools: {
+          name: "filesystem--list_directory",
+          arguments: {
+            path: __dirname + "/../tests/sample",
+          },
+        },
+      },
+      result: {
+        response: {
+          content: [
+            {
+              text: "[FILE] 1.txt\n[FILE] 2.txt",
+              type: "text",
+            },
+          ],
+        },
+      },
+    },
+    {
+      params: { mcpClientsKey: "key" },
       inputs: {
         tools: {
           name: "filesystem--list_directory",
