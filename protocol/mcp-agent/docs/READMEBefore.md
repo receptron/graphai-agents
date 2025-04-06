@@ -32,7 +32,7 @@ When creating a GraphAI instance, mcpClients is passed via the config.
  Since MCP is divided into multiple agents, mcpClients is provided globally (although it's also possible to pass it individually).
 
 ```
-  const graphai = new GraphAI(graphData, agengts, { config: { global: { mcpClients } } });
+  const graphai = new GraphAI(graphData, agents, { config: { global: { mcpClients } } });
 ```
 
 ### Disconnecting from the MCP server
