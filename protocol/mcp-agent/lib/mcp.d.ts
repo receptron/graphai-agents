@@ -1,15 +1,18 @@
+import { Client } from "@modelcontextprotocol/sdk/client/index.js";
+export declare const mcpClientsDefaultKey = "mcpClients";
 type MCPConfig = Record<string, {
     command: string;
     args: string[];
 }>;
-export declare const mcpInit: (_mcpConfig: MCPConfig) => Promise<void>;
-export declare const mcpClose: () => void;
-export declare const toolsList: (services?: string[]) => Promise<{
+type MCPClients = Record<string, Client>;
+export declare const mcpInit: (_mcpConfig: MCPConfig) => Promise<MCPClients>;
+export declare const mcpClose: (mcpClients: MCPClients) => void;
+export declare const toolsList: (mcpClients: MCPClients, services?: string[]) => Promise<{
     name: string;
     description?: string;
     inputSchema: unknown;
 }[]>;
-export declare const toolsCall: (tools: {
+export declare const toolsCall: (mcpClients: MCPClients, tools: {
     name: string;
     arguments: unknown;
 }) => Promise<import("zod").objectOutputType<import("zod").objectUtil.extendShape<{

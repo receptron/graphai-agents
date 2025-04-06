@@ -82,6 +82,23 @@ const result = await graph.run();
 }
 ```
 
+
+```typescript
+{
+  "inputs": {
+    "tools": {
+      "name": "filesystem--list_directory",
+      "arguments": {
+        "path": "/home/runner/work/graphai-agents/graphai-agents/protocol/mcp-agent/lib/../tests/sample"
+      }
+    }
+  },
+  "params": {
+    "mcpClientsKey": "key"
+  }
+}
+```
+
  - mcpToolsListAgent
 
 ```typescript
