@@ -1,9 +1,13 @@
-import { AgentFunction, AgentFunctionInfo } from "graphai";
+import { assert } from "graphai";
+import type { AgentFunction, AgentFunctionInfo } from "graphai";
 import { toolsList, mcpClientsDefaultKey } from "./mcp";
 
 export const mcpToolsListAgent: AgentFunction<{ services?: string[]; mcpClientsKey?: string }> = async ({ params, config }) => {
   const mcpClientsKey = params.mcpClientsKey ?? mcpClientsDefaultKey;
   const mcpClients = (config ?? {})[mcpClientsKey];
+
+  assert(!!mcpClients, "mcpToolsListAgent: no mcpClients");
+  assert(Object.keys(mcpClients).length > 0, "mcpToolsListAgent: no mcpClients");
 
   const tools = await toolsList(mcpClients, params.services || []);
   const llmTools = tools.map((tool) => {

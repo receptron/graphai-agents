@@ -15,7 +15,7 @@ const main = async () => {
     },
   };
   const ret = await toolsCall(mcpClients, tools_data);
-  console.log(ret);
+  // console.log(ret);
   mcpClose(mcpClients);
 };
 

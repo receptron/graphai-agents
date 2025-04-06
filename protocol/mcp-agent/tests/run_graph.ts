@@ -39,7 +39,7 @@ const main = async () => {
   };
   const graphai = new GraphAI(graphData, { ...vanilla, mcpToolsListAgent, mcpToolsCallAgent, openAIAgent }, { config: { global: { mcpClients } } });
   const result = await graphai.run();
-  console.log(result);
+  // console.log(result);
 
   await setTimeout(500);
   mcpClose(mcpClients);
