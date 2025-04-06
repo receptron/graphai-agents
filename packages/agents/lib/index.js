@@ -18,6 +18,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("@graphai/pdf2text_agent"), exports);
 // net
 __exportStar(require("@graphai/arxiv_agent"), exports);
+__exportStar(require("@graphai/brave_search_agent"), exports);
+__exportStar(require("@graphai/browserless_agent"), exports);
 // export * from "@graphai/notion_agent";
 __exportStar(require("@graphai/serper_agent"), exports);
 __exportStar(require("@graphai/slack_agent"), exports);

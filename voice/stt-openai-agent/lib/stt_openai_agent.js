@@ -5,13 +5,22 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.sttOpenaiAgent = void 0;
 const openai_1 = __importDefault(require("openai"));
-const sttOpenaiAgent = async ({ params, namedInputs }) => {
-    const { stream, model, apiKey, throwError } = { ...params, ...namedInputs };
-    const openai = new openai_1.default({ apiKey });
+const sttOpenaiAgent = async ({ params, namedInputs, config }) => {
+    const { file, language, prompt, response_format, temperature, timestamp_granularities, throwError } = { ...params, ...namedInputs };
+    const { apiKey, model, baseURL } = {
+        ...(config || {}),
+        ...params,
+    };
+    const openai = new openai_1.default({ apiKey, baseURL });
     try {
         const transcription = await openai.audio.transcriptions.create({
-            file: stream,
+            file: file,
             model: model ?? "whisper-1",
+            language: language,
+            prompt: prompt,
+            response_format: response_format,
+            temperature: temperature,
+            timestamp_granularities: timestamp_granularities,
         });
         return {
             text: transcription.text,

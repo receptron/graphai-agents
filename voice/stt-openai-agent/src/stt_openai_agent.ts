@@ -19,8 +19,13 @@ type STTOpenAIResult = Partial<GraphAINullableText> & {
   error?: any;
 };
 
-export const sttOpenaiAgent: AgentFunction<STTOpenAIParams, STTOpenAIResult, STTOpenAIInputs, STTOpenAIConfig> = async ({ params, namedInputs }) => {
-  const { file, model, language, prompt, response_format, temperature, timestamp_granularities, apiKey, baseURL, throwError } = { ...params, ...namedInputs };
+export const sttOpenaiAgent: AgentFunction<STTOpenAIParams, STTOpenAIResult, STTOpenAIInputs, STTOpenAIConfig> = async ({ params, namedInputs, config }) => {
+  const { file, language, prompt, response_format, temperature, timestamp_granularities, throwError } = { ...params, ...namedInputs };
+  const { apiKey, model, baseURL } = {
+    ...(config || {}),
+    ...params,
+  };
+
   const openai = new OpenAI({ apiKey, baseURL });
 
   try {

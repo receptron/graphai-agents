@@ -27,8 +27,12 @@ const nodeBrowserDetectAgentInfoGenerator = (nodeBrowserDetectAgent) => {
 exports.nodeBrowserDetectAgentInfoGenerator = nodeBrowserDetectAgentInfoGenerator;
 const nodeBrowserDetectAgentInfo = {
     name: "nodeBrowserDetectAgent",
-    agent: async (__context) => { return {}; },
-    mock: async (__context) => { return {}; },
+    agent: async (__context) => {
+        return {};
+    },
+    mock: async (__context) => {
+        return {};
+    },
     samples: [
         {
             params: { a: "1" },

@@ -3,6 +3,9 @@ export * from "@graphai/pdf2text_agent";
 
 // net
 export * from "@graphai/arxiv_agent";
+export * from "@graphai/brave_search_agent";
+export * from "@graphai/browserless_agent";
+
 // export * from "@graphai/notion_agent";
 export * from "@graphai/serper_agent";
 export * from "@graphai/slack_agent";

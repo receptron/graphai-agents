@@ -3,7 +3,8 @@
 
 ## net
 ### [arxivAgent](./net/arxivAgent.md)
-### [notionAgent](./net/notionAgent.md)
+### [braveSearchAgent](./net/braveSearchAgent.md)
+### [browserlessAgent](./net/browserlessAgent.md)
 ### [serperAgent](./net/serperAgent.md)
 ### [slackAgent](./net/slackAgent.md)
 
