@@ -1,16 +1,20 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.mcpToolsListAgent = void 0;
+const graphai_1 = require("graphai");
 const mcp_1 = require("./mcp");
-const mcpToolsListAgent = async ({ params }) => {
-    const tools = await (0, mcp_1.toolsList)(params.services || []);
+const mcpToolsListAgent = async ({ params, config }) => {
+    const mcpClientsKey = params.mcpClientsKey ?? mcp_1.mcpClientsDefaultKey;
+    const mcpClients = (config ?? {})[mcpClientsKey];
+    (0, graphai_1.assert)(!!mcpClients, "mcpToolsListAgent: no mcpClients");
+    (0, graphai_1.assert)(Object.keys(mcpClients).length > 0, "mcpToolsListAgent: no mcpClients");
+    const tools = await (0, mcp_1.toolsList)(mcpClients, params.services || []);
     const llmTools = tools.map((tool) => {
         return {
             type: "function",
             function: tool,
         };
     });
-    console.log(JSON.stringify(llmTools, null, 2));
     return { tools, llmTools };
 };
 exports.mcpToolsListAgent = mcpToolsListAgent;
@@ -467,10 +471,10 @@ const mcpToolsListAgentInfo = {
             },
         },
     ],
-    description: "Model Context Protocol",
+    description: "Model Context Protocol Tools/List Agent",
     category: ["protocol"],
     author: "isamu arimoto",
-    repository: "https://github.com/receptron/graphai/",
+    repository: "https://github.com/receptron/graphai-agents",
     license: "MIT",
 };
 exports.default = mcpToolsListAgentInfo;

@@ -43,7 +43,7 @@ When creating a GraphAI instance, mcpClients is passed via the config.
  Since MCP is divided into multiple agents, mcpClients is provided globally (although it's also possible to pass it individually).
 
 ```
-  const graphai = new GraphAI(graphData, agengts, { config: { global: { mcpClients } } });
+  const graphai = new GraphAI(graphData, agents, { config: { global: { mcpClients } } });
 ```
 
 ### Disconnecting from the MCP server
@@ -69,8 +69,8 @@ const result = await graph.run();
 ```
 
 ### Agents description
-- mcpToolsCallAgent - Model Context Protocol
-- mcpToolsListAgent - Model Context Protocol
+- mcpToolsCallAgent - Model Context Protocol Tools/Call Agent
+- mcpToolsListAgent - Model Context Protocol Tools/List Agent
 
 ### Input/Output/Params Schema & samples
  - [mcpToolsCallAgent](https://github.com/receptron/graphai/blob/main/docs/agentDocs/protocol/mcpToolsCallAgent.md)
@@ -90,6 +90,23 @@ const result = await graph.run();
     }
   },
   "params": {}
+}
+```
+
+
+```typescript
+{
+  "inputs": {
+    "tools": {
+      "name": "filesystem--list_directory",
+      "arguments": {
+        "path": "/Users/isamu/ss/llm/graphai-agents/protocol/mcp-agent/lib/../tests/sample"
+      }
+    }
+  },
+  "params": {
+    "mcpClientsKey": "key"
+  }
 }
 ```
 

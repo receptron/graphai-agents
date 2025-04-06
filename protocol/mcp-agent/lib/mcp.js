@@ -1,13 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.toolsCall = exports.toolsList = exports.mcpClose = exports.mcpInit = void 0;
+exports.toolsCall = exports.toolsList = exports.mcpClose = exports.mcpInit = exports.mcpClientsDefaultKey = void 0;
 const types_js_1 = require("@modelcontextprotocol/sdk/types.js");
 const index_js_1 = require("@modelcontextprotocol/sdk/client/index.js");
 const stdio_js_1 = require("@modelcontextprotocol/sdk/client/stdio.js");
-const mcpClents = {};
-let mcpConfig = {};
+exports.mcpClientsDefaultKey = "mcpClients";
 const mcpInit = async (_mcpConfig) => {
-    mcpConfig = _mcpConfig;
+    const mcpClients = {};
+    const mcpConfig = _mcpConfig;
     await Promise.all(Object.keys(mcpConfig).map(async (serviceName) => {
         const config = (mcpConfig ?? {})[serviceName];
         const transport = new stdio_js_1.StdioClientTransport({
@@ -21,22 +21,23 @@ const mcpInit = async (_mcpConfig) => {
             capabilities: {},
         });
         await client.connect(transport);
-        mcpClents[serviceName] = client;
+        mcpClients[serviceName] = client;
         return;
     }));
+    return mcpClients;
 };
 exports.mcpInit = mcpInit;
-const mcpClose = () => {
-    Object.keys(mcpConfig).map(async (serviceName) => {
-        const client = mcpClents[serviceName];
+const mcpClose = (mcpClients) => {
+    Object.keys(mcpClients).map(async (serviceName) => {
+        const client = mcpClients[serviceName];
         client.close();
     });
 };
 exports.mcpClose = mcpClose;
-const toolsList = async (services = []) => {
+const toolsList = async (mcpClients, services = []) => {
     const ret = [];
-    await Promise.all(Object.keys(mcpConfig).map(async (serviceName) => {
-        const client = mcpClents[serviceName];
+    await Promise.all(Object.keys(mcpClients).map(async (serviceName) => {
+        const client = mcpClients[serviceName];
         if (services.length === 0 || services.includes(serviceName)) {
             const toolsResponse = await client.request({ method: "tools/list" }, types_js_1.ListToolsResultSchema);
             toolsResponse.tools.map((tool) => {
@@ -48,10 +49,10 @@ const toolsList = async (services = []) => {
     return ret;
 };
 exports.toolsList = toolsList;
-const toolsCall = async (tools) => {
+const toolsCall = async (mcpClients, tools) => {
     const { name, arguments: llmArguments } = tools;
     const [serviceName, tools_name] = name.split("--");
-    const client = mcpClents[serviceName];
+    const client = mcpClients[serviceName];
     const resourceContent = await client.request({
         method: "tools/call",
         params: {
@@ -66,7 +67,7 @@ exports.toolsCall = toolsCall;
 const resources = async () => {
   await Promise.all(
     Object.keys(mcpConfig).map(async (serviceName) => {
-      const client = mcpClents[serviceName];
+      const client = mcpClients[serviceName];
       try {
         const resourcesList = await client.request({ method: "resources/list" }, ListResourcesResultSchema);
         console.log(resourcesList);
