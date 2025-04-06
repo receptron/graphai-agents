@@ -30,7 +30,9 @@ const result = await graph.run();
 
 
 
-
+### Environment Variables
+ - sttOpenaiAgent
+   - OPENAI_API_KEY
 
 
 
