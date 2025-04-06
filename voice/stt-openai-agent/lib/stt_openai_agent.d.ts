@@ -1,7 +1,10 @@
 import { AgentFunction, AgentFunctionInfo } from "graphai";
 import OpenAI from "openai";
 import { GraphAINullableText } from "@graphai/agent_utils";
-type STTOpenAIInputs = OpenAI.Audio.Transcriptions.TranscriptionCreateParams;
+import fs from "fs";
+type STTOpenAIInputs = OpenAI.Audio.Transcriptions.TranscriptionCreateParams & {
+    inputStream: fs.ReadStream;
+};
 type STTOpenAIConfig = {
     apiKey?: string;
     baseURL?: string;
