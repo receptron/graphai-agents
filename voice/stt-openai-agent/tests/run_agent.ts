@@ -7,10 +7,10 @@ const main = async () => {
   const filePath = path.resolve(path.join(__dirname, "test.m4a"));
   const file = fs.createReadStream(filePath);
   const res = await sttOpenaiAgent.agent({
-    params: {
-      file,
+    params: {},
+    namedInputs: {
+      inputStream: file,
     },
-    namedInputs: {},
     debugInfo: {
       retry: 1,
       nodeId: "",

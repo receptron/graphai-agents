@@ -1,8 +1,9 @@
 import { AgentFunction, AgentFunctionInfo } from "graphai";
 import OpenAI from "openai";
 import { GraphAINullableText } from "@graphai/agent_utils";
+import fs from "fs";
 
-type STTOpenAIInputs = OpenAI.Audio.Transcriptions.TranscriptionCreateParams;
+type STTOpenAIInputs = OpenAI.Audio.Transcriptions.TranscriptionCreateParams & { inputStream: fs.ReadStream };
 
 type STTOpenAIConfig = {
   apiKey?: string;
@@ -20,7 +21,7 @@ type STTOpenAIResult = Partial<GraphAINullableText> & {
 };
 
 export const sttOpenaiAgent: AgentFunction<STTOpenAIParams, STTOpenAIResult, STTOpenAIInputs, STTOpenAIConfig> = async ({ params, namedInputs, config }) => {
-  const { file, language, prompt, response_format, temperature, timestamp_granularities, throwError } = { ...params, ...namedInputs };
+  const { inputStream, language, prompt, response_format, temperature, timestamp_granularities, throwError } = { ...params, ...namedInputs };
   const { apiKey, model, baseURL } = {
     ...(config || {}),
     ...params,
@@ -30,7 +31,7 @@ export const sttOpenaiAgent: AgentFunction<STTOpenAIParams, STTOpenAIResult, STT
 
   try {
     const transcription = await openai.audio.transcriptions.create({
-      file: file,
+      file: inputStream,
       model: model ?? "whisper-1",
       language: language,
       prompt: prompt,
