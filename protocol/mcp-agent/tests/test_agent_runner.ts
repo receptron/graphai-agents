@@ -9,7 +9,10 @@ const main = async () => {
   const mcpClients = await mcpInit(mcpConfig);
   await setTimeout(2000);
 
-  const config = { mcpClients };
+  const config = {
+    mcpClients,
+    key: mcpClients, // for mcpClientsKey Test
+  };
   for await (const agentInfo of Object.values(packages)) {
     if ("name" in agentInfo && "agent" in agentInfo) {
       await agentTestRunner(agentInfo, config);

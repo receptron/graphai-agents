@@ -10,7 +10,7 @@ import { mcpConfig, path } from "./common";
 import { GraphAI } from "graphai";
 
 const main = async () => {
-  await mcpInit(mcpConfig);
+  const mcpClients = await mcpInit(mcpConfig);
   await setTimeout(2000);
 
   const graphData = {
@@ -37,12 +37,12 @@ const main = async () => {
       },
     },
   };
-  const graphai = new GraphAI(graphData, { ...vanilla, mcpToolsListAgent, mcpToolsCallAgent, openAIAgent });
+  const graphai = new GraphAI(graphData, { ...vanilla, mcpToolsListAgent, mcpToolsCallAgent, openAIAgent }, { config: { global: { mcpClients } } });
   const result = await graphai.run();
   console.log(result);
 
   await setTimeout(500);
-  mcpClose();
+  mcpClose(mcpClients);
 };
 
 main();
