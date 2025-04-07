@@ -69,14 +69,6 @@ const main = async () => {
           messages: ":messages2.array",
         },
       },
-      tool_id: {
-        console: { after: true },
-        agent: "copyAgent",
-        inputs: {
-          tool_id: ":llm.tool.id",
-        },
-        if: ":llm.tool"
-      },
       call: {
         agent: "mcpToolsCallAgent",
         inputs: {
@@ -103,7 +95,7 @@ const main = async () => {
           messages: ":messages3.array",
         },
       },
-      textReply: {
+      textReplyNoTool: {
         agent: "copyAgent",
         params: {
           namedKey: "text"
@@ -114,8 +106,9 @@ const main = async () => {
         console: {
           after: true,
         },
+        if: ":llm.text"
       },
-      textReply2: {
+      textReplyWithTool: {
         agent: "copyAgent",
         params: {
           namedKey: "text"
