@@ -17,9 +17,9 @@ export const mcpConfig = {
     command: "npx",
     args: ["-y", "@modelcontextprotocol/server-filesystem", path],
   },
-  filesystem2: {
-    command: __dirname + "/../../../node_modules/@modelcontextprotocol/server-filesystem/dist/index.js",
-    args: [path],
+  spotify: {
+    command: "npx",
+    args: ["-y", "@shopify/dev-mcp@latest"],
   },
 };
 
