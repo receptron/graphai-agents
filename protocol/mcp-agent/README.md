@@ -126,7 +126,8 @@ const result = await graph.run();
 
 
 
-
+### Related Agent Packages
+ - [@graphai/input_agents](https://www.npmjs.com/package/@graphai/input_agents)
 
 
 
