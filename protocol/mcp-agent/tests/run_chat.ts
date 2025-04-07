@@ -52,12 +52,21 @@ const main = async () => {
           required: true
         }
       },
+      messages2: {
+        agent: "pushAgent",
+        inputs: {
+          array: ":messages",
+          item: {
+            role: "user",
+            content: ":userInput.text"
+          }
+        }
+      },
       llm: {
         agent: "openAIAgent",
         inputs: {
           tools: ":list.llmTools",
-          messages: ":messages",
-          prompt: ":userInput.text",
+          messages: ":messages2.array",
         },
       },
       tool_id: {
