@@ -42,6 +42,7 @@ const main = async () => {
             content: "base path is " + path,
           },
         ],
+        update: ":reducer.array.$0",
       },
       list: {
         agent: "mcpToolsListAgent",
@@ -80,6 +81,24 @@ const main = async () => {
             content: ":call.response.content",
           },
         },
+      },
+      no_tool_calls: {
+        agent: "copyAgent",
+        unless: ":llm.tool",
+        inputs: {
+          result: ":llm.messages",
+        }
+      },
+      reducer: {
+        agent: "copyAgent",
+        anyInput: true,
+        // console: { after: true},
+        inputs: {
+          array: [
+            ":no_tool_calls.result",
+            ":llm2.messages"
+          ]
+        }
       },
       textReplyNoTool: {
         agent: "copyAgent",
