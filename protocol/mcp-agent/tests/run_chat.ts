@@ -85,6 +85,19 @@ const main = async () => {
         },
         if: ":llm.tool"
       },
+      messages3: {
+        console: { after: true },
+        agent: "pushAgent",
+        inputs: {
+          array: ":llm.messages",
+          item: {
+            tyle: "function_call_output",
+            call_id: ":llm.tool.id",
+            output: ":call.response.content"
+          }
+        },
+        if: ":llm.tool"
+      },
       textReply: {
         agent: "copyAgent",
         params: {
