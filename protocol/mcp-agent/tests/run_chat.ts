@@ -119,7 +119,6 @@ const main = async () => {
         console: {
           after: true,
         },
-        if: ":llm.tool"
       },
     },
   };
