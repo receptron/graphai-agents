@@ -78,7 +78,6 @@ const main = async () => {
         if: ":llm.tool"
       },
       call: {
-        console: { after: true },
         agent: "mcpToolsCallAgent",
         inputs: {
           tools: ":llm.tool",
@@ -86,7 +85,6 @@ const main = async () => {
         if: ":llm.tool"
       },
       messages3: {
-        console: { after: true },
         agent: "pushAgent",
         inputs: {
           array: ":llm.messages",
@@ -98,8 +96,7 @@ const main = async () => {
         },
         if: ":llm.tool"
       },
-      llm3: {
-        console: { after: true },
+      llm2: {
         agent: "openAIAgent",
         inputs: {
           tools: ":list.llmTools",
@@ -118,7 +115,19 @@ const main = async () => {
           after: true,
         },
       },
-      
+      textReply2: {
+        agent: "copyAgent",
+        params: {
+          namedKey: "text"
+        },
+        inputs: {
+          text: ":llm2.text",
+        },
+        console: {
+          after: true,
+        },
+        if: ":llm.tool"
+      },
     },
   };
   const graphai = new GraphAI(graphData, { ...vanilla, mcpToolsListAgent, mcpToolsCallAgent, openAIAgent, textInputAgent }, { config: { global: { mcpClients } } });
