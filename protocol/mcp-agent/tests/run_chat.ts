@@ -33,6 +33,14 @@ const main = async () => {
       while: true,
     },
     nodes: {
+      messages: {
+        value: [
+          {
+            role: "system",
+            content: "base path is " + path
+          }         
+        ]
+      },
       list: {
         agent: "mcpToolsListAgent",
         isResult: true,
@@ -45,13 +53,10 @@ const main = async () => {
         }
       },
       llm: {
-        console: { after: true },
         agent: "openAIAgent",
         inputs: {
           tools: ":list.llmTools",
-          // prompt: "get all file list on " + path,
-          
-          system: "base path is " + path,
+          messages: ":messages",
           prompt: ":userInput.text",
         },
       },
