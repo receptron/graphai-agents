@@ -91,12 +91,20 @@ const main = async () => {
         inputs: {
           array: ":llm.messages",
           item: {
-            tyle: "function_call_output",
-            call_id: ":llm.tool.id",
-            output: ":call.response.content"
+            role: "tool",
+            tool_call_id: ":llm.tool.id",
+            content: ":call.response.content"
           }
         },
         if: ":llm.tool"
+      },
+      llm3: {
+        console: { after: true },
+        agent: "openAIAgent",
+        inputs: {
+          tools: ":list.llmTools",
+          messages: ":messages3.array",
+        },
       },
       textReply: {
         agent: "copyAgent",
