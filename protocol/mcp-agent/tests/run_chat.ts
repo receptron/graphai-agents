@@ -45,6 +45,7 @@ const main = async () => {
         }
       },
       llm: {
+        console: { after: true },
         agent: "openAIAgent",
         inputs: {
           tools: ":list.llmTools",
@@ -53,6 +54,14 @@ const main = async () => {
           system: "base path is " + path,
           prompt: ":userInput.text",
         },
+      },
+      tool_id: {
+        console: { after: true },
+        agent: "copyAgent",
+        inputs: {
+          tool_id: ":llm.tool.id",
+        },
+        if: ":llm.tool"
       },
       call: {
         console: { after: true },
@@ -64,6 +73,9 @@ const main = async () => {
       },
       textReply: {
         agent: "copyAgent",
+        params: {
+          namedKey: "text"
+        },
         inputs: {
           text: ":llm.text",
         },
