@@ -17,10 +17,12 @@ export const mcpConfig = {
     command: "npx",
     args: ["-y", "@modelcontextprotocol/server-filesystem", path],
   },
+  /*
   spotify: {
     command: "npx",
     args: ["-y", "@shopify/dev-mcp@latest"],
   },
+  */
 };
 
 const main = async () => {
@@ -37,9 +39,9 @@ const main = async () => {
         value: [
           {
             role: "system",
-            content: "base path is " + path
-          }         
-        ]
+            content: "base path is " + path,
+          },
+        ],
       },
       list: {
         agent: "mcpToolsListAgent",
@@ -49,8 +51,8 @@ const main = async () => {
         agent: "textInputAgent",
         params: {
           message: "You:",
-          required: true
-        }
+          required: true,
+        },
       },
       messages2: {
         agent: "pushAgent",
@@ -58,9 +60,9 @@ const main = async () => {
           array: ":messages",
           item: {
             role: "user",
-            content: ":userInput.text"
-          }
-        }
+            content: ":userInput.text",
+          },
+        },
       },
       llm: {
         agent: "openAIAgent",
@@ -74,7 +76,7 @@ const main = async () => {
         inputs: {
           tools: ":llm.tool",
         },
-        if: ":llm.tool"
+        if: ":llm.tool",
       },
       messages3: {
         agent: "pushAgent",
@@ -83,10 +85,9 @@ const main = async () => {
           item: {
             role: "tool",
             tool_call_id: ":llm.tool.id",
-            content: ":call.response.content"
-          }
+            content: ":call.response.content",
+          },
         },
-        if: ":llm.tool"
       },
       llm2: {
         agent: "openAIAgent",
@@ -98,7 +99,7 @@ const main = async () => {
       textReplyNoTool: {
         agent: "copyAgent",
         params: {
-          namedKey: "text"
+          namedKey: "text",
         },
         inputs: {
           text: ":llm.text",
@@ -106,12 +107,12 @@ const main = async () => {
         console: {
           after: true,
         },
-        if: ":llm.text"
+        if: ":llm.text",
       },
       textReplyWithTool: {
         agent: "copyAgent",
         params: {
-          namedKey: "text"
+          namedKey: "text",
         },
         inputs: {
           text: ":llm2.text",
@@ -122,7 +123,11 @@ const main = async () => {
       },
     },
   };
-  const graphai = new GraphAI(graphData, { ...vanilla, mcpToolsListAgent, mcpToolsCallAgent, openAIAgent, textInputAgent }, { config: { global: { mcpClients } } });
+  const graphai = new GraphAI(
+    graphData,
+    { ...vanilla, mcpToolsListAgent, mcpToolsCallAgent, openAIAgent, textInputAgent },
+    { config: { global: { mcpClients } } },
+  );
   const result = await graphai.run();
   // console.log(result);
 
