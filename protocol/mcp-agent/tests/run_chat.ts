@@ -54,21 +54,12 @@ const main = async () => {
           required: true,
         },
       },
-      messages2: {
-        agent: "pushAgent",
-        inputs: {
-          array: ":messages",
-          item: {
-            role: "user",
-            content: ":userInput.text",
-          },
-        },
-      },
       llm: {
         agent: "openAIAgent",
         inputs: {
           tools: ":list.llmTools",
-          messages: ":messages2.array",
+          messages: ":messages",
+          prompt: ":userInput.text",
         },
       },
       call: {
@@ -78,22 +69,16 @@ const main = async () => {
         },
         if: ":llm.tool",
       },
-      messages3: {
-        agent: "pushAgent",
-        inputs: {
-          array: ":llm.messages",
-          item: {
-            role: "tool",
-            tool_call_id: ":llm.tool.id",
-            content: ":call.response.content",
-          },
-        },
-      },
       llm2: {
         agent: "openAIAgent",
         inputs: {
           tools: ":list.llmTools",
-          messages: ":messages3.array",
+          messages: ":llm.messages",
+          message: {
+            role: "tool",
+            tool_call_id: ":llm.tool.id",
+            content: ":call.response.content",
+          },
         },
       },
       textReplyNoTool: {
