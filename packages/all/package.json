@@ -10,6 +10,7 @@
     "build": "rm -r lib/* && tsc && tsc-alias",
     "eslint": "eslint",
     "format": "prettier --write '{src,tests,samples}/**/*.ts'",
+    "doc": "echo nothing",
     "test": "echo nothing",
     "b": "yarn run format && yarn run eslint && yarn run build"
   },
