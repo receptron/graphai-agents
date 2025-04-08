@@ -1,6 +1,19 @@
+# @graphai/all for GraphAI
 
-// import { GraphAI } from "@graphai/all";
-import { GraphAI, agents } from "../src/";
+All-in packages for GraphAI.
+
+This meta-package contains all the necessary dependencies for using GraphAI, including the core library and standard agents.
+
+### Install
+
+```sh
+yarn add @graphai/all
+```
+
+### Usage
+
+```typescript
+import { GraphAI, agents } from "@graphai/all";
 
 const main = async () => {
   const graphData = {
@@ -22,3 +35,7 @@ const main = async () => {
 };
 
 main();
+```
+
+
+
