@@ -8,3 +8,5 @@ export * from "@graphai/awesome_chatgpt_prompts_agent";
 export * from "@graphai/prompts";
 export * from "@graphai/tts_nijivoice_agent";
 export * from "@graphai/tts_openai_agent";
+export * from "@graphai/stt_openai_agent";
+export * from "@graphai/mcp_agent";

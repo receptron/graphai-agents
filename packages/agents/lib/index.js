@@ -33,3 +33,7 @@ __exportStar(require("@graphai/prompts"), exports);
 // tts
 __exportStar(require("@graphai/tts_nijivoice_agent"), exports);
 __exportStar(require("@graphai/tts_openai_agent"), exports);
+// stt
+__exportStar(require("@graphai/stt_openai_agent"), exports);
+// protocol
+__exportStar(require("@graphai/mcp_agent"), exports);

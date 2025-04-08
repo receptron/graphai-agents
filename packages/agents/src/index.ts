@@ -23,3 +23,9 @@ export * from "@graphai/prompts";
 // tts
 export * from "@graphai/tts_nijivoice_agent";
 export * from "@graphai/tts_openai_agent";
+
+// stt
+export * from "@graphai/stt_openai_agent";
+
+// protocol
+export * from "@graphai/mcp_agent";
