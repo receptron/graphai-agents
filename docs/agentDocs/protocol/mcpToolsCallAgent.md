@@ -87,7 +87,7 @@ Model Context Protocol Tools/Call Agent
   "tools": {
     "name": "filesystem--list_directory",
     "arguments": {
-      "path": "/Users/isamu/ss/llm/graphai-agents/protocol/mcp-agent/lib/../tests/sample"
+      "path": "/home/runner/work/graphai-agents/graphai-agents/protocol/mcp-agent/lib/../tests/sample"
     }
   }
 }
@@ -128,7 +128,7 @@ Model Context Protocol Tools/Call Agent
   "tools": {
     "name": "filesystem--list_directory",
     "arguments": {
-      "path": "/Users/isamu/ss/llm/graphai-agents/protocol/mcp-agent/lib/../tests/sample"
+      "path": "/home/runner/work/graphai-agents/graphai-agents/protocol/mcp-agent/lib/../tests/sample"
     }
   }
 }

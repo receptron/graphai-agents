@@ -1,0 +1,38 @@
+{
+  "name": "@graphai/all",
+  "version": "0.0.2",
+  "description": "GraphAI meta all packages.",
+  "main": "lib/index.js",
+  "files": [
+    "./lib"
+  ],
+  "scripts": {
+    "build": "rm -r lib/* && tsc && tsc-alias",
+    "eslint": "eslint",
+    "format": "prettier --write '{src,tests,samples}/**/*.ts'",
+    "test": "echo nothing",
+    "b": "yarn run format && yarn run eslint && yarn run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/receptron/graphai-agents"
+  },
+  "author": "Satoshi Nakajima, Isamu Arimoto",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/receptron/graphai-agents/issues"
+  },
+  "homepage": "https://github.com/receptron/graphai-agents/blob/main/packages/all/README.md",
+  "dependencies": {
+    "@graphai/agent_filters": "^1.0.1",
+    "@graphai/agents": "^1.0.2",
+    "@graphai/extra-agents": "^0.0.6",
+    "@receptron/test_utils": "^1.0.3",
+    "graphai": "^1.0.4"
+  },
+  "devDependencies": {},
+  "types": "./lib/index.d.ts",
+  "directories": {
+    "lib": "lib"
+  }
+}
