@@ -87,18 +87,15 @@ const main = async () => {
         unless: ":llm.tool",
         inputs: {
           result: ":llm.messages",
-        }
+        },
       },
       reducer: {
         agent: "copyAgent",
         anyInput: true,
         // console: { after: true},
         inputs: {
-          array: [
-            ":no_tool_calls.result",
-            ":llm2.messages"
-          ]
-        }
+          array: [":no_tool_calls.result", ":llm2.messages"],
+        },
       },
       textReplyNoTool: {
         agent: "copyAgent",
