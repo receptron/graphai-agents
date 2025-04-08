@@ -16,5 +16,12 @@
 ### [ttsNijivoiceAgent](./tts/ttsNijivoiceAgent.md)
 ### [ttsOpenaiAgent](./tts/ttsOpenaiAgent.md)
 
+## voice
+### [sttOpenaiAgent](./voice/sttOpenaiAgent.md)
+
+## protocol
+### [mcpToolsListAgent](./protocol/mcpToolsListAgent.md)
+### [mcpToolsCallAgent](./protocol/mcpToolsCallAgent.md)
+
 ## system
 ### [runShellAgent](./system/runShellAgent.md)
