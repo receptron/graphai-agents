@@ -52,7 +52,7 @@ const ttsNijivoiceAgentInfo = {
     mock: exports.ttsNijivoiceAgent,
     samples: [],
     description: "TTS nijivoice agent",
-    category: ["tts"],
+    category: ["voice"],
     author: "Receptron Team",
     repository: "https://github.com/receptron/graphai-agents/tree/main/tts/tts-nijivoice-agent",
     license: "MIT",

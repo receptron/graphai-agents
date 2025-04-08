@@ -26,7 +26,7 @@ const result = await graph.run();
 - ttsOpenaiAgent - OpenAI TTS agent
 
 ### Input/Output/Params Schema & samples
- - [ttsOpenaiAgent](https://github.com/receptron/graphai-agents/blob/main/docs/agentDocs/tts/ttsOpenaiAgent.md)
+ - [ttsOpenaiAgent](https://github.com/receptron/graphai-agents/blob/main/docs/agentDocs/voice/ttsOpenaiAgent.md)
 
 
 

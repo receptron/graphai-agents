@@ -26,7 +26,7 @@ const result = await graph.run();
 - ttsNijivoiceAgent - TTS nijivoice agent
 
 ### Input/Output/Params Schema & samples
- - [ttsNijivoiceAgent](https://github.com/receptron/graphai-agents/blob/main/docs/agentDocs/tts/ttsNijivoiceAgent.md)
+ - [ttsNijivoiceAgent](https://github.com/receptron/graphai-agents/blob/main/docs/agentDocs/voice/ttsNijivoiceAgent.md)
 
 
 

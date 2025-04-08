@@ -77,8 +77,8 @@ const result = await graph.run();
  - [serperAgent](https://github.com/receptron/graphai-agents/blob/main/docs/agentDocs/net/serperAgent.md)
  - [slackAgent](https://github.com/receptron/graphai-agents/blob/main/docs/agentDocs/net/slackAgent.md)
  - [sttOpenaiAgent](https://github.com/receptron/graphai-agents/blob/main/docs/agentDocs/voice/sttOpenaiAgent.md)
- - [ttsNijivoiceAgent](https://github.com/receptron/graphai-agents/blob/main/docs/agentDocs/tts/ttsNijivoiceAgent.md)
- - [ttsOpenaiAgent](https://github.com/receptron/graphai-agents/blob/main/docs/agentDocs/tts/ttsOpenaiAgent.md)
+ - [ttsNijivoiceAgent](https://github.com/receptron/graphai-agents/blob/main/docs/agentDocs/voice/ttsNijivoiceAgent.md)
+ - [ttsOpenaiAgent](https://github.com/receptron/graphai-agents/blob/main/docs/agentDocs/voice/ttsOpenaiAgent.md)
 
 ### Input/Params example
  - arxivAgent

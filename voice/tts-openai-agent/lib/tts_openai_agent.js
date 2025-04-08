@@ -35,7 +35,7 @@ const ttsOpenaiAgentInfo = {
     mock: exports.ttsOpenaiAgent,
     samples: [],
     description: "OpenAI TTS agent",
-    category: ["tts"],
+    category: ["voice"],
     author: "Receptron Team",
     repository: "https://github.com/receptron/graphai-agents/tree/main/tts/tts-openai-agent",
     license: "MIT",

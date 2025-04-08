@@ -12,11 +12,9 @@
 ### [awesomeChatgptPromptsAgent](./prompt/awesomeChatgptPromptsAgent.md)
 ### [promptsAgent](./prompt/promptsAgent.md)
 
-## tts
-### [ttsNijivoiceAgent](./tts/ttsNijivoiceAgent.md)
-### [ttsOpenaiAgent](./tts/ttsOpenaiAgent.md)
-
 ## voice
+### [ttsNijivoiceAgent](./voice/ttsNijivoiceAgent.md)
+### [ttsOpenaiAgent](./voice/ttsOpenaiAgent.md)
 ### [sttOpenaiAgent](./voice/sttOpenaiAgent.md)
 
 ## protocol
