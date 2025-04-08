@@ -1,6 +1,6 @@
 {
   "name": "@graphai/all",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "GraphAI meta all packages.",
   "main": "lib/index.js",
   "files": [
