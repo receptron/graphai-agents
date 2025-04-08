@@ -42,7 +42,7 @@ const main = async () => {
             content: "base path is " + path,
           },
         ],
-        update: ":reducer.array.$0",
+        update: ":reducer.array",
       },
       list: {
         agent: "mcpToolsListAgent",
@@ -90,7 +90,7 @@ const main = async () => {
         },
       },
       reducer: {
-        agent: "copyAgent",
+        agent: "arrayFlatAgent",
         anyInput: true,
         // console: { after: true},
         inputs: {
