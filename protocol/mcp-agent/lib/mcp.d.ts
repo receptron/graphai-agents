@@ -40,6 +40,18 @@ export declare const toolsCall: (mcpClients: MCPClients, tools: {
         data: import("zod").ZodString;
         mimeType: import("zod").ZodString;
     }, import("zod").ZodTypeAny, "passthrough">>, import("zod").ZodObject<{
+        type: import("zod").ZodLiteral<"audio">;
+        data: import("zod").ZodString;
+        mimeType: import("zod").ZodString;
+    }, "passthrough", import("zod").ZodTypeAny, import("zod").objectOutputType<{
+        type: import("zod").ZodLiteral<"audio">;
+        data: import("zod").ZodString;
+        mimeType: import("zod").ZodString;
+    }, import("zod").ZodTypeAny, "passthrough">, import("zod").objectInputType<{
+        type: import("zod").ZodLiteral<"audio">;
+        data: import("zod").ZodString;
+        mimeType: import("zod").ZodString;
+    }, import("zod").ZodTypeAny, "passthrough">>, import("zod").ZodObject<{
         type: import("zod").ZodLiteral<"resource">;
         resource: import("zod").ZodUnion<[import("zod").ZodObject<import("zod").objectUtil.extendShape<{
             uri: import("zod").ZodString;
