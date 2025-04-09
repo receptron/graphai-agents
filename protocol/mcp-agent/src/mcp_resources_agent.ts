@@ -2,12 +2,12 @@ import { assert } from "graphai";
 import type { AgentFunction, AgentFunctionInfo } from "graphai";
 import { resourcesList, mcpClientsDefaultKey } from "./mcp";
 
-export const mcpResoucesAgent: AgentFunction<{ mcpClientsKey?: string }> = async ({ namedInputs, config, params }) => {
+export const mcpResourcesAgent: AgentFunction<{ mcpClientsKey?: string }> = async ({ namedInputs, config, params }) => {
   const mcpClientsKey = params.mcpClientsKey ?? mcpClientsDefaultKey;
   const mcpClients = (config ?? {})[mcpClientsKey];
 
-  assert(!!mcpClients, "mcpResoucesAgent: no mcpClients");
-  assert(Object.keys(mcpClients).length > 0, "mcpResoucesAgent: no mcpClients");
+  assert(!!mcpClients, "mcpResourcesAgent: no mcpClients");
+  assert(Object.keys(mcpClients).length > 0, "mcpResourcesAgent: no mcpClients");
 
   const resources = await resourcesList(mcpClients);
   return {
@@ -15,10 +15,10 @@ export const mcpResoucesAgent: AgentFunction<{ mcpClientsKey?: string }> = async
   };
 };
 
-const mcpResoucesAgentInfo: AgentFunctionInfo = {
-  name: "mcpResoucesAgent",
-  agent: mcpResoucesAgent,
-  mock: mcpResoucesAgent,
+const mcpResourcesAgentInfo: AgentFunctionInfo = {
+  name: "mcpResourcesAgent",
+  agent: mcpResourcesAgent,
+  mock: mcpResourcesAgent,
 
   samples: [
     {
@@ -37,11 +37,11 @@ const mcpResoucesAgentInfo: AgentFunctionInfo = {
       },
     },
   ],
-  description: "Model Context Protocol Resouces Agent",
+  description: "Model Context Protocol Resources Agent",
   category: ["protocol"],
   author: "isamu arimoto",
   repository: "https://github.com/receptron/graphai-agents",
   license: "MIT",
 };
 
-export default mcpResoucesAgentInfo;
+export default mcpResourcesAgentInfo;
