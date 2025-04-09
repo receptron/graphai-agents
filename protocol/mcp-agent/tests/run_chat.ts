@@ -11,12 +11,13 @@ import { setTimeout } from "timers/promises";
 import { GraphAI } from "graphai";
 
 // import { mcpPlaywrightConfig as mcpConfig } from "./config";
-import { mcpFileConfig as mcpConfig } from "./config";
+ import { mcpFileConfig as mcpConfig } from "./config";
+// import { mcpLaprasConfig as mcpConfig } from "./config";
 
 export const path = __dirname;
 
 const main = async () => {
-  const mcpClients = await mcpInit(mcpConfig);
+  const mcpClients = await mcpInit(mcpConfig.mcp);
   await setTimeout(2000);
 
   const graphData = {
@@ -29,7 +30,7 @@ const main = async () => {
         value: [
           {
             role: "system",
-            content: "base path is " + path,
+            content: mcpConfig.systemPrompt,
           },
         ],
         update: ":reducer.array",

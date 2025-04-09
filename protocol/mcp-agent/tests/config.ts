@@ -1,22 +1,31 @@
 export const path = __dirname;
 
 export const mcpFileConfig = {
-  filesystem: {
-    command: "npx",
-    args: ["-y", "@modelcontextprotocol/server-filesystem", path],
+  mcp: {
+    filesystem: {
+      command: "npx",
+      args: ["-y", "@modelcontextprotocol/server-filesystem", path],
+    },
   },
+  systemPrompt: "base path is " + path,
 };
 
 export const mcpLaprasConfig = {
-  lapras: {
-    command: "npx",
-    args: ["-y", "@lapras-inc/lapras-mcp-server"],
+  mcp: {
+    lapras: {
+      command: "npx",
+      args: ["-y", "@lapras-inc/lapras-mcp-server"],
+    },
   },
+  systemPrompt: "You will be supported in finding a job.",
 };
 
 export const mcpPlaywrightConfig = {
-  playwright: {
-    command: "npx",
-    args: ["@playwright/mcp@latest", "--browser", "chrome"],
+  mcp: {
+    playwright: {
+      command: "npx",
+      args: ["@playwright/mcp@latest", "--browser", "chrome"],
+    },
   },
+  systemPrompt: "you are playwright",
 };
