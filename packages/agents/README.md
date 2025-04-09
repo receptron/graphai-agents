@@ -19,6 +19,8 @@ import {
   awesomeChatgptPromptsAgent,
   braveSearchAgent,
   browserlessAgent,
+  mcpResourceAgent,
+  mcpResourcesAgent,
   mcpToolsCallAgent,
   mcpToolsListAgent,
   pdf2textAgent,
@@ -35,6 +37,8 @@ const agents = {
   awesomeChatgptPromptsAgent,
   braveSearchAgent,
   browserlessAgent,
+  mcpResourceAgent,
+  mcpResourcesAgent,
   mcpToolsCallAgent,
   mcpToolsListAgent,
   pdf2textAgent,
@@ -55,6 +59,8 @@ const result = await graph.run();
 - awesomeChatgptPromptsAgent - awesomeChatgptPrompts Agent
 - braveSearchAgent - An agent that uses the Brave Search API. https://api-dashboard.search.brave.com/app/documentation/web-search/get-started
 - browserlessAgent - An agent that uses Browserless.io to fetch web page content with JavaScript execution support for retrieving data from SPAs and dynamic content
+- mcpResourceAgent - Model Context Protocol Resource Agent
+- mcpResourcesAgent - Model Context Protocol Resources Agent
 - mcpToolsCallAgent - Model Context Protocol Tools/Call Agent
 - mcpToolsListAgent - Model Context Protocol Tools/List Agent
 - pdf2textAgent - Pdf2text Agent
@@ -70,6 +76,8 @@ const result = await graph.run();
  - [awesomeChatgptPromptsAgent](https://github.com/receptron/graphai-agents/blob/main/docs/agentDocs/prompt/awesomeChatgptPromptsAgent.md)
  - [braveSearchAgent](https://github.com/receptron/graphai-agents/blob/main/docs/agentDocs/net/braveSearchAgent.md)
  - [browserlessAgent](https://github.com/receptron/graphai-agents/blob/main/docs/agentDocs/net/browserlessAgent.md)
+ - [mcpResourceAgent](https://github.com/receptron/graphai-agents/blob/main/docs/agentDocs/protocol/mcpResourceAgent.md)
+ - [mcpResourcesAgent](https://github.com/receptron/graphai-agents/blob/main/docs/agentDocs/protocol/mcpResourcesAgent.md)
  - [mcpToolsCallAgent](https://github.com/receptron/graphai-agents/blob/main/docs/agentDocs/protocol/mcpToolsCallAgent.md)
  - [mcpToolsListAgent](https://github.com/receptron/graphai-agents/blob/main/docs/agentDocs/protocol/mcpToolsListAgent.md)
  - [pdf2textAgent](https://github.com/receptron/graphai-agents/blob/main/docs/agentDocs/documents/pdf2textAgent.md)
@@ -183,6 +191,15 @@ const result = await graph.run();
   "params": {
     "debug": true
   }
+}
+```
+
+ - mcpResourcesAgent
+
+```typescript
+{
+  "inputs": {},
+  "params": {}
 }
 ```
 

@@ -60,23 +60,36 @@ Be sure to explicitly disconnect from the MCP server when your batch job or serv
 
 ```typescript
 import { GraphAI } from "graphai";
-import { mcpToolsCallAgent, mcpToolsListAgent } from "@graphai/mcp_agent";
+import { mcpResourceAgent, mcpResourcesAgent, mcpToolsCallAgent, mcpToolsListAgent } from "@graphai/mcp_agent";
 
-const agents = { mcpToolsCallAgent, mcpToolsListAgent };
+const agents = { mcpResourceAgent, mcpResourcesAgent, mcpToolsCallAgent, mcpToolsListAgent };
 
 const graph = new GraphAI(graph_data, agents);
 const result = await graph.run();
 ```
 
 ### Agents description
+- mcpResourceAgent - Model Context Protocol Resource Agent
+- mcpResourcesAgent - Model Context Protocol Resources Agent
 - mcpToolsCallAgent - Model Context Protocol Tools/Call Agent
 - mcpToolsListAgent - Model Context Protocol Tools/List Agent
 
 ### Input/Output/Params Schema & samples
+ - [mcpResourceAgent](https://github.com/receptron/graphai/blob/main/docs/agentDocs/protocol/mcpResourceAgent.md)
+ - [mcpResourcesAgent](https://github.com/receptron/graphai/blob/main/docs/agentDocs/protocol/mcpResourcesAgent.md)
  - [mcpToolsCallAgent](https://github.com/receptron/graphai/blob/main/docs/agentDocs/protocol/mcpToolsCallAgent.md)
  - [mcpToolsListAgent](https://github.com/receptron/graphai/blob/main/docs/agentDocs/protocol/mcpToolsListAgent.md)
 
 ### Input/Params example
+ - mcpResourcesAgent
+
+```typescript
+{
+  "inputs": {},
+  "params": {}
+}
+```
+
  - mcpToolsCallAgent
 
 ```typescript
