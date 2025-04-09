@@ -87,6 +87,7 @@ export const resourcesList = async (mcpClients: MCPClients) => {
         ret[serviceName] = resourcesList.resources;
         // console.log(resourcesList);
       } catch (e) {
+        console.log(e);
         // nothing
         // console.log(e);
       }
