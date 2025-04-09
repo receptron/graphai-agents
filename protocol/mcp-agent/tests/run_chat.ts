@@ -10,20 +10,10 @@ import { setTimeout } from "timers/promises";
 
 import { GraphAI } from "graphai";
 
-export const path = __dirname;
+// import { mcpPlaywrightConfig as mcpConfig } from "./config";
+import { mcpFileConfig as mcpConfig } from "./config";
 
-export const mcpConfig = {
-  filesystem: {
-    command: "npx",
-    args: ["-y", "@modelcontextprotocol/server-filesystem", path],
-  },
-  /*
-  spotify: {
-    command: "npx",
-    args: ["-y", "@shopify/dev-mcp@latest"],
-  },
-  */
-};
+export const path = __dirname;
 
 const main = async () => {
   const mcpClients = await mcpInit(mcpConfig);
