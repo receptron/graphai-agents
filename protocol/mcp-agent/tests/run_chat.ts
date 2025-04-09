@@ -11,7 +11,7 @@ import { setTimeout } from "timers/promises";
 import { GraphAI } from "graphai";
 
 // import { mcpPlaywrightConfig as mcpConfig } from "./config";
- import { mcpFileConfig as mcpConfig } from "./config";
+import { mcpFileConfig as mcpConfig } from "./config";
 // import { mcpLaprasConfig as mcpConfig } from "./config";
 
 export const path = __dirname;
