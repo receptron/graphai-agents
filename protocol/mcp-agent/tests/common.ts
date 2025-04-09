@@ -9,4 +9,8 @@ export const mcpConfig = {
     command: __dirname + "/../../../node_modules/@modelcontextprotocol/server-filesystem/dist/index.js",
     args: [path],
   },
+  playwright: {
+    command: "npx",
+    args: ["@playwright/mcp@latest", "--browser", "chrome"],
+  },
 };
