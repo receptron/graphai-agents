@@ -2,7 +2,7 @@ import { assert } from "graphai";
 import type { AgentFunction, AgentFunctionInfo } from "graphai";
 import { resourcesList, mcpClientsDefaultKey } from "./mcp";
 
-export const mcpResourcesAgent: AgentFunction<{ mcpClientsKey?: string }> = async ({ namedInputs, config, params }) => {
+export const mcpResourcesAgent: AgentFunction<{ mcpClientsKey?: string }> = async ({ config, params }) => {
   const mcpClientsKey = params.mcpClientsKey ?? mcpClientsDefaultKey;
   const mcpClients = (config ?? {})[mcpClientsKey];
 
