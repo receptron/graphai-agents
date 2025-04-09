@@ -153,4 +153,40 @@ export declare const toolsCall: (mcpClients: MCPClients, tools: {
     }, import("zod").ZodTypeAny, "passthrough">>]>, "many">;
     isError: import("zod").ZodOptional<import("zod").ZodDefault<import("zod").ZodBoolean>>;
 }>, import("zod").ZodTypeAny, "passthrough">>;
+export declare const resourcesList: (mcpClients: MCPClients) => Promise<Record<string, unknown[]>>;
+export declare const resourceRead: (mcpClients: MCPClients, serviceName: string, params: any) => Promise<import("zod").objectOutputType<import("zod").objectUtil.extendShape<{
+    _meta: import("zod").ZodOptional<import("zod").ZodObject<{}, "passthrough", import("zod").ZodTypeAny, import("zod").objectOutputType<{}, import("zod").ZodTypeAny, "passthrough">, import("zod").objectInputType<{}, import("zod").ZodTypeAny, "passthrough">>>;
+}, {
+    contents: import("zod").ZodArray<import("zod").ZodUnion<[import("zod").ZodObject<import("zod").objectUtil.extendShape<{
+        uri: import("zod").ZodString;
+        mimeType: import("zod").ZodOptional<import("zod").ZodString>;
+    }, {
+        text: import("zod").ZodString;
+    }>, "passthrough", import("zod").ZodTypeAny, import("zod").objectOutputType<import("zod").objectUtil.extendShape<{
+        uri: import("zod").ZodString;
+        mimeType: import("zod").ZodOptional<import("zod").ZodString>;
+    }, {
+        text: import("zod").ZodString;
+    }>, import("zod").ZodTypeAny, "passthrough">, import("zod").objectInputType<import("zod").objectUtil.extendShape<{
+        uri: import("zod").ZodString;
+        mimeType: import("zod").ZodOptional<import("zod").ZodString>;
+    }, {
+        text: import("zod").ZodString;
+    }>, import("zod").ZodTypeAny, "passthrough">>, import("zod").ZodObject<import("zod").objectUtil.extendShape<{
+        uri: import("zod").ZodString;
+        mimeType: import("zod").ZodOptional<import("zod").ZodString>;
+    }, {
+        blob: import("zod").ZodString;
+    }>, "passthrough", import("zod").ZodTypeAny, import("zod").objectOutputType<import("zod").objectUtil.extendShape<{
+        uri: import("zod").ZodString;
+        mimeType: import("zod").ZodOptional<import("zod").ZodString>;
+    }, {
+        blob: import("zod").ZodString;
+    }>, import("zod").ZodTypeAny, "passthrough">, import("zod").objectInputType<import("zod").objectUtil.extendShape<{
+        uri: import("zod").ZodString;
+        mimeType: import("zod").ZodOptional<import("zod").ZodString>;
+    }, {
+        blob: import("zod").ZodString;
+    }>, import("zod").ZodTypeAny, "passthrough">>]>, "many">;
+}>, import("zod").ZodTypeAny, "passthrough">>;
 export {};

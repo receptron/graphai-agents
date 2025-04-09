@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.toolsCall = exports.toolsList = exports.mcpClose = exports.mcpInit = exports.mcpClientsDefaultKey = void 0;
+exports.resourceRead = exports.resourcesList = exports.toolsCall = exports.toolsList = exports.mcpClose = exports.mcpInit = exports.mcpClientsDefaultKey = void 0;
 const types_js_1 = require("@modelcontextprotocol/sdk/types.js");
 const index_js_1 = require("@modelcontextprotocol/sdk/client/index.js");
 const stdio_js_1 = require("@modelcontextprotocol/sdk/client/stdio.js");
@@ -63,19 +63,29 @@ const toolsCall = async (mcpClients, tools) => {
     return resourceContent;
 };
 exports.toolsCall = toolsCall;
-/*
-const resources = async () => {
-  await Promise.all(
-    Object.keys(mcpConfig).map(async (serviceName) => {
-      const client = mcpClients[serviceName];
-      try {
-        const resourcesList = await client.request({ method: "resources/list" }, ListResourcesResultSchema);
-        console.log(resourcesList);
-      } catch (e) {
-        console.log(e);
-      }
-    }),
-  );
-  // TODO
+const resourcesList = async (mcpClients) => {
+    const ret = {};
+    await Promise.all(Object.keys(mcpClients).map(async (serviceName) => {
+        const client = mcpClients[serviceName];
+        try {
+            const resourcesList = await client.request({ method: "resources/list" }, types_js_1.ListResourcesResultSchema);
+            ret[serviceName] = resourcesList.resources;
+            // console.log(resourcesList);
+        }
+        catch (e) {
+            // nothing
+            // console.log(e);
+        }
+    }));
+    return ret;
 };
-*/
+exports.resourcesList = resourcesList;
+const resourceRead = async (mcpClients, serviceName, params) => {
+    const client = mcpClients[serviceName];
+    const content = await client.request({
+        method: "resources/read",
+        params,
+    }, types_js_1.ReadResourceResultSchema);
+    return content;
+};
+exports.resourceRead = resourceRead;
