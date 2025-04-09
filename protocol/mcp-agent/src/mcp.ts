@@ -1,4 +1,4 @@
-import { ListToolsResultSchema, CallToolResultSchema, ListResourcesResultSchema } from "@modelcontextprotocol/sdk/types.js";
+import { ListToolsResultSchema, CallToolResultSchema, ListResourcesResultSchema, ReadResourceResultSchema } from "@modelcontextprotocol/sdk/types.js";
 
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
@@ -77,9 +77,8 @@ export const toolsCall = async (mcpClients: MCPClients, tools: { name: string; a
   return resourceContent;
 };
 
-
-export const resources = async (mcpClients: MCPClients) => {
-  const ret: Record<string, unknown> = {};
+export const resourcesList = async (mcpClients: MCPClients) => {
+  const ret: Record<string, unknown[]> = {};
   await Promise.all(
     Object.keys(mcpClients).map(async (serviceName) => {
       const client = mcpClients[serviceName];
@@ -96,3 +95,14 @@ export const resources = async (mcpClients: MCPClients) => {
   return ret;
 };
 
+export const resourceRead = async (mcpClients: MCPClients, serviceName: string, params: any) => {
+  const client = mcpClients[serviceName];
+  const content = await client.request(
+    {
+      method: "resources/read",
+      params,
+    },
+    ReadResourceResultSchema,
+  );
+  return content;
+};
