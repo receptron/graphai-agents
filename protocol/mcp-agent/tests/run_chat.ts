@@ -53,6 +53,7 @@ const main = async () => {
           messages: ":messages",
           prompt: ":userInput.text",
         },
+        // console: { before: true },
       },
       call: {
         agent: "mcpToolsCallAgent",
@@ -64,7 +65,7 @@ const main = async () => {
       llm2: {
         agent: "openAIAgent",
         inputs: {
-          tools: ":list.llmTools",
+          // tools: ":list.llmTools",
           messages: ":llm.messages",
           message: {
             role: "tool",
@@ -83,7 +84,7 @@ const main = async () => {
       reducer: {
         agent: "arrayFlatAgent",
         anyInput: true,
-        // console: { after: true},
+        // console: { after: true },
         inputs: {
           array: [":no_tool_calls.result", ":llm2.messages"],
         },
