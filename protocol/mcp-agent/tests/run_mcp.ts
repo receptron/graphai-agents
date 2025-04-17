@@ -1,4 +1,4 @@
-import { mcpInit, toolsList, toolsCall, mcpClose, resources } from "../src/mcp";
+import { mcpInit, toolsList, toolsCall, mcpClose, resourcesList, resourceRead } from "../src/mcp";
 import { setTimeout } from "timers/promises";
 import { path, mcpConfig } from "./common";
 
@@ -8,8 +8,17 @@ const main = async () => {
   const tools = await toolsList(mcpClients);
   console.log(JSON.stringify(tools, null, 2));
 
-  const rs = await resources(mcpClients);
-  console.log(rs);
+  const resoures = await resourcesList(mcpClients);
+  console.log(resoures);
+
+  /*
+  await toolsCall(mcpClients, {
+    name: "playwright--browser_navigate",
+    arguments: { url: "https://www.google.com" },
+  });
+  const content = await resourceRead(mcpClients, "playwright", resoures.playwright[0]);
+  console.log(content);
+  */
 
   const tools_data = {
     name: "filesystem--list_directory",
