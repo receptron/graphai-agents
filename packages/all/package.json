@@ -29,7 +29,7 @@
     "@graphai/agents": "^1.0.2",
     "@graphai/extra-agents": "^0.0.6",
     "@receptron/test_utils": "^1.0.3",
-    "graphai": "^1.0.4"
+    "graphai": "^1.0.5"
   },
   "devDependencies": {},
   "types": "./lib/index.d.ts",
