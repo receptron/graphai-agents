@@ -30,6 +30,8 @@ const awesomeChatgptPromptsAgentInfo: AgentFunctionInfo = {
   category: ["prompt"],
   author: "Receptron team",
   repository: "https://github.com/receptron/graphai-agents/tree/main/prompts/awesome-chatgpt-prompts_agent",
+  source: "https://github.com/receptron/graphai-agents/tree/main/prompts/awesome-chatgpt-prompts_agent/src/awesome_chatgpt_prompts_agent.ts",
+  package: "@graphai/awesome_chatgpt_prompts_agent",
   license: "MIT",
 };
 

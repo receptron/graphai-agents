@@ -220,6 +220,8 @@ const browserlessAgentInfo: AgentFunctionInfo = {
   category: ["net"],
   author: "kawamataryo",
   repository: "https://github.com/receptron/graphai-agents",
+  source: "https://github.com/receptron/graphai-agents/tree/main/net/browserless_agent/src/browserless_agent.ts",
+  package: "@graphai/browserless_agent",
   license: "MIT",
   environmentVariables: ["BROWSERLESS_API_TOKEN"],
 };
