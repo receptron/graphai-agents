@@ -15,6 +15,8 @@ declare const retNodeBrowserDetectAgentInfo: {
     category: string[];
     author: string;
     repository: string;
+    source?: string;
+    package?: string;
     license: string;
     cacheType?: import("graphai/lib/type").CacheTypes;
     environmentVariables?: string[];

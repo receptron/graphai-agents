@@ -14,6 +14,8 @@ const notionAgentInfo = {
     category: ["net"],
     author: "Receptron team",
     repository: "https://github.com/receptron/graphai-agents/tree/main/net/notion_agent",
+    // source: "https://github.com/receptron/graphai-agents/tree/main/net/notion_agent/src/notion_agent.ts",
+    // package: "@graphai/notion_agent",
     license: "MIT",
 };
 exports.default = notionAgentInfo;

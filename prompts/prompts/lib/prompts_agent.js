@@ -29,6 +29,8 @@ const promptsAgentInfo = {
     category: ["prompt"],
     author: "Receptron team",
     repository: "https://github.com/receptron/graphai-agents/tree/main/prompts/prompts",
+    source: "https://github.com/receptron/graphai-agents/tree/main/prompts/prompts/src/prompts_agent.ts",
+    package: "@graphai/prompts",
     license: "MIT",
 };
 exports.default = promptsAgentInfo;

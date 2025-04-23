@@ -38,6 +38,8 @@ const slackAgentInfo = {
     category: ["net"],
     author: "Receptron team",
     repository: "https://github.com/receptron/graphai-agents/tree/main/net/slack_agent",
+    // source: "https://github.com/receptron/graphai-agents/tree/main/net/slack_agent/src/slack_agent.ts",
+    // package: "@graphai/slack_agent",
     license: "MIT",
 };
 exports.default = slackAgentInfo;
