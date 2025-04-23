@@ -39,6 +39,8 @@ const mcpResourcesAgentInfo = {
     category: ["protocol"],
     author: "isamu arimoto",
     repository: "https://github.com/receptron/graphai-agents",
+    source: "https://github.com/receptron/graphai-agents/tree/main/protocol/mcp-agent/src/mcp_resources_agent.ts",
+    package: "@graphai/mcp_agent",
     license: "MIT",
 };
 exports.default = mcpResourcesAgentInfo;

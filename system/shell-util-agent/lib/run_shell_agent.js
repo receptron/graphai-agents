@@ -103,6 +103,8 @@ const runShellAgentInfo = {
     category: ["system"],
     author: "isamu arimoto",
     repository: "https://github.com/receptron/graphai-agents/tree/main/system/shell-util-agent",
+    source: "https://github.com/receptron/graphai-agents/tree/main/system/shell-util-agent/src/run_shell_agent.ts",
+    package: "@graphai/shell_utilty_agent",
     license: "MIT",
 };
 exports.default = runShellAgentInfo;

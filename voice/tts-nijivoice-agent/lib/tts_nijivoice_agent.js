@@ -55,6 +55,8 @@ const ttsNijivoiceAgentInfo = {
     category: ["voice"],
     author: "Receptron Team",
     repository: "https://github.com/receptron/graphai-agents/tree/main/tts/tts-nijivoice-agent",
+    source: "https://github.com/receptron/graphai-agents/tree/main/voice/tts-nijivoice-agent/src/tts_nijivoice_agent.ts",
+    package: "@graphai/tts_nijivoice_agent",
     license: "MIT",
     environmentVariables: ["NIJIVOICE_API_KEY"],
 };

@@ -35,6 +35,8 @@ const pdf2textAgentInfo = {
     category: ["documents"],
     author: "Receptron team",
     repository: "https://github.com/receptron/graphai-agents/tree/main/documents/pdf2text_agent",
+    source: "https://github.com/receptron/graphai-agents/tree/main/documents/pdf2text_agent/src/pdf2text_agent.ts",
+    package: "@graphai/pdf2text_agent",
     license: "MIT",
 };
 exports.default = pdf2textAgentInfo;

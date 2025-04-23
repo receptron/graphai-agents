@@ -38,6 +38,8 @@ const ttsOpenaiAgentInfo = {
     category: ["voice"],
     author: "Receptron Team",
     repository: "https://github.com/receptron/graphai-agents/tree/main/tts/tts-openai-agent",
+    source: "https://github.com/receptron/graphai-agents/tree/main/voice/tts-openai-agent/src/tts_openai_agent.ts",
+    package: "@graphai/tts_openai_agent",
     license: "MIT",
     environmentVariables: ["OPENAI_API_KEY"],
 };
