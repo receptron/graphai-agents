@@ -15,7 +15,7 @@ const templateAgentInfo: AgentFunctionInfo = {
   author: "Receptron team",
   repository: "https://github.com/receptron/graphai",
   source: "https://github.com/receptron/graphai-agents/tree/main/packages/agent_template/src/template_agent.ts",
-  package: "@graphai/agent_template",
+  // package: "@graphai/agent_template",
   license: "MIT",
 };
 
