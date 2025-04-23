@@ -266,6 +266,8 @@ const braveSearchAgentInfo: AgentFunctionInfo = {
   category: ["net"],
   author: "kawamataryo",
   repository: "https://github.com/receptron/graphai-agents",
+  source: "https://github.com/receptron/graphai-agents/tree/main/net/brave_search_agent/src/brave_search_agent.ts",
+  package: "@graphai/brave_search_agent",
   license: "MIT",
   environmentVariables: ["BRAVE_SEARCH_API_TOKEN"],
 };

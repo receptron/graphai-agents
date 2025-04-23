@@ -239,6 +239,8 @@ const serperAgentInfo: AgentFunctionInfo = {
   category: ["net"],
   author: "isamu arimoto",
   repository: "https://github.com/receptron/graphai-agents/tree/main/net/serper-agent",
+  source: "https://github.com/receptron/graphai-agents/tree/main/net/serper-agent/src/serper_agent.ts",
+  package: "@graphai/serper_agent",
   license: "MIT",
   environmentVariables: ["SERPER_API_KEY"],
 };

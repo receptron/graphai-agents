@@ -63,6 +63,8 @@ const sttOpenaiAgentInfo: AgentFunctionInfo = {
   category: ["voice"],
   author: "receptron team",
   repository: "https://github.com/receptron/graphai-agents/",
+  source: "https://github.com/receptron/graphai-agents/tree/main/voice/stt-openai-agent/src/stt_openai_agent.ts",
+  package: "@graphai/stt_openai_agent",
   license: "MIT",
   environmentVariables: ["OPENAI_API_KEY"],
 };
