@@ -1,9 +1,14 @@
-import { AgentFunction, AgentFunctionInfo } from "graphai";
+import type { AgentFunction, AgentFunctionInfo } from "graphai";
+import type { GraphAIBuffer, GraphAISupressError, GraphAIOnError, GraphAIText } from "@graphai/agent_utils";
 
 const nijovoiceApiKey = process.env.NIJIVOICE_API_KEY ?? "";
 
-export const ttsNijivoiceAgent: AgentFunction = async ({ params, namedInputs }) => {
-  const { apiKey, throwError, voice } = params;
+export const ttsNijivoiceAgent: AgentFunction<
+  { apiKey: string; voice?: string } & GraphAISupressError,
+  Partial<(GraphAIBuffer & { generatedVoice: string }) | GraphAIOnError>,
+  GraphAIText
+> = async ({ params, namedInputs }) => {
+  const { apiKey, supressError, voice } = params;
   const { text } = namedInputs;
   const url = `https://api.nijivoice.com/api/platform/v1/voice-actors/${voice}/generate-voice`;
   const options = {
@@ -28,21 +33,27 @@ export const ttsNijivoiceAgent: AgentFunction = async ({ params, namedInputs }) 
       const buffer = Buffer.from(await audioRes.arrayBuffer());
       return { buffer, generatedVoice: voiceJson.generatedVoice };
     }
-    if (throwError) {
-      console.error(voiceJson);
-      throw new Error("TTS Nijivoice Error");
+    if (supressError) {
+      return {
+        onError: {
+          message: "TTS Nijivoice Error",
+          error: voiceJson,
+        },
+      };
     }
-    return {
-      error: voiceJson,
-    };
+    console.error(voiceJson);
+    throw new Error("TTS Nijivoice Error");
   } catch (e) {
-    if (throwError) {
-      console.error(e);
-      throw new Error("TTS Nijivoice Error");
+    if (supressError) {
+      return {
+        onError: {
+          message: "TTS Nijivoice Error",
+          error: voiceJson,
+        },
+      };
     }
-    return {
-      error: e,
-    };
+    console.error(e);
+    throw new Error("TTS Nijivoice Error");
   }
 };
 
