@@ -1,9 +1,15 @@
-import { AgentFunction, AgentFunctionInfo } from "graphai";
+import type { AgentFunction, AgentFunctionInfo } from "graphai";
+import type { GraphAIBuffer, GraphAISupressError, GraphAIOnError, GraphAIText } from "@graphai/agent_utils";
+
 import OpenAI from "openai";
 
-export const ttsOpenaiAgent: AgentFunction = async ({ namedInputs, params }) => {
+export const ttsOpenaiAgent: AgentFunction<
+  { apiKey: string; model?: string; voice?: string } & GraphAISupressError,
+  Partial<GraphAIBuffer | GraphAIOnError>,
+  GraphAIText
+> = async ({ namedInputs, params }) => {
   const { text } = namedInputs;
-  const { apiKey, model, voice, throwError } = params;
+  const { apiKey, model, voice, supressError } = params;
   const openai = new OpenAI({ apiKey });
 
   try {
@@ -15,13 +21,16 @@ export const ttsOpenaiAgent: AgentFunction = async ({ namedInputs, params }) => 
     const buffer = Buffer.from(await response.arrayBuffer());
     return { buffer };
   } catch (e) {
-    if (throwError) {
-      console.error(e);
-      throw new Error("TTS OpenAI Error");
+    if (supressError) {
+      return {
+        onError: {
+          message: "TTS OpenAI Error",
+          error: e,
+        }
+      };
     }
-    return {
-      error: e,
-    };
+    console.error(e);
+    throw new Error("TTS OpenAI Error");
   }
 };
 
