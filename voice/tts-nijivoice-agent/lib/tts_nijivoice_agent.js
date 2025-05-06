@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ttsNijivoiceAgent = void 0;
 const nijovoiceApiKey = process.env.NIJIVOICE_API_KEY ?? "";
 const ttsNijivoiceAgent = async ({ params, namedInputs }) => {
-    const { apiKey, throwError, voice } = params;
+    const { apiKey, supressError, voice } = params;
     const { text } = namedInputs;
     const url = `https://api.nijivoice.com/api/platform/v1/voice-actors/${voice}/generate-voice`;
     const options = {
@@ -27,22 +27,28 @@ const ttsNijivoiceAgent = async ({ params, namedInputs }) => {
             const buffer = Buffer.from(await audioRes.arrayBuffer());
             return { buffer, generatedVoice: voiceJson.generatedVoice };
         }
-        if (throwError) {
-            console.error(voiceJson);
-            throw new Error("TTS Nijivoice Error");
+        if (supressError) {
+            return {
+                onError: {
+                    message: "TTS Nijivoice Error",
+                    error: voiceJson,
+                },
+            };
         }
-        return {
-            error: voiceJson,
-        };
+        console.error(voiceJson);
+        throw new Error("TTS Nijivoice Error");
     }
     catch (e) {
-        if (throwError) {
-            console.error(e);
-            throw new Error("TTS Nijivoice Error");
+        if (supressError) {
+            return {
+                onError: {
+                    message: "TTS Nijivoice Error",
+                    error: e,
+                },
+            };
         }
-        return {
-            error: e,
-        };
+        console.error(e);
+        throw new Error("TTS Nijivoice Error");
     }
 };
 exports.ttsNijivoiceAgent = ttsNijivoiceAgent;

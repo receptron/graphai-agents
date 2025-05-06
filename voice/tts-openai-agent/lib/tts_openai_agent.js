@@ -7,7 +7,7 @@ exports.ttsOpenaiAgent = void 0;
 const openai_1 = __importDefault(require("openai"));
 const ttsOpenaiAgent = async ({ namedInputs, params }) => {
     const { text } = namedInputs;
-    const { apiKey, model, voice, throwError } = params;
+    const { apiKey, model, voice, supressError } = params;
     const openai = new openai_1.default({ apiKey });
     try {
         const response = await openai.audio.speech.create({
@@ -19,13 +19,16 @@ const ttsOpenaiAgent = async ({ namedInputs, params }) => {
         return { buffer };
     }
     catch (e) {
-        if (throwError) {
-            console.error(e);
-            throw new Error("TTS OpenAI Error");
+        if (supressError) {
+            return {
+                onError: {
+                    message: "TTS OpenAI Error",
+                    error: e,
+                }
+            };
         }
-        return {
-            error: e,
-        };
+        console.error(e);
+        throw new Error("TTS OpenAI Error");
     }
 };
 exports.ttsOpenaiAgent = ttsOpenaiAgent;

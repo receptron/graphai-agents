@@ -26,7 +26,7 @@ export const ttsOpenaiAgent: AgentFunction<
         onError: {
           message: "TTS OpenAI Error",
           error: e,
-        }
+        },
       };
     }
     console.error(e);

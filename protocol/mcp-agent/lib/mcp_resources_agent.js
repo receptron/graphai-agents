@@ -24,13 +24,15 @@ const mcpResourcesAgentInfo = {
             inputs: {},
             result: {
                 resources: {
-                    playwright: [
-                        {
-                            mimeType: "text/plain",
-                            name: "Page console",
-                            uri: "browser://console",
-                        },
-                    ],
+                /*
+                playwright: [
+                  {
+                    mimeType: "text/plain",
+                    name: "Page console",
+                    uri: "browser://console",
+                  },
+                  ],
+                */
                 },
             },
         },
