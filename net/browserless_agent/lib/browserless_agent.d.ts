@@ -1,23 +1,14 @@
 import { AgentFunction, AgentFunctionInfo, DefaultConfigData } from "graphai";
-interface BrowserlessInputs {
+import type { GraphAIDebug, GraphAIOnError, GraphAISupressError, GraphAIText } from "@graphai/agent_utils";
+type BrowserlessInputs = {
     url: string;
     text_content?: boolean;
-}
-interface BrowserlessParams {
+};
+type BrowserlessParams = {
     apiKey?: string;
-    debug?: boolean;
-    throwError?: boolean;
     text_content?: boolean;
-}
-type BrowserlessResult = {
-    text: string;
-} | {
-    onError: {
-        message: string;
-        error: string;
-        status?: number;
-    };
-} | {
+} & GraphAISupressError & GraphAIDebug;
+type BrowserlessResult = GraphAIText | GraphAIOnError<string> | {
     url: string;
     method: string;
     headers: Record<string, string>;
