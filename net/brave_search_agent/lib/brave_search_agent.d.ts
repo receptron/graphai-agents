@@ -1,15 +1,13 @@
-import { GraphAIOnError } from "@graphai/agent_utils";
+import { GraphAIOnError, GraphAIDebug, GraphAISupressError } from "@graphai/agent_utils";
 import { AgentFunction, AgentFunctionInfo, DefaultConfigData } from "graphai";
-interface BraveSearchInputs {
+type BraveSearchInputs = {
     query: string;
     search_args?: Record<string, any>;
-}
-interface BraveSearchParams {
+};
+type BraveSearchParams = {
     apiKey?: string;
-    debug?: boolean;
-    throwError?: boolean;
     search_args?: Record<string, any>;
-}
+} & GraphAISupressError & GraphAIDebug;
 interface BraveSearchResult {
     title: string;
     link: string;
