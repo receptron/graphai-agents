@@ -4,12 +4,13 @@ import type { GraphAIDebug, GraphAIOnError, GraphAISupressError, GraphAIText } f
 type BrowserlessInputs = {
   url: string;
   text_content?: boolean;
-}
+};
 
 type BrowserlessParams = {
   apiKey?: string;
   text_content?: boolean;
-} & GraphAISupressError & GraphAIDebug;
+} & GraphAISupressError &
+  GraphAIDebug;
 
 type BrowserlessResult =
   | GraphAIText
@@ -143,7 +144,7 @@ const browserlessAgentInfo: AgentFunctionInfo = {
         type: "boolean",
         description: "Enable debug mode",
       },
-      supressError  : {
+      supressError: {
         type: "boolean",
         description: "Suppress error and return onError object if the request fails",
       },
