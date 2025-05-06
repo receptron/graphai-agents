@@ -35,9 +35,9 @@
     "@graphai/prompts": "^0.0.1",
     "@graphai/serper_agent": "^0.0.1",
     "@graphai/slack_agent": "^0.0.3",
-    "@graphai/stt_openai_agent": "^0.0.2",
-    "@graphai/tts_nijivoice_agent": "^0.0.2",
-    "@graphai/tts_openai_agent": "^0.0.2"
+    "@graphai/stt_openai_agent": "^2.0.0",
+    "@graphai/tts_nijivoice_agent": "^2.0.0",
+    "@graphai/tts_openai_agent": "^2.0.0"
   },
   "devDependencies": {},
   "types": "./lib/index.d.ts",

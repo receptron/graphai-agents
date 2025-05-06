@@ -41,7 +41,7 @@
     "@rollup/plugin-commonjs": "^28.0.3",
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^12.1.2",
-    "@types/node": "^22.15.8",
+    "@types/node": "^22.15.9",
     "dotenv": "^16.5.0",
     "eslint": "^9.26.0",
     "graphai": "1.0.12",
