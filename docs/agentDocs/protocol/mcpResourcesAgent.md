@@ -26,12 +26,7 @@ Model Context Protocol Resources Agent
 
 [
   ":agentId",
-  ":agentId.resources",
-  ":agentId.resources.playwright",
-  ":agentId.resources.playwright.$0",
-  ":agentId.resources.playwright.$0.mimeType",
-  ":agentId.resources.playwright.$0.name",
-  ":agentId.resources.playwright.$0.uri"
+  ":agentId.resources"
 ]
 
 ````
@@ -61,15 +56,7 @@ Model Context Protocol Resources Agent
 ```json
 
 {
-  "resources": {
-    "playwright": [
-      {
-        "mimeType": "text/plain",
-        "name": "Page console",
-        "uri": "browser://console"
-      }
-    ]
-  }
+  "resources": {}
 }
 
 ````
