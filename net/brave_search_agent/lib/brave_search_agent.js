@@ -62,7 +62,7 @@ const braveSearchAgent = async ({ namedInputs, params, config, }) => {
                     onError: {
                         message: `Brave Search HTTP error: ${status}`,
                         status,
-                        error
+                        error,
                     },
                 };
             }
