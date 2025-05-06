@@ -145,6 +145,24 @@
   dependencies:
     deepmerge "^4.3.1"
 
+"@graphai/extra-agents@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@graphai/extra-agents/-/extra-agents-0.0.6.tgz#becbd854f778d359fc1efa2cf3644a43b2de0f2b"
+  integrity sha512-I8FMhXaSGM3B8IRCvwD7rjsgjHx77MpgTcMqZ7THTipxnkSfamWCqdCHlztR5+mmHEj26I/5Av7rmJUqlWQ+Gg==
+  dependencies:
+    "@graphai/arxiv_agent" "^0.0.2"
+    "@graphai/awesome_chatgpt_prompts_agent" "^0.0.1"
+    "@graphai/brave_search_agent" "^0.0.1"
+    "@graphai/browserless_agent" "^0.0.3"
+    "@graphai/mcp_agent" "^0.0.3"
+    "@graphai/pdf2text_agent" "^0.2.0"
+    "@graphai/prompts" "^0.0.1"
+    "@graphai/serper_agent" "^0.0.1"
+    "@graphai/slack_agent" "^0.0.3"
+    "@graphai/stt_openai_agent" "^0.0.2"
+    "@graphai/tts_nijivoice_agent" "^0.0.2"
+    "@graphai/tts_openai_agent" "^0.0.2"
+
 "@graphai/gemini_agent@^1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@graphai/gemini_agent/-/gemini_agent-1.0.1.tgz#caeed5c1d241d21a8b69a36cf68aff22594db824"
@@ -224,6 +242,21 @@
   integrity sha512-OMI4Jap5V+uFGLi8IU6Pa7J3B0We/6xEyWA/f7JeaSfmtQs8/yv8wTtJHO+3E6WcUeiCGuuFy6+3ffFXwcO91g==
   dependencies:
     deepmerge "^4.3.1"
+
+"@graphai/stt_openai_agent@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@graphai/stt_openai_agent/-/stt_openai_agent-0.0.2.tgz#2428985643179f8e67686ac450e661a8ae6a2d87"
+  integrity sha512-AKWeYXqvq901IXjcKy+pLAUKI05AI62r0KAjFQuULjzHsolGkmXHdnyhwyHU397/NZ4iiQNLsw2qY814WK3+EQ==
+
+"@graphai/tts_nijivoice_agent@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@graphai/tts_nijivoice_agent/-/tts_nijivoice_agent-0.0.2.tgz#b16f81de36d8d779ebb95bcde0aae55fdf0dfba8"
+  integrity sha512-YoP2uK0kaWfIocxk3GObYoq8MOLHfLT5na99a8KQdYqEiPBcOzYB1Ho9w7It9k+kmr0ZIqcRtVnN9ur1COK1KA==
+
+"@graphai/tts_openai_agent@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@graphai/tts_openai_agent/-/tts_openai_agent-0.0.2.tgz#33ef972c8f79306633c2ef523c042f048cbcb382"
+  integrity sha512-b/0pmSP47R8HSu/QmkU9RUQAcY8HUWYJvjaZEXA0SNZQAT/pnVwIH9ItMm2XQeN9RAGDdV5uSpPloCc1cQLvaQ==
 
 "@graphai/vanilla@^2.0.0":
   version "2.0.0"
