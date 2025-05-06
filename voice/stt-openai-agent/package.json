@@ -1,6 +1,6 @@
 {
   "name": "@graphai/stt_openai_agent",
-  "version": "0.0.2",
+  "version": "2.0.0",
   "description": "OpenAI speach to text agent",
   "main": "lib/index.js",
   "files": [
