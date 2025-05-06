@@ -4,7 +4,7 @@ import type { GraphAIBuffer, GraphAISupressError, GraphAIOnError, GraphAIText } 
 const nijovoiceApiKey = process.env.NIJIVOICE_API_KEY ?? "";
 
 export const ttsNijivoiceAgent: AgentFunction<
-  { apiKey: string; voice?: string } & GraphAISupressError,
+  { apiKey?: string; voice?: string } & Partial<GraphAISupressError>,
   Partial<(GraphAIBuffer & { generatedVoice: string }) | GraphAIOnError>,
   GraphAIText
 > = async ({ params, namedInputs }) => {

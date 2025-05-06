@@ -4,7 +4,7 @@ import type { GraphAIBuffer, GraphAISupressError, GraphAIOnError, GraphAIText } 
 import OpenAI from "openai";
 
 export const ttsOpenaiAgent: AgentFunction<
-  { apiKey: string; model?: string; voice?: string } & GraphAISupressError,
+  { apiKey?: string; model?: string; voice?: string } & Partial<GraphAISupressError>,
   Partial<GraphAIBuffer | GraphAIOnError>,
   GraphAIText
 > = async ({ namedInputs, params }) => {

@@ -1,6 +1,6 @@
-import { AgentFunction, AgentFunctionInfo } from "graphai";
+import type { AgentFunction, AgentFunctionInfo } from "graphai";
 import OpenAI from "openai";
-import { GraphAINullableText } from "@graphai/agent_utils";
+import { GraphAINullableText, GraphAISupressError, GraphAIOnError } from "@graphai/agent_utils";
 import fs from "fs";
 
 type STTOpenAIInputs = OpenAI.Audio.Transcriptions.TranscriptionCreateParams & { inputStream: fs.ReadStream };
@@ -11,17 +11,12 @@ type STTOpenAIConfig = {
   model?: string;
 };
 
-type STTOpenAIParams = STTOpenAIInputs &
-  STTOpenAIConfig & {
-    throwError?: boolean;
-  };
+type STTOpenAIParams = STTOpenAIInputs & STTOpenAIConfig & Partial<GraphAISupressError>;
 
-type STTOpenAIResult = Partial<GraphAINullableText> & {
-  error?: any;
-};
+type STTOpenAIResult = Partial<GraphAINullableText | GraphAIOnError>;
 
 export const sttOpenaiAgent: AgentFunction<STTOpenAIParams, STTOpenAIResult, STTOpenAIInputs, STTOpenAIConfig> = async ({ params, namedInputs, config }) => {
-  const { inputStream, language, prompt, response_format, temperature, timestamp_granularities, throwError } = { ...params, ...namedInputs };
+  const { inputStream, language, prompt, response_format, temperature, timestamp_granularities, supressError } = { ...params, ...namedInputs };
   const { apiKey, model, baseURL } = {
     ...(config || {}),
     ...params,
@@ -44,13 +39,16 @@ export const sttOpenaiAgent: AgentFunction<STTOpenAIParams, STTOpenAIResult, STT
       text: transcription.text,
     };
   } catch (e) {
-    if (throwError) {
-      console.error(e);
-      throw new Error("TTS OpenAI Error");
+    if (supressError) {
+      return {
+        onError: {
+          message: "SST OpenAI Error",
+          error: e,
+        },
+      };
     }
-    return {
-      error: e,
-    };
+    console.error(e);
+    throw new Error("TTS OpenAI Error");
   }
 };
 
