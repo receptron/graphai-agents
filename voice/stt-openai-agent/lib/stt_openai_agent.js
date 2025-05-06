@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.sttOpenaiAgent = void 0;
 const openai_1 = __importDefault(require("openai"));
 const sttOpenaiAgent = async ({ params, namedInputs, config }) => {
-    const { inputStream, language, prompt, response_format, temperature, timestamp_granularities, throwError } = { ...params, ...namedInputs };
+    const { inputStream, language, prompt, response_format, temperature, timestamp_granularities, supressError } = { ...params, ...namedInputs };
     const { apiKey, model, baseURL } = {
         ...(config || {}),
         ...params,
@@ -27,13 +27,16 @@ const sttOpenaiAgent = async ({ params, namedInputs, config }) => {
         };
     }
     catch (e) {
-        if (throwError) {
-            console.error(e);
-            throw new Error("TTS OpenAI Error");
+        if (supressError) {
+            return {
+                onError: {
+                    message: "SST OpenAI Error",
+                    error: e,
+                },
+            };
         }
-        return {
-            error: e,
-        };
+        console.error(e);
+        throw new Error("TTS OpenAI Error");
     }
 };
 exports.sttOpenaiAgent = sttOpenaiAgent;

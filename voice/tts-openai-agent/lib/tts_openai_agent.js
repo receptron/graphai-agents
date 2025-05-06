@@ -24,7 +24,7 @@ const ttsOpenaiAgent = async ({ namedInputs, params }) => {
                 onError: {
                     message: "TTS OpenAI Error",
                     error: e,
-                }
+                },
             };
         }
         console.error(e);
