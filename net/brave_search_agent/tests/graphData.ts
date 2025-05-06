@@ -50,7 +50,7 @@ export const graphDataErrorResponse: GraphData = {
         query: "error",
       },
       params: {
-        throwError: false,
+        supressError: true,
       },
     },
     error: {

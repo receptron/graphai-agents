@@ -1,28 +1,19 @@
 import { AgentFunction, AgentFunctionInfo, assert, DefaultConfigData } from "graphai";
+import type { GraphAIDebug, GraphAIOnError, GraphAISupressError, GraphAIText } from "@graphai/agent_utils";
 
-interface BrowserlessInputs {
+type BrowserlessInputs = {
   url: string;
   text_content?: boolean;
 }
 
-interface BrowserlessParams {
+type BrowserlessParams = {
   apiKey?: string;
-  debug?: boolean;
-  throwError?: boolean;
   text_content?: boolean;
-}
+} & GraphAISupressError & GraphAIDebug;
 
 type BrowserlessResult =
-  | {
-      text: string;
-    }
-  | {
-      onError: {
-        message: string;
-        error: string;
-        status?: number;
-      };
-    }
+  | GraphAIText
+  | GraphAIOnError<string>
   | {
       url: string;
       method: string;
@@ -54,7 +45,7 @@ export const browserlessAgent: AgentFunction<BrowserlessParams, BrowserlessResul
 
   const shouldExtractTextContent = text_content ?? params?.text_content ?? false;
 
-  const throwError = params?.throwError ?? false;
+  const supressError = params.supressError ?? false;
 
   const browserlessToken = getBrowserlessToken(params, config);
 
@@ -95,17 +86,17 @@ export const browserlessAgent: AgentFunction<BrowserlessParams, BrowserlessResul
       const status = response.status;
       const error = await response.text();
 
-      if (throwError) {
-        throw new Error(`Browserless HTTP error: ${status}`);
+      if (supressError) {
+        return {
+          onError: {
+            message: `Browserless HTTP error: ${status}`,
+            status,
+            error,
+          },
+        };
       }
 
-      return {
-        onError: {
-          message: `Browserless HTTP error: ${status}`,
-          status,
-          error,
-        },
-      };
+      throw new Error(`Browserless HTTP error: ${status}, ${error}`);
     }
 
     if (shouldExtractTextContent) {
@@ -120,16 +111,20 @@ export const browserlessAgent: AgentFunction<BrowserlessParams, BrowserlessResul
       };
     }
   } catch (error) {
-    if (throwError) {
-      throw error;
+    const isErrorInstance = error instanceof Error;
+    const errorMessage = isErrorInstance ? error.message : "Unknown error occurred";
+    const errorObject = isErrorInstance ? error : new Error(errorMessage);
+
+    if (supressError) {
+      return {
+        onError: {
+          message: errorMessage,
+          error: errorObject.toString(),
+        },
+      };
     }
 
-    return {
-      onError: {
-        message: error instanceof Error ? error.message : "Unknown error occurred",
-        error: error instanceof Error ? error.toString() : String(error),
-      },
-    };
+    throw errorObject;
   }
 };
 
@@ -148,9 +143,9 @@ const browserlessAgentInfo: AgentFunctionInfo = {
         type: "boolean",
         description: "Enable debug mode",
       },
-      throwError: {
+      supressError  : {
         type: "boolean",
-        description: "Throw error if the request fails",
+        description: "Suppress error and return onError object if the request fails",
       },
       text_content: {
         type: "boolean",

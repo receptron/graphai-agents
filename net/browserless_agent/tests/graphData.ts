@@ -71,7 +71,7 @@ export const graphDataErrorResponse: GraphData = {
         url: "https://error.example.com",
       },
       params: {
-        throwError: false,
+        supressError: true,
       },
     },
     error: {

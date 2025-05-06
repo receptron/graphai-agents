@@ -1,17 +1,15 @@
-import { GraphAIOnError } from "@graphai/agent_utils";
+import { GraphAIOnError, GraphAIDebug, GraphAISupressError } from "@graphai/agent_utils";
 import { AgentFunction, AgentFunctionInfo, assert, DefaultConfigData } from "graphai";
 
-interface BraveSearchInputs {
+type BraveSearchInputs = {
   query: string;
   search_args?: Record<string, any>;
 }
 
-interface BraveSearchParams {
+type BraveSearchParams = {
   apiKey?: string;
-  debug?: boolean;
-  throwError?: boolean;
   search_args?: Record<string, any>;
-}
+} & GraphAISupressError & GraphAIDebug;
 
 interface BraveSearchResult {
   title: string;
@@ -50,7 +48,7 @@ export const braveSearchAgent: AgentFunction<BraveSearchParams, BraveSearchRespo
 
   assert(!!query, "braveSearchAgent: query is required! set inputs: { query: 'your search query' }");
 
-  const throwError = params?.throwError ?? false;
+  const supressError = params?.supressError ?? false;
   const _search_args = search_args ?? params?.search_args ?? {};
 
   const braveSearchToken = getBraveSearchToken(params, config);
@@ -101,18 +99,18 @@ export const braveSearchAgent: AgentFunction<BraveSearchParams, BraveSearchRespo
       const status = response.status;
       const error = await response.text();
 
-      if (throwError) {
-        throw new Error(`Brave Search HTTP error: ${status}`);
+      if (supressError) {
+        return {
+          items: [],
+          onError: {
+            message: `Brave Search HTTP error: ${status}`,
+            status,
+            error
+          },
+        };
       }
 
-      return {
-        items: [],
-        onError: {
-          message: `Brave Search HTTP error: ${status}`,
-          status,
-          error,
-        },
-      };
+      throw new Error(`Brave Search HTTP error: ${status}, ${error}`);
     }
 
     const jsonResponse = await response.json();
@@ -128,16 +126,20 @@ export const braveSearchAgent: AgentFunction<BraveSearchParams, BraveSearchRespo
       items: formattedResults,
     };
   } catch (error) {
-    if (throwError) {
-      throw error;
+    const isErrorInstance = error instanceof Error;
+    const errorMessage = isErrorInstance ? error.message : "Unknown error occurred";
+    const errorObject = isErrorInstance ? error : new Error(errorMessage);
+
+    if (supressError) {
+      return {
+        onError: {
+          message: errorMessage,
+          error: errorObject.toString(),
+        },
+      };
     }
 
-    return {
-      onError: {
-        message: error instanceof Error ? error.message : "Unknown error occurred",
-        error: error instanceof Error ? error.toString() : String(error),
-      },
-    };
+    throw errorObject;
   }
 };
 
@@ -156,9 +158,9 @@ const braveSearchAgentInfo: AgentFunctionInfo = {
         type: "boolean",
         description: "Enable debug mode",
       },
-      throwError: {
+      supressError: {
         type: "boolean",
-        description: "Throw error if the request fails",
+        description: "Suppress error and return onError object if the request fails",
       },
       search_args: {
         type: "object",
