@@ -4,12 +4,13 @@ import { AgentFunction, AgentFunctionInfo, assert, DefaultConfigData } from "gra
 type BraveSearchInputs = {
   query: string;
   search_args?: Record<string, any>;
-}
+};
 
 type BraveSearchParams = {
   apiKey?: string;
   search_args?: Record<string, any>;
-} & GraphAISupressError & GraphAIDebug;
+} & GraphAISupressError &
+  GraphAIDebug;
 
 interface BraveSearchResult {
   title: string;
@@ -105,7 +106,7 @@ export const braveSearchAgent: AgentFunction<BraveSearchParams, BraveSearchRespo
           onError: {
             message: `Brave Search HTTP error: ${status}`,
             status,
-            error
+            error,
           },
         };
       }
