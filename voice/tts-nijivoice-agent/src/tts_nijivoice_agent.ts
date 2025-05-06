@@ -48,7 +48,7 @@ export const ttsNijivoiceAgent: AgentFunction<
       return {
         onError: {
           message: "TTS Nijivoice Error",
-          error: voiceJson,
+          error: e,
         },
       };
     }
