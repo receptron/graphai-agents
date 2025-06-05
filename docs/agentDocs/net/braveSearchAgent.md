@@ -1,5 +1,10 @@
 # braveSearchAgent
 
+## Package
+[@graphai/brave_search_agent](https://www.npmjs.com/package/@graphai/brave_search_agent)
+## Source
+[https://github.com/receptron/graphai-agents/tree/main/net/brave_search_agent/src/brave_search_agent.ts](https://github.com/receptron/graphai-agents/tree/main/net/brave_search_agent/src/brave_search_agent.ts)
+
 ## Description
 
 An agent that uses the Brave Search API. https://api-dashboard.search.brave.com/app/documentation/web-search/get-started
@@ -27,7 +32,7 @@ An agent that uses the Brave Search API. https://api-dashboard.search.brave.com/
   ]
 }
 
-````
+```
 
 #### output
 
@@ -59,7 +64,7 @@ An agent that uses the Brave Search API. https://api-dashboard.search.brave.com/
   }
 }
 
-````
+```
 
 ## Input example of the next node
 
@@ -78,7 +83,7 @@ An agent that uses the Brave Search API. https://api-dashboard.search.brave.com/
   ":agentId.items.$1.snippet"
 ]
 
-````
+```
 ```json
 
 [
@@ -90,7 +95,7 @@ An agent that uses the Brave Search API. https://api-dashboard.search.brave.com/
   ":agentId.items.$0.snippet"
 ]
 
-````
+```
 ```json
 
 [
@@ -105,7 +110,7 @@ An agent that uses the Brave Search API. https://api-dashboard.search.brave.com/
   ":agentId.params.extra_snippets"
 ]
 
-````
+```
 
 ## Samples
 
@@ -119,7 +124,7 @@ An agent that uses the Brave Search API. https://api-dashboard.search.brave.com/
   "query": "GraphAI framework"
 }
 
-````
+```
 
 #### params
 
@@ -127,7 +132,7 @@ An agent that uses the Brave Search API. https://api-dashboard.search.brave.com/
 
 {}
 
-````
+```
 
 #### result
 
@@ -148,7 +153,7 @@ An agent that uses the Brave Search API. https://api-dashboard.search.brave.com/
   ]
 }
 
-````
+```
 ### Sample1
 
 #### inputs
@@ -163,7 +168,7 @@ An agent that uses the Brave Search API. https://api-dashboard.search.brave.com/
   }
 }
 
-````
+```
 
 #### params
 
@@ -171,7 +176,7 @@ An agent that uses the Brave Search API. https://api-dashboard.search.brave.com/
 
 {}
 
-````
+```
 
 #### result
 
@@ -187,7 +192,7 @@ An agent that uses the Brave Search API. https://api-dashboard.search.brave.com/
   ]
 }
 
-````
+```
 ### Sample2
 
 #### inputs
@@ -198,7 +203,7 @@ An agent that uses the Brave Search API. https://api-dashboard.search.brave.com/
   "query": "GraphAI tutorials"
 }
 
-````
+```
 
 #### params
 
@@ -206,7 +211,7 @@ An agent that uses the Brave Search API. https://api-dashboard.search.brave.com/
 
 {"debug":true}
 
-````
+```
 
 #### result
 
@@ -225,7 +230,7 @@ An agent that uses the Brave Search API. https://api-dashboard.search.brave.com/
   }
 }
 
-````
+```
 
 ## Author
 

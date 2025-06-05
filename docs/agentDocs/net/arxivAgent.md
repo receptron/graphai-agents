@@ -1,5 +1,10 @@
 # arxivAgent
 
+## Package
+[@graphai/arxiv_agent](https://www.npmjs.com/package/@graphai/arxiv_agent)
+## Source
+[https://github.com/receptron/graphai-agents/tree/main/net/arxiv_agent/src/arxiv_agent.ts](https://github.com/receptron/graphai-agents/tree/main/net/arxiv_agent/src/arxiv_agent.ts)
+
 ## Description
 
 Arxiv Agent
@@ -18,7 +23,7 @@ Arxiv Agent
   "required": []
 }
 
-````
+```
 
 ## Input example of the next node
 
@@ -28,7 +33,7 @@ Arxiv Agent
   ":agentId"
 ]
 
-````
+```
 
 ## Samples
 
@@ -40,7 +45,7 @@ Arxiv Agent
 
 {}
 
-````
+```
 
 #### params
 
@@ -48,7 +53,7 @@ Arxiv Agent
 
 {"searchQueryParams":[{"include":[{"name":"LLM"}]}],"sortBy":"lastUpdatedDate","sortOrder":"descending","start":0,"maxResults":100}
 
-````
+```
 
 #### result
 
@@ -56,7 +61,7 @@ Arxiv Agent
 
 {}
 
-````
+```
 
 ## Author
 

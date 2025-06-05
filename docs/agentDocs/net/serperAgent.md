@@ -1,5 +1,10 @@
 # serperAgent
 
+## Package
+[@graphai/serper_agent](https://www.npmjs.com/package/@graphai/serper_agent)
+## Source
+[https://github.com/receptron/graphai-agents/tree/main/net/serper-agent/src/serper_agent.ts](https://github.com/receptron/graphai-agents/tree/main/net/serper-agent/src/serper_agent.ts)
+
 ## Description
 
 serper agent
@@ -25,7 +30,7 @@ serper agent
   ]
 }
 
-````
+```
 
 ## Input example of the next node
 
@@ -173,7 +178,7 @@ serper agent
   ":agentId.credits"
 ]
 
-````
+```
 
 ## Samples
 
@@ -187,7 +192,7 @@ serper agent
   "query": "apple inc"
 }
 
-````
+```
 
 #### params
 
@@ -195,7 +200,7 @@ serper agent
 
 {}
 
-````
+```
 
 #### result
 
@@ -384,7 +389,7 @@ serper agent
   "credits": 1
 }
 
-````
+```
 
 ## Author
 

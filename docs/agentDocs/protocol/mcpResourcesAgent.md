@@ -1,5 +1,10 @@
 # mcpResourcesAgent
 
+## Package
+[@graphai/mcp_agent](https://www.npmjs.com/package/@graphai/mcp_agent)
+## Source
+[https://github.com/receptron/graphai-agents/tree/main/protocol/mcp-agent/src/mcp_resources_agent.ts](https://github.com/receptron/graphai-agents/tree/main/protocol/mcp-agent/src/mcp_resources_agent.ts)
+
 ## Description
 
 Model Context Protocol Resources Agent
@@ -18,7 +23,7 @@ Model Context Protocol Resources Agent
   "required": []
 }
 
-````
+```
 
 ## Input example of the next node
 
@@ -29,7 +34,7 @@ Model Context Protocol Resources Agent
   ":agentId.resources"
 ]
 
-````
+```
 
 ## Samples
 
@@ -41,7 +46,7 @@ Model Context Protocol Resources Agent
 
 {}
 
-````
+```
 
 #### params
 
@@ -49,7 +54,7 @@ Model Context Protocol Resources Agent
 
 {}
 
-````
+```
 
 #### result
 
@@ -59,7 +64,7 @@ Model Context Protocol Resources Agent
   "resources": {}
 }
 
-````
+```
 
 ## Author
 

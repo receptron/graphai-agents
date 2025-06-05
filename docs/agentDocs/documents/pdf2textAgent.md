@@ -1,5 +1,10 @@
 # pdf2textAgent
 
+## Package
+[@graphai/pdf2text_agent](https://www.npmjs.com/package/@graphai/pdf2text_agent)
+## Source
+[https://github.com/receptron/graphai-agents/tree/main/documents/pdf2text_agent/src/pdf2text_agent.ts](https://github.com/receptron/graphai-agents/tree/main/documents/pdf2text_agent/src/pdf2text_agent.ts)
+
 ## Description
 
 Pdf2text Agent
@@ -256,7 +261,7 @@ Pdf2text Agent
   ]
 }
 
-````
+```
 
 ## Input example of the next node
 
@@ -267,7 +272,7 @@ Pdf2text Agent
   ":agentId.test"
 ]
 
-````
+```
 
 ## Samples
 
@@ -293,7 +298,7 @@ Pdf2text Agent
   }
 }
 
-````
+```
 
 #### params
 
@@ -301,7 +306,7 @@ Pdf2text Agent
 
 {"type":"md"}
 
-````
+```
 
 #### result
 
@@ -311,7 +316,7 @@ Pdf2text Agent
   "test": "hello"
 }
 
-````
+```
 
 ## Author
 

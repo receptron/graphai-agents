@@ -1,5 +1,10 @@
 # runShellAgent
 
+## Package
+[@graphai/shell_utilty_agent](https://www.npmjs.com/package/@graphai/shell_utilty_agent)
+## Source
+[https://github.com/receptron/graphai-agents/tree/main/system/shell-util-agent/src/run_shell_agent.ts](https://github.com/receptron/graphai-agents/tree/main/system/shell-util-agent/src/run_shell_agent.ts)
+
 ## Description
 
 shell utility agent
@@ -33,7 +38,7 @@ shell utility agent
   ]
 }
 
-````
+```
 
 ## Input example of the next node
 
@@ -45,7 +50,7 @@ shell utility agent
   ":agentId.stderr"
 ]
 
-````
+```
 
 ## Samples
 
@@ -63,7 +68,7 @@ shell utility agent
   "baseDir": "./"
 }
 
-````
+```
 
 #### params
 
@@ -71,7 +76,7 @@ shell utility agent
 
 {}
 
-````
+```
 
 #### result
 
@@ -82,7 +87,7 @@ shell utility agent
   "stderr": ""
 }
 
-````
+```
 
 ## Author
 

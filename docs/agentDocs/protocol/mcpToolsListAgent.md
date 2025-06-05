@@ -1,5 +1,10 @@
 # mcpToolsListAgent
 
+## Package
+[@graphai/mcp_agent](https://www.npmjs.com/package/@graphai/mcp_agent)
+## Source
+[https://github.com/receptron/graphai-agents/tree/main/protocol/mcp-agent/src/mcp_tools_list_agent.ts](https://github.com/receptron/graphai-agents/tree/main/protocol/mcp-agent/src/mcp_tools_list_agent.ts)
+
 ## Description
 
 Model Context Protocol Tools/List Agent
@@ -18,7 +23,7 @@ Model Context Protocol Tools/List Agent
   "required": []
 }
 
-````
+```
 
 ## Input example of the next node
 
@@ -378,7 +383,7 @@ Model Context Protocol Tools/List Agent
   ":agentId.tools.$10.inputSchema.required"
 ]
 
-````
+```
 
 ## Samples
 
@@ -390,7 +395,7 @@ Model Context Protocol Tools/List Agent
 
 {}
 
-````
+```
 
 #### params
 
@@ -398,7 +403,7 @@ Model Context Protocol Tools/List Agent
 
 {"services":["filesystem"]}
 
-````
+```
 
 #### result
 
@@ -900,7 +905,7 @@ Model Context Protocol Tools/List Agent
   ]
 }
 
-````
+```
 
 ## Author
 

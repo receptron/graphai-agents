@@ -1,5 +1,10 @@
 # promptsAgent
 
+## Package
+[@graphai/prompts](https://www.npmjs.com/package/@graphai/prompts)
+## Source
+[https://github.com/receptron/graphai-agents/tree/main/prompts/prompts/src/prompts_agent.ts](https://github.com/receptron/graphai-agents/tree/main/prompts/prompts/src/prompts_agent.ts)
+
 ## Description
 
 Prompts Agent
@@ -18,7 +23,7 @@ Prompts Agent
   "required": []
 }
 
-````
+```
 
 ## Input example of the next node
 
@@ -29,7 +34,7 @@ Prompts Agent
   ":agentId.text"
 ]
 
-````
+```
 
 ## Samples
 
@@ -41,7 +46,7 @@ Prompts Agent
 
 {}
 
-````
+```
 
 #### params
 
@@ -49,7 +54,7 @@ Prompts Agent
 
 {"promptKey":"test"}
 
-````
+```
 
 #### result
 
@@ -59,7 +64,7 @@ Prompts Agent
   "text": "this is test prompt.\n"
 }
 
-````
+```
 
 ## Author
 

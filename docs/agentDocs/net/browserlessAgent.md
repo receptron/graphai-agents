@@ -1,5 +1,10 @@
 # browserlessAgent
 
+## Package
+[@graphai/browserless_agent](https://www.npmjs.com/package/@graphai/browserless_agent)
+## Source
+[https://github.com/receptron/graphai-agents/tree/main/net/browserless_agent/src/browserless_agent.ts](https://github.com/receptron/graphai-agents/tree/main/net/browserless_agent/src/browserless_agent.ts)
+
 ## Description
 
 An agent that uses Browserless.io to fetch web page content with JavaScript execution support for retrieving data from SPAs and dynamic content
@@ -27,7 +32,7 @@ An agent that uses Browserless.io to fetch web page content with JavaScript exec
   ]
 }
 
-````
+```
 
 #### output
 
@@ -42,7 +47,7 @@ An agent that uses Browserless.io to fetch web page content with JavaScript exec
   }
 }
 
-````
+```
 
 ## Input example of the next node
 
@@ -53,7 +58,7 @@ An agent that uses Browserless.io to fetch web page content with JavaScript exec
   ":agentId.text"
 ]
 
-````
+```
 ```json
 
 [
@@ -61,7 +66,7 @@ An agent that uses Browserless.io to fetch web page content with JavaScript exec
   ":agentId.text"
 ]
 
-````
+```
 ```json
 
 [
@@ -74,7 +79,7 @@ An agent that uses Browserless.io to fetch web page content with JavaScript exec
   ":agentId.body.url"
 ]
 
-````
+```
 
 ## Samples
 
@@ -88,7 +93,7 @@ An agent that uses Browserless.io to fetch web page content with JavaScript exec
   "url": "https://www.example.com"
 }
 
-````
+```
 
 #### params
 
@@ -96,7 +101,7 @@ An agent that uses Browserless.io to fetch web page content with JavaScript exec
 
 {}
 
-````
+```
 
 #### result
 
@@ -106,7 +111,7 @@ An agent that uses Browserless.io to fetch web page content with JavaScript exec
   "text": "<html><body>Hello, world!</body></html>"
 }
 
-````
+```
 ### Sample1
 
 #### inputs
@@ -118,7 +123,7 @@ An agent that uses Browserless.io to fetch web page content with JavaScript exec
   "text_content": true
 }
 
-````
+```
 
 #### params
 
@@ -126,7 +131,7 @@ An agent that uses Browserless.io to fetch web page content with JavaScript exec
 
 {}
 
-````
+```
 
 #### result
 
@@ -136,7 +141,7 @@ An agent that uses Browserless.io to fetch web page content with JavaScript exec
   "text": "Hello, world!"
 }
 
-````
+```
 ### Sample2
 
 #### inputs
@@ -147,7 +152,7 @@ An agent that uses Browserless.io to fetch web page content with JavaScript exec
   "url": "https://www.example.com"
 }
 
-````
+```
 
 #### params
 
@@ -155,14 +160,14 @@ An agent that uses Browserless.io to fetch web page content with JavaScript exec
 
 {"debug":true}
 
-````
+```
 
 #### result
 
 ```json
 
 {
-  "url": "https://chrome.browserless.io/content",
+  "url": "https://production-sfo.browserless.io/content",
   "method": "POST",
   "headers": {
     "Content-Type": "application/json"
@@ -172,7 +177,7 @@ An agent that uses Browserless.io to fetch web page content with JavaScript exec
   }
 }
 
-````
+```
 
 ## Author
 
