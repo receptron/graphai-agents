@@ -517,10 +517,10 @@
   resolved "https://registry.yarnpkg.com/@pkgjs/parseargs/-/parseargs-0.11.0.tgz#a77ea742fab25775145434eb1d2328cf5013ac33"
   integrity sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==
 
-"@receptron/agentdoc@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@receptron/agentdoc/-/agentdoc-1.0.1.tgz#a92670801fd8609ebf1e41516a69a0d65e26a6e1"
-  integrity sha512-gR/kwz9GOCCH2qIT1dEdl9bCvTfjlpKrG/u1ApTeMcFIXWnqR6ZrAYpAX+WC7LnmaYa0SOCUNKTsR4Vn+ww8Yg==
+"@receptron/agentdoc@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@receptron/agentdoc/-/agentdoc-1.0.2.tgz#9217bd0e5ee7fb439dad42f2284b6a94dc5a1f4f"
+  integrity sha512-9iWP6/kRucl+UUJC2LUT3Z5HXqtW2rUyuThApLN9L5q9WshT0/MTQYJzd/HUGEiteZmHUHUTHNZha6XdXUakYg==
   dependencies:
     json-schema-generator "^2.0.6"
 
