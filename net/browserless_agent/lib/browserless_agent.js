@@ -22,7 +22,8 @@ const browserlessAgent = async ({ namedInputs, params, config, }) => {
         const errorMessage = "Browserless API token is required. Please set the BROWSERLESS_API_TOKEN environment variable.";
         throw new Error(errorMessage);
     }
-    const baseUrl = "https://chrome.browserless.io";
+    const region = params?.region || "sfo";
+    const baseUrl = `https://production-${region}.browserless.io`;
     const path = shouldExtractTextContent ? "scrape" : "content";
     const endpoint = `${baseUrl}/${path}?token=${browserlessToken}`;
     const requestBody = shouldExtractTextContent ? { url, elements: [{ selector: "body" }] } : { url };
@@ -111,6 +112,11 @@ const browserlessAgentInfo = {
                 type: "boolean",
                 description: "If true, returns only the text content of the body element of the page, otherwise returns the full HTML",
             },
+            region: {
+                type: "string",
+                enum: ["sfo", "lon", "ams"],
+                description: "Regional endpoint to use. sfo: San Francisco (default), lon: London, ams: Amsterdam",
+            },
         },
     },
     inputs: {
@@ -163,7 +169,7 @@ const browserlessAgentInfo = {
                 debug: true,
             },
             result: {
-                url: "https://chrome.browserless.io/content",
+                url: "https://production-sfo.browserless.io/content",
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: { url: "https://www.example.com" },

@@ -7,6 +7,7 @@ type BrowserlessInputs = {
 type BrowserlessParams = {
     apiKey?: string;
     text_content?: boolean;
+    region?: "sfo" | "lon" | "ams";
 } & GraphAISupressError & GraphAIDebug;
 type BrowserlessResult = GraphAIText | GraphAIOnError<string> | {
     url: string;
