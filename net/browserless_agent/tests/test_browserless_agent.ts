@@ -36,7 +36,7 @@ const setupEnvironment = () => {
 
   setGlobalDispatcher(mockAgent);
 
-  const mockPool = mockAgent.get("https://chrome.browserless.io");
+  const mockPool = mockAgent.get("https://production-sfo.browserless.io");
 
   // Mock the content endpoint for regular URL requests
   mockPool
