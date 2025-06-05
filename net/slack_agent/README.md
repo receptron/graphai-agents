@@ -47,6 +47,7 @@ const result = await graph.run();
 ### Input/Params example
  - slackAgent
 
+
 ```typescript
 {
   "inputs": {

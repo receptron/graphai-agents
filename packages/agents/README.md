@@ -91,6 +91,7 @@ const result = await graph.run();
 ### Input/Params example
  - arxivAgent
 
+
 ```typescript
 {
   "inputs": {},
@@ -114,6 +115,7 @@ const result = await graph.run();
 
  - awesomeChatgptPromptsAgent
 
+
 ```typescript
 {
   "inputs": {},
@@ -124,6 +126,7 @@ const result = await graph.run();
 ```
 
  - braveSearchAgent
+
 
 ```typescript
 {
@@ -162,6 +165,7 @@ const result = await graph.run();
 
  - browserlessAgent
 
+
 ```typescript
 {
   "inputs": {
@@ -196,6 +200,7 @@ const result = await graph.run();
 
  - mcpResourcesAgent
 
+
 ```typescript
 {
   "inputs": {},
@@ -204,6 +209,7 @@ const result = await graph.run();
 ```
 
  - mcpToolsCallAgent
+
 
 ```typescript
 {
@@ -238,6 +244,7 @@ const result = await graph.run();
 
  - mcpToolsListAgent
 
+
 ```typescript
 {
   "inputs": {},
@@ -250,6 +257,7 @@ const result = await graph.run();
 ```
 
  - pdf2textAgent
+
 
 ```typescript
 {
@@ -276,6 +284,7 @@ const result = await graph.run();
 
  - promptsAgent
 
+
 ```typescript
 {
   "inputs": {},
@@ -287,6 +296,7 @@ const result = await graph.run();
 
  - serperAgent
 
+
 ```typescript
 {
   "inputs": {
@@ -297,6 +307,7 @@ const result = await graph.run();
 ```
 
  - slackAgent
+
 
 ```typescript
 {

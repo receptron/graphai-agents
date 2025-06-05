@@ -83,6 +83,7 @@ const result = await graph.run();
 ### Input/Params example
  - mcpResourcesAgent
 
+
 ```typescript
 {
   "inputs": {},
@@ -91,6 +92,7 @@ const result = await graph.run();
 ```
 
  - mcpToolsCallAgent
+
 
 ```typescript
 {
@@ -124,6 +126,7 @@ const result = await graph.run();
 ```
 
  - mcpToolsListAgent
+
 
 ```typescript
 {
