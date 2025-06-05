@@ -92,6 +92,7 @@ const result = await graph.run();
  - arxivAgent
 
 
+
 ```typescript
 {
   "inputs": {},
@@ -116,6 +117,7 @@ const result = await graph.run();
  - awesomeChatgptPromptsAgent
 
 
+
 ```typescript
 {
   "inputs": {},
@@ -126,7 +128,20 @@ const result = await graph.run();
 ```
 
  - braveSearchAgent
-
+   - inputs
+     - query(string)
+       - The search query to send to Brave Search
+     - search_args(object)
+       - Additional search parameters to pass to the Brave Search API. See https://api-dashboard.search.brave.com/app/documentation/web-search/query
+   - params
+     - apiKey(string)
+       - Brave Search API key
+     - debug(boolean)
+       - Enable debug mode
+     - supressError(boolean)
+       - Suppress error and return onError object if the request fails
+     - search_args(object)
+       - Additional search parameters to pass to the Brave Search API. See https://api-dashboard.search.brave.com/app/documentation/web-search/query
 
 ```typescript
 {
@@ -164,7 +179,22 @@ const result = await graph.run();
 ```
 
  - browserlessAgent
-
+   - inputs
+     - url(string)
+       - URL of the web page to scrape or manipulate
+     - text_content(boolean)
+       - If true, returns only the text content of the body element of the page, otherwise returns the full HTML
+   - params
+     - apiKey(string)
+       - Browserless API key
+     - debug(boolean)
+       - Enable debug mode
+     - supressError(boolean)
+       - Suppress error and return onError object if the request fails
+     - text_content(boolean)
+       - If true, returns only the text content of the body element of the page, otherwise returns the full HTML
+     - region(string)
+       - Regional endpoint to use. sfo: San Francisco (default), lon: London, ams: Amsterdam
 
 ```typescript
 {
@@ -201,6 +231,7 @@ const result = await graph.run();
  - mcpResourcesAgent
 
 
+
 ```typescript
 {
   "inputs": {},
@@ -209,6 +240,7 @@ const result = await graph.run();
 ```
 
  - mcpToolsCallAgent
+
 
 
 ```typescript
@@ -245,6 +277,7 @@ const result = await graph.run();
  - mcpToolsListAgent
 
 
+
 ```typescript
 {
   "inputs": {},
@@ -257,6 +290,7 @@ const result = await graph.run();
 ```
 
  - pdf2textAgent
+
 
 
 ```typescript
@@ -285,6 +319,7 @@ const result = await graph.run();
  - promptsAgent
 
 
+
 ```typescript
 {
   "inputs": {},
@@ -297,6 +332,7 @@ const result = await graph.run();
  - serperAgent
 
 
+
 ```typescript
 {
   "inputs": {
@@ -307,6 +343,7 @@ const result = await graph.run();
 ```
 
  - slackAgent
+
 
 
 ```typescript

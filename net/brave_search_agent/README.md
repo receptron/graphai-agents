@@ -30,7 +30,20 @@ const result = await graph.run();
 
 ### Input/Params example
  - braveSearchAgent
-
+   - inputs
+     - query(string)
+       - The search query to send to Brave Search
+     - search_args(object)
+       - Additional search parameters to pass to the Brave Search API. See https://api-dashboard.search.brave.com/app/documentation/web-search/query
+   - params
+     - apiKey(string)
+       - Brave Search API key
+     - debug(boolean)
+       - Enable debug mode
+     - supressError(boolean)
+       - Suppress error and return onError object if the request fails
+     - search_args(object)
+       - Additional search parameters to pass to the Brave Search API. See https://api-dashboard.search.brave.com/app/documentation/web-search/query
 
 ```typescript
 {

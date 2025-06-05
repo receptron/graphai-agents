@@ -30,7 +30,22 @@ const result = await graph.run();
 
 ### Input/Params example
  - browserlessAgent
-
+   - inputs
+     - url(string)
+       - URL of the web page to scrape or manipulate
+     - text_content(boolean)
+       - If true, returns only the text content of the body element of the page, otherwise returns the full HTML
+   - params
+     - apiKey(string)
+       - Browserless API key
+     - debug(boolean)
+       - Enable debug mode
+     - supressError(boolean)
+       - Suppress error and return onError object if the request fails
+     - text_content(boolean)
+       - If true, returns only the text content of the body element of the page, otherwise returns the full HTML
+     - region(string)
+       - Regional endpoint to use. sfo: San Francisco (default), lon: London, ams: Amsterdam
 
 ```typescript
 {
