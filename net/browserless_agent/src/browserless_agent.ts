@@ -211,7 +211,7 @@ const browserlessAgentInfo: AgentFunctionInfo = {
         debug: true,
       },
       result: {
-        url: "https://production-sfo.browserless.io/content?token=undefined",
+        url: "https://production-sfo.browserless.io/content",
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: { url: "https://www.example.com" },
