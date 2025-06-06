@@ -3,6 +3,7 @@
     <div class="h-screen w-full">
       hello
       <div></div>
+      <button @click="run">Run</button>
     </div>
   </main>
 </template>
@@ -15,16 +16,30 @@ import * as vanilla from "@graphai/vanilla";
 
 import { graphData } from "./data";
 
+import webLlmAgent, { modelLoad, loadEngine, CallbackReport } from "./agents/web_llm_agent";
+
 export default defineComponent({
   setup() {
+    loadEngine();
+    const loading = ref("");
+    const ready = ref(false);
+
+    modelLoad((report: CallbackReport) => {
+      if (report.progress === 1) {
+        ready.value = true;
+      }
+      loading.value = report.text;
+      console.log(report.text, ready.value);
+    });
+
     const run = async () => {
-      const graphai = new GraphAI(graphData, vanilla);
+      const graphai = new GraphAI(graphData, { ...vanilla, webLlmAgent });
       graphai.registerCallback(console.log);
       await graphai.run();
     };
-    run();
 
     return {
+      run,
     };
   },
 });

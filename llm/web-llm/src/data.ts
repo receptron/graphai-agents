@@ -17,21 +17,10 @@ export const graphData = {
           input1: {
             value: ":test",
           },
-          child1: {
-            agent: "sleeperAgent",
-            params: { duration: 1000 },
-            inputs: { data: ":data", data2: ":input1" },
-          },
-          child2: {
-            agent: "sleeperAgent",
-            params: { duration: 1000 },
-            inputs: { data: ":child1" },
-            isResult: true,
-          },
-          child3: {
-            agent: "sleeperAgent",
-            params: { duration: 1000 },
-            inputs: { data: ":child2" },
+          llm: {
+            agent: "webLlmAgent",
+            // params: { duration: 1000 },
+            inputs: { prompt: "hello" },
           },
         },
       },
