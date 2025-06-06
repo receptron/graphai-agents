@@ -25,6 +25,7 @@
     "packages/*",
     "documents/*",
     "prompts/*",
+    "llm/*",
     "voice/*",
     "protocol/*",
     "system/*",
