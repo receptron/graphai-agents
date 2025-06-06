@@ -3,7 +3,13 @@
     <div class="h-screen w-full">
       hello
       <div></div>
+      <div>
+        {{ loading }}
+      </div>
       <button @click="run">Run</button>
+      <div>
+        {{ response }}
+      </div>
     </div>
   </main>
 </template>
@@ -12,6 +18,7 @@
 import { defineComponent, ref } from "vue";
 
 import { GraphAI } from "graphai";
+import { streamAgentFilterGenerator } from  "@graphai/stream_agent_filter";
 import * as vanilla from "@graphai/vanilla";
 
 import { graphData } from "./data";
@@ -32,14 +39,29 @@ export default defineComponent({
       console.log(report.text, ready.value);
     });
 
+    const response = ref("");
+    const callback = (__, token) => {
+      // console.log(token);
+      response.value = response.value + token;
+    };
+    const streamAgentFilter = streamAgentFilterGenerator(callback);
+    const agentFilters = [
+      {
+        name: "streamAgentFilter",
+        agent: streamAgentFilter,
+      },
+    ];
+    
     const run = async () => {
-      const graphai = new GraphAI(graphData, { ...vanilla, webLlmAgent });
-      graphai.registerCallback(console.log);
+      const graphai = new GraphAI(graphData, { ...vanilla, webLlmAgent }, { agentFilters });
+      // graphai.registerCallback(console.log);
       await graphai.run();
     };
 
     return {
       run,
+      loading,
+      response,
     };
   },
 });

@@ -18,8 +18,9 @@ export const graphData = {
             value: ":test",
           },
           llm: {
+            isResult: true,
             agent: "webLlmAgent",
-            // params: { duration: 1000 },
+            params: { stream: true },
             inputs: { prompt: "hello" },
           },
         },

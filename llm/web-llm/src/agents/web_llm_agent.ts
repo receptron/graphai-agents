@@ -84,6 +84,7 @@ export const webLlmAgent: AgentFunction = async ({ filterParams, params, namedIn
       const token = chunk.choices[0].delta.content;
       tokens.push(token);
       if (stream && filterParams && filterParams.streamTokenCallback && token) {
+        console.log(token);
         filterParams.streamTokenCallback(token);
       }
     }
