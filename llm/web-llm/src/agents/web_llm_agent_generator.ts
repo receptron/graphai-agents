@@ -10,7 +10,7 @@ interface WebLlmAgentOptions {
   callback?: (__report: CallbackReport) => void;
   useIndexedDBCache?: boolean;
 }
-// const appConfig = webllm.prebuiltAppConfig;
+
 const model_list = webllm.prebuiltAppConfig.model_list;
 
 export const pushModelList = (__model_list?: any[]) => {
@@ -33,9 +33,6 @@ export const webLlmAgentGenerator = ({ modelId, callback, useIndexedDBCache }: W
       reportCallback(report);
     };
     if (engine === null) {
-      /* eslint new-cap: 0 */
-      /* eslint require-atomic-updates: 0 */
-      console.log(modelId);
       engine = await webllm.CreateMLCEngine(modelId, {
         appConfig: {
           model_list,
@@ -144,4 +141,3 @@ export const webLlmAgentGenerator = ({ modelId, callback, useIndexedDBCache }: W
   };
 };
 
-// export default webLlmAgentInfo;
