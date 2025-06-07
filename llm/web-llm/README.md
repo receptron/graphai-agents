@@ -18,8 +18,9 @@ const { webLlmAgent, loadEngine } = webLlmAgentGenerator({
 
 loadEngine();
 
-const graphai = new GraphAI(graphData, { ...vanilla, webLlmAgent });
 // wait ready become true;
+
+const graphai = new GraphAI(graphData, { ...vanilla, webLlmAgent });
 await graphai.run();
 
 ````
@@ -51,9 +52,15 @@ const { webLlmAgent, loadEngine } = webLlmAgentGenerator({
 
 loadEngine();
 
-const graphai = new GraphAI(graphData, { ...vanilla, webLlmAgent });
 // wait ready become true;
+
+const graphai = new GraphAI(graphData, { ...vanilla, webLlmAgent });
 await graphai.run();
 
 ````
 
+
+### Limitations of web llm
+
+- Different models cannot be used at the same time.
+- If the same model is used at the same time, it will only be processed sequentially.
