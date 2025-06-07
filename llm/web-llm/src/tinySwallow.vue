@@ -59,7 +59,6 @@ export default defineComponent({
       // graphai.registerCallback(console.log);
       await graphai.run();
     };
-    console.log("FFF");
     return {
       run,
       loading,

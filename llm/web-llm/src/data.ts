@@ -23,6 +23,12 @@ export const graphData = {
             params: { stream: true },
             inputs: { prompt: "hello" },
           },
+          llm2: {
+            isResult: true,
+            agent: "webLlmAgent",
+            params: { stream: true },
+            inputs: { prompt: "こんにちは!!" },
+          },
         },
       },
       inputs: { data: ":one", test: ":one" },

@@ -1,6 +1,6 @@
 <template>
   <div class="mt-2">
-    <h2 class="text-bold">llama</h2>
+    <h2 class="text-bold">{{ modelName }}</h2>
     <div>
       {{ loading }}
     </div>
@@ -20,17 +20,25 @@ import * as vanilla from "@graphai/vanilla";
 
 import { graphData } from "./data";
 
-import * as webllm from "@mlc-ai/web-llm";
 import { webLlmAgentGenerator } from "./agents/web_llm_agent_generator";
 
 export default defineComponent({
-  setup() {
+  props: {
+    modelId: {
+      type: String,
+      required: true,
+    },
+    modelName: {
+      type: String,
+      required: true,
+    },
+  },
+  setup(props) {
     const loading = ref("");
     const ready = ref(false);
 
-    const selectedModel = "Llama-3.2-3B-Instruct-q4f32_1-MLC";
     const { webLlmAgent, loadEngine } = webLlmAgentGenerator({
-      modelId: selectedModel,
+      modelId: props.modelId,
       callback: (report: CallbackReport) => {
         if (report.progress === 1) {
           ready.value = true;
@@ -60,7 +68,6 @@ export default defineComponent({
       // graphai.registerCallback(console.log);
       await graphai.run();
     };
-    console.log("FFF33");
 
     return {
       run,

@@ -1,6 +1,6 @@
 <template>
   <main>
-    <Llama />
+    <Llama modelId="Llama-3.2-3B-Instruct-q4f32_1-MLC" modelName="Llama" />
     <TinySwallow v-if="false" />
   </main>
 </template>
