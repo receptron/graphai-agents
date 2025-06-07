@@ -8,7 +8,6 @@ export type CallbackReport = webllm.InitProgressReport;
 interface WebLlmAgentOptions {
   modelId: string;
   callback?: (__report: CallbackReport) => void;
-  agentId?: string;
   useIndexedDBCache?: boolean;
 }
 // const appConfig = webllm.prebuiltAppConfig;
@@ -20,10 +19,10 @@ export const pushModelList = (__model_list?: any[]) => {
   });
 };
 
-export const webLlmAgentGenerator = ({ modelId, callback, useIndexedDBCache, agentId = "webLlmAgent" }: WebLlmAgentOptions) => {
+export const webLlmAgentGenerator = ({ modelId, callback, useIndexedDBCache }: WebLlmAgentOptions) => {
   let engine: null | webllm.MLCEngine = null;
 
-  const loadEngine = async (callback2: (__report: CallbackReport) => void) => {
+  const loadEngine = async (callback2?: (__report: CallbackReport) => void) => {
     const reportCallback =
       callback2 ??
       callback ??
@@ -96,7 +95,7 @@ export const webLlmAgentGenerator = ({ modelId, callback, useIndexedDBCache, age
       return result;
     }
 
-    const completion = await engine.chat.completions.create(llmParams);
+    const completion = await engine.chat.completions.create({...llmParams, stream: true});
     const tokens = [];
     for await (const chunk of completion) {
       if (chunk.choices && chunk.choices[0]) {

@@ -6,7 +6,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent } from "vue";
 import * as webllm from "@mlc-ai/web-llm";
 import { pushModelList } from "./agents/web_llm_agent_generator";
 

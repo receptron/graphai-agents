@@ -20,7 +20,7 @@ import * as vanilla from "@graphai/vanilla";
 
 import { graphData } from "./data";
 
-import { webLlmAgentGenerator } from "./agents/web_llm_agent_generator";
+import { webLlmAgentGenerator, CallbackReport } from "./agents/web_llm_agent_generator";
 
 export default defineComponent({
   props: {
