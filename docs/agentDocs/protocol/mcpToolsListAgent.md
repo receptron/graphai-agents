@@ -16,8 +16,6 @@ Model Context Protocol Tools/List Agent
 ```json
 
 {
-  "$schema": "http://json-schema.org/draft-04/schema#",
-  "description": "",
   "type": "object",
   "properties": {},
   "required": []

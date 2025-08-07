@@ -14,15 +14,12 @@ Slack Agent
 ```json
 
 {
-  "$schema": "http://json-schema.org/draft-04/schema#",
-  "description": "",
   "type": "object",
   "properties": {
     "message": {
       "type": "array",
       "items": {
-        "required": [],
-        "properties": {}
+        "type": "string"
       }
     }
   },

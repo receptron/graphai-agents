@@ -16,23 +16,19 @@ Model Context Protocol Tools/Call Agent
 ```json
 
 {
-  "$schema": "http://json-schema.org/draft-04/schema#",
-  "description": "",
   "type": "object",
   "properties": {
     "tools": {
       "type": "object",
       "properties": {
         "name": {
-          "type": "string",
-          "minLength": 1
+          "type": "string"
         },
         "arguments": {
           "type": "object",
           "properties": {
             "path": {
-              "type": "string",
-              "minLength": 1
+              "type": "string"
             }
           },
           "required": [

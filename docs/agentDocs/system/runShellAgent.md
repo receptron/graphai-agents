@@ -16,20 +16,16 @@ shell utility agent
 ```json
 
 {
-  "$schema": "http://json-schema.org/draft-04/schema#",
-  "description": "",
   "type": "object",
   "properties": {
     "commands": {
       "type": "array",
       "items": {
-        "required": [],
-        "properties": {}
+        "type": "string"
       }
     },
     "baseDir": {
-      "type": "string",
-      "minLength": 1
+      "type": "string"
     }
   },
   "required": [
