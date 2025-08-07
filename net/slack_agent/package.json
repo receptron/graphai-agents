@@ -28,6 +28,6 @@
   "homepage": "https://github.com/receptron/graphai-agents#readme",
   "devDependencies": {},
   "dependencies": {
-    "@slack/web-api": "^7.9.1"
+    "@slack/web-api": "^7.9.3"
   }
 }

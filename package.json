@@ -44,7 +44,7 @@
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^12.1.4",
     "@types/node": "^24.2.0",
-    "dotenv": "^16.5.0",
+    "dotenv": "^17.2.1",
     "eslint": "^9.32.0",
     "graphai": "2.0.13",
     "graphai_agent_utils": "^0.0.1",
