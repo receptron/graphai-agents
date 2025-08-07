@@ -59,7 +59,7 @@ export const toolsList = async (mcpClients: MCPClients, services: string[] = [])
   return ret;
 };
 
-export const toolsCall = async (mcpClients: MCPClients, tools: { name: string; arguments: unknown }) => {
+export const toolsCall = async (mcpClients: MCPClients, tools: { name: string; arguments: unknown }): Promise<unknown> => {
   const { name, arguments: llmArguments } = tools;
   const [serviceName, tools_name] = name.split("--");
   const client = mcpClients[serviceName];
@@ -96,7 +96,7 @@ export const resourcesList = async (mcpClients: MCPClients) => {
   return ret;
 };
 
-export const resourceRead = async (mcpClients: MCPClients, serviceName: string, params: any) => {
+export const resourceRead = async (mcpClients: MCPClients, serviceName: string, params: any): Promise<unknown> => {
   const client = mcpClients[serviceName];
   const content = await client.request(
     {
