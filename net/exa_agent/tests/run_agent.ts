@@ -6,10 +6,11 @@ import exaAgent from "../src/exa_agent";
 const main = async () => {
   const result = await exaAgent.agent({
     ...defaultTestContext,
-    namedInputs: {query: "日本の首都について"},
+    namedInputs: { query: "日本の首都について" },
     params: {
-      apiKey: process.env.APIKEY, search_args: {text: true}
-    }, 
+      apiKey: process.env.APIKEY,
+      search_args: { text: true },
+    },
   });
   console.log(result);
 };

@@ -13,9 +13,7 @@ type ExaSearchParams = {
 } & GraphAISupressError &
   GraphAIDebug;
 
-type ExaSearchResponse =
-  | any
-  | GraphAIOnError<string>;
+type ExaSearchResponse = any | GraphAIOnError<string>;
 
 // https://github.com/exa-labs/exa-js
 export const exaAgent: AgentFunction<ExaSearchParams, ExaSearchResponse, ExaSearchInputs, DefaultConfigData> = async ({ params, namedInputs, config }) => {
@@ -31,7 +29,7 @@ export const exaAgent: AgentFunction<ExaSearchParams, ExaSearchResponse, ExaSear
 
   try {
     const exa = new Exa(apiKey);
-    const basicResults = await ((search_args?.text) ? exa.searchAndContents(query, search_args) : exa.search(query, search_args));
+    const basicResults = await (search_args?.text ? exa.searchAndContents(query, search_args) : exa.search(query, search_args));
     return basicResults.results.map((item) => {
       return {
         title: item.title,
