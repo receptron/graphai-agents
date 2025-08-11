@@ -17,7 +17,7 @@ const exaAgent = async ({ params, namedInputs, config }) => {
     };
     try {
         const exa = new exa_js_1.default(apiKey);
-        const basicResults = await ((search_args?.text) ? exa.searchAndContents(query, search_args) : exa.search(query, search_args));
+        const basicResults = await (search_args?.text ? exa.searchAndContents(query, search_args) : exa.search(query, search_args));
         return basicResults.results.map((item) => {
             return {
                 title: item.title,
