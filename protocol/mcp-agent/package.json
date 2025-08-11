@@ -22,7 +22,7 @@
     "@modelcontextprotocol/server-filesystem": "^2025.7.29"
   },
   "dependencies": {
-    "@graphai/input_agents": "^1.0.1",
+    "@graphai/input_agents": "^1.0.2",
     "@modelcontextprotocol/sdk": "^1.17.1"
   },
   "types": "./lib/index.d.ts",

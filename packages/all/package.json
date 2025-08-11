@@ -26,7 +26,7 @@
   "homepage": "https://github.com/receptron/graphai-agents/blob/main/packages/all/README.md",
   "dependencies": {
     "@graphai/agent_filters": "^2.0.0",
-    "@graphai/agents": "^2.0.7",
+    "@graphai/agents": "^2.0.8",
     "@graphai/extra-agents": "^0.0.7",
     "@receptron/test_utils": "^2.0.0",
     "graphai": "^2.0.13"
