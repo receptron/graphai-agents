@@ -347,11 +347,6 @@
     "@graphai/step_runner_agent_filter" "2.0.3"
     "@graphai/stream_agent_filter" "2.0.1"
 
-"@graphai/agent_utils@^2.0.1":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@graphai/agent_utils/-/agent_utils-2.0.1.tgz#baa17e99cf304fe69c5f0f9912eb729a1ca841e8"
-  integrity sha512-7hIGPFmF3mq9ZBU/X4wLY0W2ctp5+wKaHQnfwNIrWeTQ8ZHvfPggArt/prX0pPXFgsYZFixVuInAW+sW1G6AXA==
-
 "@graphai/agent_utils@^2.0.2":
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/@graphai/agent_utils/-/agent_utils-2.0.2.tgz#19ffad2833c13eeeb79caa162aaac5d241fb89fc"
@@ -517,13 +512,6 @@
   integrity sha512-0T/zCvFEyvJBb4nqbcSunlMS4Llhg9BoQSmqON03Cwoj+kcrC7yTfRfpNtUB1PXbwP6NNOhCCQHwkN6X6WIXgA==
   dependencies:
     "@graphai/agent_utils" "^2.0.2"
-
-"@graphai/vanilla@^2.0.9":
-  version "2.0.9"
-  resolved "https://registry.yarnpkg.com/@graphai/vanilla/-/vanilla-2.0.9.tgz#4092a515f4b20148a75f6f46986b57dab14ca166"
-  integrity sha512-WwvsOEV4JQT/HzgMnbxp3c7m8Qt9cBo0la18X0OalhZswAn0ixB/S3hbJpehV0cIre20ebw0d8iPuFbf6r9U+g==
-  dependencies:
-    "@graphai/agent_utils" "^2.0.1"
 
 "@graphai/vanilla_node_agents@^2.0.1":
   version "2.0.1"
