@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@graphai/input_agents": "^1.0.2",
-    "@modelcontextprotocol/sdk": "^1.17.1"
+    "@modelcontextprotocol/sdk": "^1.17.2"
   },
   "types": "./lib/index.d.ts",
   "directories": {
