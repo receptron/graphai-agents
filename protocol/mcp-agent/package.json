@@ -19,11 +19,11 @@
   "author": "isamu arimoto",
   "license": "MIT",
   "devDependencies": {
-    "@modelcontextprotocol/server-filesystem": "^2025.7.29"
+    "@modelcontextprotocol/server-filesystem": "^2025.8.21"
   },
   "dependencies": {
     "@graphai/input_agents": "^1.0.2",
-    "@modelcontextprotocol/sdk": "^1.17.1"
+    "@modelcontextprotocol/sdk": "^1.17.5"
   },
   "types": "./lib/index.d.ts",
   "directories": {
