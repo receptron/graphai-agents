@@ -29,10 +29,10 @@
   "homepage": "https://github.com/receptron/graphai-agents#readme",
   "devDependencies": {},
   "dependencies": {
-    "@graphai/openai_agent": "^2.0.3",
+    "@graphai/openai_agent": "^2.0.7",
     "@graphai/shell_utilty_agent": "^0.1.0",
-    "@graphai/vanilla": "^2.0.10",
-    "@graphai/vanilla_node_agents": "^2.0.1",
-    "graphai": "^2.0.13"
+    "@graphai/vanilla": "^2.0.12",
+    "@graphai/vanilla_node_agents": "^2.0.4",
+    "graphai": "^2.0.14"
   }
 }
