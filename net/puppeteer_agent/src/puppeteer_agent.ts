@@ -1,50 +1,100 @@
-import type { AgentFunction, AgentFunctionInfo } from "graphai";
-import puppeteer from "puppeteer";
+import { AgentFunction, AgentFunctionInfo, GraphAILogger } from "graphai";
+import * as puppeteer from "puppeteer";
 import { Readability } from "@mozilla/readability";
 import { JSDOM } from "jsdom";
 
-export const puppeteerAgent: AgentFunction = async ({ namedInputs, params }) => {
-  const { url } = namedInputs;
+type Article = {
+  url: string;
+  title: string | null;
+  byline: string | null;
+  excerpt: string | null;
+  length: number | null;
+  textContent: string | null;
+};
+
+const NAV_TIMEOUT = 45_000;
+
+const normalize = (s: string) =>
+  s
+    .replace(/\r\n/g, "\n")
+    .replace(/[\n\t]{2,}/g, "\n")
+    .trim();
+
+const waitStable = async (page: puppeteer.Page, ms = 1200, step = 200) => {
+  let last = -1;
+  let stable = 0;
+  while (stable < ms) {
+    const len = await page.evaluate(() => document.body?.innerText?.length || 0);
+    stable = len === last ? stable + step : 0;
+    last = len;
+    await new Promise((r) => setTimeout(r, step));
+  }
+};
+
+export const fetchArticle = async (url: string): Promise<Article> => {
+  const browser = await puppeteer.launch({
+    headless: true,
+    args: ["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage"],
+  });
+  const page = await browser.newPage();
+
+  await page.setUserAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36");
+  await page.setViewport({ width: 1366, height: 900 });
 
   try {
-    const browser = await puppeteer.launch();
-    const page = await browser.newPage();
+    await page.goto(url, { waitUntil: "networkidle2", timeout: NAV_TIMEOUT });
 
-    //console.log(1);
-    await page.goto(url, { waitUntil: "networkidle2" });
-    // console.log(2);
+    await Promise.race([page.waitForSelector("article, main, [role=main], .article, .post", { timeout: 8000 }), new Promise((r) => setTimeout(r, 8000))]);
+
+    await waitStable(page, 1200);
 
     const html = await page.content();
     const dom = new JSDOM(html, { url: page.url() });
-
     const reader = new Readability(dom.window.document);
-    const article = reader.parse();
+    const a = reader.parse();
 
-    // console.log(3);
+    const title = a?.title || (await page.title()) || null;
+    const text = normalize(a?.textContent || "");
 
-    await browser.close();
-
-    return {
-      title: article?.title,
-      content:
-        (article?.title ?? "") +
-        "\n" +
-        (article?.textContent ?? "")
-          .replace(/\r\n/g, "\n")
-          .replace(/(\n[ \t]*){2,}/g, "\n")
-          .trim(),
-    };
-  } catch (error) {
-    if (params.supressError) {
-      return {
-        onError: {
-          message: "puppeteerAgent error",
-          error,
-        },
-      };
+    let finalText = text;
+    if (finalText.length < 100) {
+      const raw = await page.evaluate(() => {
+        const el = document.querySelector("article, main, [role=main], .article, .post") || document.body;
+        return el?.textContent || "";
+      });
+      finalText = normalize(raw);
     }
 
-    throw new Error(`puppeteerAgent error: ${error}`);
+    return {
+      url,
+      title,
+      byline: a?.byline || null,
+      excerpt: a?.excerpt || null,
+      length: a?.length ?? (finalText?.length || null),
+      textContent: finalText || null,
+    };
+  } finally {
+    await page.close().catch(() => {});
+    await browser.close().catch(() => {});
+  }
+};
+
+export const puppeteerAgent: AgentFunction = async ({ namedInputs }) => {
+  const { url } = namedInputs;
+  GraphAILogger.log(url);
+
+  try {
+    const data = await fetchArticle(url);
+    GraphAILogger.log(JSON.stringify({ ok: true, ...data }));
+    return {
+      data,
+      content: data.textContent,
+    };
+  } catch (e: unknown) {
+    const errorMessage = e instanceof Error ? e.message : String(e);
+
+    GraphAILogger.log(JSON.stringify({ ok: false, url, error: errorMessage }));
+    return { content: errorMessage };
   }
 };
 
@@ -80,7 +130,7 @@ const puppeteerAgentInfo: AgentFunctionInfo = {
   ],
   description: "Puppeteer Agent",
   category: ["net"],
-  repository: "https://github.com/receptron/mulmocast-app",
+  repository: "https://github.com/receptron/graphai-agents",
   author: "Receptron team",
   license: "MIT",
 };
