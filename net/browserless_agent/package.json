@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/receptron/graphai-agents/blob/main/net/browserless_agent/README.md",
   "devDependencies": {
-    "undici": "^7.13.0"
+    "undici": "^7.16.0"
   },
   "types": "./lib/index.d.ts",
   "directories": {

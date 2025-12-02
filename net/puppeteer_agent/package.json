@@ -26,12 +26,12 @@
   },
   "homepage": "https://github.com/receptron/graphai-agents#readme",
   "devDependencies": {
-    "@types/jsdom": "^21.1.7"
+    "@types/jsdom": "^27.0.0"
   },
   "dependencies": {
     "@mozilla/readability": "^0.6.0",
-    "jsdom": "^26.1.0",
-    "puppeteer": "^24.19.0"
+    "jsdom": "^27.2.0",
+    "puppeteer": "^24.31.0"
   },
   "types": "./lib/index.d.ts",
   "directories": {
