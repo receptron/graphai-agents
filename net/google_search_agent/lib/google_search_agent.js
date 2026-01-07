@@ -73,6 +73,10 @@ const googleSearchAgentInfo = {
                 type: "string",
                 description: "Google Search API key",
             },
+            cx: {
+                type: "string",
+                description: "The identifier of the Programmable Search Engine.",
+            },
             debug: {
                 type: "boolean",
                 description: "Enable debug mode",
