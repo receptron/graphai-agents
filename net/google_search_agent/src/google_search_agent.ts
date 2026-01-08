@@ -1,4 +1,4 @@
-import { GraphAIOnError, GraphAIDebug, GraphAISupressError } from "@graphai/agent_utils";
+import { GraphAIOnError, GraphAISupressError } from "@graphai/agent_utils";
 import { AgentFunction, AgentFunctionInfo, assert, DefaultConfigData } from "graphai";
 import { customsearch } from "@googleapis/customsearch";
 import { GaxiosError } from "gaxios";
@@ -8,10 +8,9 @@ type GoogleSearchInputs = {
 };
 
 type GoogleSearchParams = {
-  apiKey?: string;
-  cx?: string;
-} & GraphAISupressError &
-  GraphAIDebug;
+  apiKey: string;
+  cx: string;
+} & GraphAISupressError;
 
 interface GoogleSearchResult {
   title: string;
@@ -108,10 +107,6 @@ const googleSearchAgentInfo: AgentFunctionInfo = {
       cx: {
         type: "string",
         description: "The identifier of the Programmable Search Engine.",
-      },
-      debug: {
-        type: "boolean",
-        description: "Enable debug mode",
       },
       supressError: {
         type: "boolean",
