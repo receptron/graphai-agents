@@ -1,12 +1,12 @@
-import { GraphAIOnError, GraphAIDebug, GraphAISupressError } from "@graphai/agent_utils";
+import { GraphAIOnError, GraphAISupressError } from "@graphai/agent_utils";
 import { AgentFunction, AgentFunctionInfo, DefaultConfigData } from "graphai";
 type GoogleSearchInputs = {
     query: string;
 };
 type GoogleSearchParams = {
-    apiKey?: string;
-    cx?: string;
-} & GraphAISupressError & GraphAIDebug;
+    apiKey: string;
+    cx: string;
+} & GraphAISupressError;
 interface GoogleSearchResult {
     title: string;
     link: string;

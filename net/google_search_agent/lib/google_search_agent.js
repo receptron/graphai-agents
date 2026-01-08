@@ -77,10 +77,6 @@ const googleSearchAgentInfo = {
                 type: "string",
                 description: "The identifier of the Programmable Search Engine.",
             },
-            debug: {
-                type: "boolean",
-                description: "Enable debug mode",
-            },
             supressError: {
                 type: "boolean",
                 description: "Suppress error and return onError object if the request fails",
