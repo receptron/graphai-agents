@@ -6,7 +6,7 @@ import { graphDataSearch, graphDataNoAPIKey, graphDataNoCX, graphDataErrorRespon
 
 import test from "node:test";
 import assert from "node:assert";
-import { MockAgent, setGlobalDispatcher, getGlobalDispatcher } from "undici";
+import { setGlobalDispatcher, getGlobalDispatcher } from "undici";
 
 // Mock response data
 const mockSearchResults = {
@@ -29,20 +29,12 @@ const mockSearchResults = {
 // Save the original global dispatcher
 const originalDispatcher = getGlobalDispatcher();
 
-const mockAgent = new MockAgent();
-mockAgent.disableNetConnect();
-
-const setupEnvironment = () => {
-  setGlobalDispatcher(mockAgent);
-};
-
 const cleanupEnvironment = () => {
   delete process.env.GOOGLE_SEARCH_API_KEY;
   setGlobalDispatcher(originalDispatcher);
 };
 
 test("test google search", async () => {
-  setupEnvironment();
   try {
     const result = await graphDataTestRunner<{
       items: Array<{
@@ -64,8 +56,6 @@ test("test google search", async () => {
 });
 
 test("test google search without API KEY", async () => {
-  setupEnvironment();
-
   try {
     await graphDataTestRunner(__dirname, __filename, graphDataNoAPIKey, { googleSearchAgent: googleSearchAgentInfo, copyAgent }, () => {}, false);
     assert.fail("Expected error to be thrown");
@@ -82,8 +72,6 @@ test("test google search without API KEY", async () => {
 });
 
 test("test google search without CX", async () => {
-  setupEnvironment();
-
   try {
     await graphDataTestRunner(__dirname, __filename, graphDataNoCX, { googleSearchAgent: googleSearchAgentInfo, copyAgent }, () => {}, false);
     assert.fail("Expected error to be thrown");
@@ -100,8 +88,6 @@ test("test google search without CX", async () => {
 });
 
 test("test google search error response", async () => {
-  setupEnvironment();
-
   try {
     const result = await graphDataTestRunner<{
       result: {
@@ -121,7 +107,6 @@ test("test google search error response", async () => {
 });
 
 test("test google search api key from env", async () => {
-  setupEnvironment();
   process.env.GOOGLE_SEARCH_API_KEY = "test_token";
 
   try {
