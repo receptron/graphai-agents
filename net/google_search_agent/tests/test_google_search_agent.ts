@@ -120,7 +120,7 @@ test("test google search error response", async () => {
   }
 });
 
-test.only("test google search api key from env", async () => {
+test("test google search api key from env", async () => {
   setupEnvironment();
   process.env.GOOGLE_SEARCH_API_KEY = "test_token";
 
