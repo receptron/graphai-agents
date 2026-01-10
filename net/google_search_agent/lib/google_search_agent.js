@@ -103,6 +103,7 @@ const googleSearchAgentInfo = {
                 description: "Suppress error and return onError object if the request fails",
             },
         },
+        required: ["cx"],
     },
     inputs: {
         type: "object",
