@@ -45,7 +45,6 @@ test("test google search", async () => {
     }>(__dirname, __filename, graphDataSearch, { googleSearchAgent: googleSearchAgentInfo, copyAgent }, () => {}, false);
 
     const resultData = result.success?.items;
-    console.log(resultData);
     assert.ok(resultData, "Expected results array");
     assert.equal(resultData.length, 2, "Expected 2 search results");
     assert.equal(resultData[0].title, mockSearchResults.web.results[0].title, "Expected matching title");
