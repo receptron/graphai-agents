@@ -1,4 +1,4 @@
-import { GraphAIOnError, GraphAISupressError } from "@graphai/agent_utils";
+import { GraphAIOnError, GraphAIDebug, GraphAISupressError } from "@graphai/agent_utils";
 import { AgentFunction, AgentFunctionInfo, assert, DefaultConfigData } from "graphai";
 import { customsearch } from "@googleapis/customsearch";
 import { GaxiosError } from "gaxios";
@@ -10,7 +10,8 @@ type GoogleSearchInputs = {
 type GoogleSearchParams = {
   apiKey: string;
   cx: string;
-} & GraphAISupressError;
+} & GraphAISupressError &
+  GraphAIDebug;
 
 interface GoogleSearchResult {
   title: string;
@@ -47,11 +48,28 @@ export const googleSearchAgent: AgentFunction<GoogleSearchParams, GoogleSearchRe
     const errorMessage = "Google Search API key is required. Please set the GOOGLE_SEARCH_API_KEY environment variable.";
     throw new Error(errorMessage);
   }
-
   const { cx } = params;
   if (!cx) {
     const errorMessage = "Google Search API cx is required.";
     throw new Error(errorMessage);
+  }
+
+  // Return request information in debug mode
+  if (params?.debug) {
+    return {
+      items: [
+        {
+          title: "GraphAI: A Modern AI Framework",
+          link: "https://example.com/graphai",
+          snippet: "GraphAI is a modern framework for building AI applications.",
+        },
+        {
+          title: "Getting Started with GraphAI",
+          link: "https://example.com/graphai/docs",
+          snippet: "Learn how to get started with GraphAI.",
+        },
+      ],
+    };
   }
 
   const supressError = params?.supressError ?? false;
