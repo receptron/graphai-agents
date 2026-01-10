@@ -26,6 +26,23 @@ const googleSearchAgent = async ({ namedInputs, params, config, }) => {
         const errorMessage = "Google Search API cx is required.";
         throw new Error(errorMessage);
     }
+    // Return request information in debug mode
+    if (params?.debug) {
+        return {
+            items: [
+                {
+                    title: "GraphAI: A Modern AI Framework",
+                    link: "https://example.com/graphai",
+                    snippet: "GraphAI is a modern framework for building AI applications.",
+                },
+                {
+                    title: "Getting Started with GraphAI",
+                    link: "https://example.com/graphai/docs",
+                    snippet: "Learn how to get started with GraphAI.",
+                },
+            ],
+        };
+    }
     const supressError = params?.supressError ?? false;
     const customsearchClient = (0, customsearch_1.customsearch)("v1");
     try {
