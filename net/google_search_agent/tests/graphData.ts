@@ -13,7 +13,7 @@ export const graphDataSearch: GraphData = {
         apiKey: "apiKey",
         cx: "CX",
         debug: true,
-      }
+      },
     },
     success: {
       agent: "copyAgent",
@@ -37,7 +37,7 @@ export const graphDataNoAPIKey: GraphData = {
       params: {
         cx: "CX",
         debug: true,
-      }
+      },
     },
     success: {
       agent: "copyAgent",
@@ -61,7 +61,7 @@ export const graphDataNoCX: GraphData = {
       params: {
         apiKey: "apiKey",
         debug: true,
-      }
+      },
     },
     success: {
       agent: "copyAgent",

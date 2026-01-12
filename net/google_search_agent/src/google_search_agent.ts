@@ -184,7 +184,8 @@ const googleSearchAgentInfo: AgentFunctionInfo = {
           {
             title: "GraphAI",
             link: "https://www.graphifi.com/graphai",
-            snippet: "GraphAI is a natural language processing service, powered by Graphifi's knowledge graph technology. With GraphAI, you can easily transform your unstructured ...",
+            snippet:
+              "GraphAI is a natural language processing service, powered by Graphifi's knowledge graph technology. With GraphAI, you can easily transform your unstructured ...",
           },
         ],
       },
