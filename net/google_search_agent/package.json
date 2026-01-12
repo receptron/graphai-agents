@@ -17,19 +17,6 @@
   },
   "author": "Masashi Homma",
   "license": "MIT",
-  "devDependencies": {
-    "@graphai/vanilla": "^2.0.12",
-    "@receptron/agentdoc": "^1.0.3",
-    "@receptron/test_utils": "^2.0.3",
-    "@types/node": "^22.10.1",
-    "eslint": "^9.16.0",
-    "graphai": "^2.0.16",
-    "prettier": "^3.4.2",
-    "ts-node": "^10.9.2",
-    "tsconfig-paths": "^4.2.0",
-    "typescript": "^5.7.2",
-    "typescript-eslint": "^8.17.0"
-  },
   "dependencies": {
     "@googleapis/customsearch": "^7.0.1"
   }
