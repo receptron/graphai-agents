@@ -374,6 +374,11 @@
   resolved "https://registry.yarnpkg.com/@graphai/tools_agent/-/tools_agent-1.0.4.tgz#2c4f4dbf43b91017bd7906bd22addffa07f1ac63"
   integrity sha512-3pSdO5ZyDDTPQpsASxlKrX/ZSRll9jvZp2f7mgu3+ZFntm/C+DFfDOFERiYoSXmDWo1XNXQbh5aWZn51HjdBsQ==
 
+"@graphai/tts_nijivoice_agent@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@graphai/tts_nijivoice_agent/-/tts_nijivoice_agent-2.0.0.tgz#da321d20d5b3f743229be45f4cee2749cd9880c2"
+  integrity sha512-sC56AG3tmGsH95I3gfVGrgC2O3ztHeBN4BBxdfQkVV/4lmAuiFKiZfiddn6J98xfJ6laWyQQ2+EvZU8YpGusyQ==
+
 "@graphai/vanilla@^2.0.12":
   version "2.0.12"
   resolved "https://registry.yarnpkg.com/@graphai/vanilla/-/vanilla-2.0.12.tgz#1f1edf3e7f207c6f2ae02e4e5388a13493756981"
