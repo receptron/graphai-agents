@@ -32,9 +32,9 @@
     "net/*"
   ],
   "devDependencies": {
-    "@graphai/agent_filters": "2.0.0",
+    "@graphai/agent_filters": "2.0.1",
     "@graphai/agent_utils": "^2.0.4",
-    "@graphai/openai_agent": "^2.0.8",
+    "@graphai/openai_agent": "^2.0.9",
     "@graphai/stream_agent_filter": "^2.0.3",
     "@graphai/vanilla": "^2.0.12",
     "@graphai/vanilla_node_agents": "^2.0.4",
