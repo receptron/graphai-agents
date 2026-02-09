@@ -393,6 +393,23 @@
     "@anthropic-ai/sdk" "^0.71.0"
     "@graphai/llm_utils" "^2.0.3"
 
+"@graphai/arxiv_agent@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@graphai/arxiv_agent/-/arxiv_agent-0.0.2.tgz#b3ca27a5a13bb70d1b071e7ed3acedfb1f5e8f55"
+  integrity sha512-y1aEa0c5bEd8C1Vb3z4eQ899kcFHmkoaN0RmbxrdeSroEUvjMTsec0FXc0wdUWNDwzPqXnX+ItPuyly5m8RucQ==
+  dependencies:
+    arxiv-api-ts "^1.0.4"
+
+"@graphai/brave_search_agent@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@graphai/brave_search_agent/-/brave_search_agent-0.0.1.tgz#5179a02c246907749e4a9bf8b188fd0dbd80f8ed"
+  integrity sha512-MABw1meqkGOQxS9aFLR+GI7UbMOCVI2mgTcEJMPuJ0L/D+mzuwABbEF+qcQJee+LLnkZGqxv1NpZJM8UVFBOkA==
+
+"@graphai/browserless_agent@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@graphai/browserless_agent/-/browserless_agent-0.0.3.tgz#d304726f7dc2fd88b780f410ee7576be0447ac5e"
+  integrity sha512-MmO4Xh72Sma7pYZ4gZ+EKXbbP00tbohPDa5emgdgzxnm/YJSyH8BwmVQw5YqBIXIeBZlEI90cAyRgjnOfDQ0Lw==
+
 "@graphai/cache_agent_filter@2.0.2":
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/@graphai/cache_agent_filter/-/cache_agent_filter-2.0.2.tgz#28655c1067540ae8124a4ad037efc560bac1e7fd"
@@ -406,6 +423,24 @@
   integrity sha512-wKdDyJ9ZZkgFojBhhq3pfDK/VrqhfUnf+ar4FqM0GUFB/Ogth56RbMwrb07F9xtxUOz9w1bz+x8qs5rFxt6WxA==
   dependencies:
     deepmerge "^4.3.1"
+
+"@graphai/extra-agents@^0.0.7":
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/@graphai/extra-agents/-/extra-agents-0.0.7.tgz#3e20dd7ebe586ea6d602a85a69e192bb999b44d3"
+  integrity sha512-04gsbHHgKKLJYwikrtSo6w3Wz7IqJrC3XwdMO/Gys0WCTCQPp4Wy/KyMi62Quu7zmf8L6SPhP+IqV+o+eVSACw==
+  dependencies:
+    "@graphai/arxiv_agent" "^0.0.2"
+    "@graphai/awesome_chatgpt_prompts_agent" "^0.0.1"
+    "@graphai/brave_search_agent" "^0.0.1"
+    "@graphai/browserless_agent" "^0.0.3"
+    "@graphai/mcp_agent" "^0.0.3"
+    "@graphai/pdf2text_agent" "^0.2.0"
+    "@graphai/prompts" "^0.0.1"
+    "@graphai/serper_agent" "^0.0.1"
+    "@graphai/slack_agent" "^0.0.3"
+    "@graphai/stt_openai_agent" "^2.0.0"
+    "@graphai/tts_nijivoice_agent" "^2.0.0"
+    "@graphai/tts_openai_agent" "^2.0.0"
 
 "@graphai/gemini_agent@^2.0.5":
   version "2.0.5"
@@ -1606,7 +1641,7 @@ array-union@^2.1.0:
   resolved "https://registry.yarnpkg.com/array-union/-/array-union-2.1.0.tgz#b798420adbeb1de828d84acd8a2e23d3efe85e8d"
   integrity sha512-HGyxoOTYUyCM6stUe6EJgnd4EoewAI7zMdfqO+kGjnlZmBDz/cR5pf8r/cR4Wq60sL/p0IkcjUEEPwS3GFrIyw==
 
-arxiv-api-ts@^1.1.0:
+arxiv-api-ts@^1.0.4, arxiv-api-ts@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/arxiv-api-ts/-/arxiv-api-ts-1.1.0.tgz#22b79fcbb08c0abf0f89202994b8955eeaf4b752"
   integrity sha512-vFRgzTxdRevUtW9VjQMFarWGRsSKq4wQZbGYz8/9c7m41AcLWL9g/BBJAAqJkBLmUaw3g6QVp6SoRRjneNAoGA==
