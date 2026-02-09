@@ -29,6 +29,7 @@ export default [
         },
       ],
       "linebreak-style": ["error", "unix"],
+      "preserve-caught-error": "off",
       quotes: ["error", "double"],
       semi: ["error", "always"],
     },
