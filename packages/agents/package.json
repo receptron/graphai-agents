@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/receptron/graphai-agents/blob/main/packages/agents/README.md",
   "dependencies": {
-    "@graphai/arxiv_agent": "^0.0.2",
+    "@graphai/arxiv_agent": "^1.0.0",
     "@graphai/awesome_chatgpt_prompts_agent": "^0.0.1",
     "@graphai/brave_search_agent": "^2.0.0",
     "@graphai/browserless_agent": "^2.0.0",
