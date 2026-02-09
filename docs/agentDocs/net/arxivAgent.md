@@ -1,9 +1,7 @@
 # arxivAgent
 
-## Package
-[@graphai/arxiv_agent](https://www.npmjs.com/package/@graphai/arxiv_agent)
-## Source
-[https://github.com/receptron/graphai-agents/tree/main/net/arxiv_agent/src/arxiv_agent.ts](https://github.com/receptron/graphai-agents/tree/main/net/arxiv_agent/src/arxiv_agent.ts)
+
+
 
 ## Description
 
@@ -67,7 +65,7 @@ Receptron team
 
 ## Repository
 
-https://github.com/receptron/graphai-agents/tree/main/net/arxiv_agent
+https://github.com/receptron/graphai-agents
 
 ## License
 
