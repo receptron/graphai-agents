@@ -59,7 +59,9 @@ Model Context Protocol Tools/Call Agent
   ":agentId.response.content",
   ":agentId.response.content.$0",
   ":agentId.response.content.$0.text",
-  ":agentId.response.content.$0.type"
+  ":agentId.response.content.$0.type",
+  ":agentId.response.structuredContent",
+  ":agentId.response.structuredContent.content"
 ]
 
 ```
@@ -71,7 +73,9 @@ Model Context Protocol Tools/Call Agent
   ":agentId.response.content",
   ":agentId.response.content.$0",
   ":agentId.response.content.$0.text",
-  ":agentId.response.content.$0.type"
+  ":agentId.response.content.$0.type",
+  ":agentId.response.structuredContent",
+  ":agentId.response.structuredContent.content"
 ]
 
 ```
@@ -114,7 +118,10 @@ Model Context Protocol Tools/Call Agent
         "text": "[FILE] 1.txt\n[FILE] 2.txt",
         "type": "text"
       }
-    ]
+    ],
+    "structuredContent": {
+      "content": "[FILE] 1.txt\n[FILE] 2.txt"
+    }
   }
 }
 
@@ -155,7 +162,10 @@ Model Context Protocol Tools/Call Agent
         "text": "[FILE] 1.txt\n[FILE] 2.txt",
         "type": "text"
       }
-    ]
+    ],
+    "structuredContent": {
+      "content": "[FILE] 1.txt\n[FILE] 2.txt"
+    }
   }
 }
 
