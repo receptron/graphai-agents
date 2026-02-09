@@ -40,6 +40,9 @@ const mcpToolsCallAgentInfo: AgentFunctionInfo = {
               type: "text",
             },
           ],
+          structuredContent: {
+            content: "[FILE] 1.txt\n[FILE] 2.txt",
+          },
         },
       },
     },
@@ -61,6 +64,9 @@ const mcpToolsCallAgentInfo: AgentFunctionInfo = {
               type: "text",
             },
           ],
+          structuredContent: {
+            content: "[FILE] 1.txt\n[FILE] 2.txt",
+          },
         },
       },
     },
