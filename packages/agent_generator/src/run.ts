@@ -11,7 +11,8 @@ import { copyAgent, nestedAgent, stringCaseVariantsAgent, pushAgent } from "@gra
 import { fileReadAgent, fileWriteAgent, pathUtilsAgent } from "@graphai/vanilla_node_agents";
 import { runShellAgent } from "@graphai/shell_utilty_agent";
 
-import "dotenv/config";
+import dotenv from "dotenv";
+dotenv.config({ quiet: true });
 
 const tools = [
   {

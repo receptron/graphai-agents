@@ -3,7 +3,8 @@ import { fileReadAgent } from "@graphai/vanilla_node_agents";
 import { openAIAgent } from "@graphai/openai_agent";
 import { promptsAgent } from "@graphai/prompts";
 
-import "dotenv/config";
+import dotenv from "dotenv";
+dotenv.config({ quiet: true });
 
 import "@graphai/vanilla_node_agents";
 import { GraphAI } from "graphai";

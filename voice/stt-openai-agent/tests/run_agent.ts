@@ -1,4 +1,5 @@
-import "dotenv/config";
+import dotenv from "dotenv";
+dotenv.config({ quiet: true });
 import { sttOpenaiAgent } from "../src/index";
 import path from "path";
 import fs from "fs";

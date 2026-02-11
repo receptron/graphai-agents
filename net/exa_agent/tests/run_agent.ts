@@ -1,5 +1,6 @@
 import { AgentFunctionInfo, defaultTestContext } from "graphai";
-import "dotenv/config";
+import dotenv from "dotenv";
+dotenv.config({ quiet: true });
 
 import exaAgent from "../src/exa_agent";
 

@@ -1,4 +1,5 @@
-import "dotenv/config";
+import dotenv from "dotenv";
+dotenv.config({ quiet: true });
 import fs from "fs";
 import path from "path";
 import { ttsOpenaiAgent } from "../src/tts_openai_agent";

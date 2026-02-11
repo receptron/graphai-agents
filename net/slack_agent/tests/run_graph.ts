@@ -1,4 +1,5 @@
-import "dotenv/config";
+import dotenv from "dotenv";
+dotenv.config({ quiet: true });
 import { GraphAI } from "graphai";
 import slackAgent from "../src/slack_agent";
 
