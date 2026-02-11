@@ -1,6 +1,6 @@
 {
   "name": "@graphai/brave_search_agent",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "An agent that uses the Brave Search API",
   "main": "lib/index.js",
   "files": [
