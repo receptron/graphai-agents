@@ -1,4 +1,5 @@
-import "dotenv/config";
+import dotenv from "dotenv";
+dotenv.config({ quiet: true });
 import { slackAgent } from "../src/slack_agent";
 
 import test from "node:test";

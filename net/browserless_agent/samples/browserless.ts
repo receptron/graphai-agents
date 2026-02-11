@@ -1,4 +1,5 @@
-import "dotenv/config";
+import dotenv from "dotenv";
+dotenv.config({ quiet: true });
 
 import { GraphData } from "graphai";
 import { graphDataTestRunner } from "@receptron/test_utils";
