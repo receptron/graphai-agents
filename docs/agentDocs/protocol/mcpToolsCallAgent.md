@@ -1,9 +1,7 @@
 # mcpToolsCallAgent
 
-## Package
-[@graphai/mcp_agent](https://www.npmjs.com/package/@graphai/mcp_agent)
-## Source
-[https://github.com/receptron/graphai-agents/tree/main/protocol/mcp-agent/src/mcp_tools_call_agent.ts](https://github.com/receptron/graphai-agents/tree/main/protocol/mcp-agent/src/mcp_tools_call_agent.ts)
+
+
 
 ## Description
 
@@ -59,9 +57,7 @@ Model Context Protocol Tools/Call Agent
   ":agentId.response.content",
   ":agentId.response.content.$0",
   ":agentId.response.content.$0.text",
-  ":agentId.response.content.$0.type",
-  ":agentId.response.structuredContent",
-  ":agentId.response.structuredContent.content"
+  ":agentId.response.content.$0.type"
 ]
 
 ```
@@ -73,9 +69,7 @@ Model Context Protocol Tools/Call Agent
   ":agentId.response.content",
   ":agentId.response.content.$0",
   ":agentId.response.content.$0.text",
-  ":agentId.response.content.$0.type",
-  ":agentId.response.structuredContent",
-  ":agentId.response.structuredContent.content"
+  ":agentId.response.content.$0.type"
 ]
 
 ```
@@ -92,7 +86,7 @@ Model Context Protocol Tools/Call Agent
   "tools": {
     "name": "filesystem--list_directory",
     "arguments": {
-      "path": "/home/runner/work/graphai-agents/graphai-agents/protocol/mcp-agent/lib/../tests/sample"
+      "path": "/home/runner/work/graphai-agents/graphai-agents/packages/agents/node_modules/@graphai/mcp_agent/lib/../tests/sample"
     }
   }
 }
@@ -118,10 +112,7 @@ Model Context Protocol Tools/Call Agent
         "text": "[FILE] 1.txt\n[FILE] 2.txt",
         "type": "text"
       }
-    ],
-    "structuredContent": {
-      "content": "[FILE] 1.txt\n[FILE] 2.txt"
-    }
+    ]
   }
 }
 
@@ -136,7 +127,7 @@ Model Context Protocol Tools/Call Agent
   "tools": {
     "name": "filesystem--list_directory",
     "arguments": {
-      "path": "/home/runner/work/graphai-agents/graphai-agents/protocol/mcp-agent/lib/../tests/sample"
+      "path": "/home/runner/work/graphai-agents/graphai-agents/packages/agents/node_modules/@graphai/mcp_agent/lib/../tests/sample"
     }
   }
 }
@@ -162,10 +153,7 @@ Model Context Protocol Tools/Call Agent
         "text": "[FILE] 1.txt\n[FILE] 2.txt",
         "type": "text"
       }
-    ],
-    "structuredContent": {
-      "content": "[FILE] 1.txt\n[FILE] 2.txt"
-    }
+    ]
   }
 }
 

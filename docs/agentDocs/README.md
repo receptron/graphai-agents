@@ -20,8 +20,6 @@
 ## protocol
 ### [mcpToolsListAgent](./protocol/mcpToolsListAgent.md)
 ### [mcpToolsCallAgent](./protocol/mcpToolsCallAgent.md)
-### [mcpResourceAgent](./protocol/mcpResourceAgent.md)
-### [mcpResourcesAgent](./protocol/mcpResourcesAgent.md)
 
 ## system
 ### [runShellAgent](./system/runShellAgent.md)
