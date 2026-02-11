@@ -32,6 +32,9 @@ var __importStar = (this && this.__importStar) || (function () {
         return result;
     };
 })();
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 //仕様と必要な情報（npmやデータ）をテキストで用意する
 // generatorを呼び出してスケルトンを作る
@@ -44,7 +47,8 @@ const openai_agent_1 = require("@graphai/openai_agent");
 const vanilla_1 = require("@graphai/vanilla");
 const vanilla_node_agents_1 = require("@graphai/vanilla_node_agents");
 const shell_utilty_agent_1 = require("@graphai/shell_utilty_agent");
-require("dotenv/config");
+const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config({ quiet: true });
 const tools = [
     {
         type: "function",
