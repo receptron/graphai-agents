@@ -2,7 +2,7 @@ const dataSet = require("./prompt.json");
 const fs = require("fs");
 
 const trim = (message) => {
-  return message.replace(/^"/, "").replace(/"$/, "").replace(/\(SLP\)/, "").replace("'", "")
+  return message.replace(/^"/, "").replace(/"$/, "").replace(/\(SLP\)/, "").replace(/'/g, "")
 };
 
 const toCamelCase = (str) => {
