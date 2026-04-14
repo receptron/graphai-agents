@@ -4522,9 +4522,9 @@ undici@^7.21.0:
   integrity sha512-xXnp4kTyor2Zq+J1FfPI6Eq3ew5h6Vl0F/8d9XU5zZQf1tX9s2Su1/3PiMmUANFULpmksxkClamIZcaUqryHsQ==
 
 unpdf@^1.4.0:
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/unpdf/-/unpdf-1.6.0.tgz#0ac3b0f5bb002682ff6f4088a8dfce5195c8e093"
-  integrity sha512-DsjbuDe6PDbZzGvAP40QQp0xskrXP3Tm3fd/FLkGObL00Icr7cc28QgrPHYg+6B1lMWydgXwDXauIv5CGyXudA==
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/unpdf/-/unpdf-1.4.0.tgz#1525233ff0a0be7b5eb8d58f5f992844131dfd6a"
+  integrity sha512-TahIk0xdH/4jh/MxfclzU79g40OyxtP00VnEUZdEkJoYtXAHWLiir6t3FC6z3vDqQTzc2ZHcla6uEiVTNjejuA==
 
 unpipe@~1.0.0:
   version "1.0.0"
