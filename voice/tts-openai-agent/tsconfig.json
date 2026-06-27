@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    "ignoreDeprecations": "6.0",
+    "types": ["node"],
     /* Visit https://aka.ms/tsconfig to read more about this file */
 
     /* Projects */
