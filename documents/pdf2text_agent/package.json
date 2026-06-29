@@ -1,6 +1,6 @@
 {
   "name": "@graphai/pdf2text_agent",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "",
   "main": "lib/index.js",
   "files": [
@@ -27,6 +27,6 @@
   "homepage": "https://github.com/receptron/graphai-agents#readme",
   "devDependencies": {},
   "dependencies": {
-    "@opendocsg/pdf2md": "^0.2.3"
+    "@opendocsg/pdf2md": "^0.2.7"
   }
 }

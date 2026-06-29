@@ -1,6 +1,6 @@
 {
   "name": "@graphai/browserless_agent",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "",
   "main": "lib/index.js",
   "files": [
@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/receptron/graphai-agents/blob/main/net/browserless_agent/README.md",
   "devDependencies": {
-    "undici": "^7.28.0"
+    "undici": "^8.5.0"
   },
   "types": "./lib/index.d.ts",
   "directories": {

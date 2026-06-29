@@ -13,7 +13,7 @@ import {
 
 import test from "node:test";
 import assert from "node:assert";
-import { MockAgent, setGlobalDispatcher, getGlobalDispatcher } from "undici";
+import { MockAgent, setGlobalDispatcher, getGlobalDispatcher, fetch as undiciFetch } from "undici";
 
 // Mock response data
 const mockContentHtml = "<html><body>This is test content</body></html>";
@@ -27,6 +27,7 @@ const mockBody = {
 
 // Save the original global dispatcher
 const originalDispatcher = getGlobalDispatcher();
+const originalFetch = globalThis.fetch;
 
 const mockAgent = new MockAgent();
 mockAgent.disableNetConnect();
@@ -35,6 +36,9 @@ const setupEnvironment = () => {
   process.env.BROWSERLESS_API_TOKEN = "test_token";
 
   setGlobalDispatcher(mockAgent);
+  // Node's global fetch is backed by Node's bundled undici, which ignores the MockAgent registered via the npm undici package (different globalDispatcher symbol), so route fetch through undici.
+  // @ts-expect-error undici's fetch type diverges nominally from Node's global fetch but is runtime-compatible.
+  globalThis.fetch = undiciFetch;
 
   const mockPool = mockAgent.get("https://production-sfo.browserless.io");
 
@@ -94,6 +98,7 @@ const setupEnvironment = () => {
 const cleanupEnvironment = () => {
   delete process.env.BROWSERLESS_API_TOKEN;
   setGlobalDispatcher(originalDispatcher);
+  globalThis.fetch = originalFetch;
 };
 
 test("test browserless content", async () => {
@@ -139,6 +144,7 @@ test("test browserless without token", async () => {
     }
   } finally {
     setGlobalDispatcher(originalDispatcher);
+    globalThis.fetch = originalFetch;
   }
 });
 

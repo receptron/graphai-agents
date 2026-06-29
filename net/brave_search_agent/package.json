@@ -1,6 +1,6 @@
 {
   "name": "@graphai/brave_search_agent",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "An agent that uses the Brave Search API",
   "main": "lib/index.js",
   "files": [
@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/receptron/graphai-agents/blob/main/net/brave_search_agent/README.md",
   "devDependencies": {
-    "undici": "^7.28.0"
+    "undici": "^8.5.0"
   },
   "types": "./lib/index.d.ts",
   "directories": {
