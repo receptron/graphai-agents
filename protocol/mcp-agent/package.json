@@ -19,7 +19,7 @@
   "author": "isamu arimoto",
   "license": "MIT",
   "devDependencies": {
-    "@modelcontextprotocol/server-filesystem": "^2026.1.14"
+    "@modelcontextprotocol/server-filesystem": "^2026.7.10"
   },
   "dependencies": {
     "@graphai/input_agents": "^1.0.2",
