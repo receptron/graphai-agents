@@ -54,6 +54,7 @@ const readFileToolData = {
     },
     annotations: {
         readOnlyHint: true,
+        openWorldHint: false,
     },
     execution: {
         taskSupport: "forbidden",
@@ -95,6 +96,7 @@ const readTextFileToolData = {
     },
     annotations: {
         readOnlyHint: true,
+        openWorldHint: false,
     },
     execution: {
         taskSupport: "forbidden",
@@ -103,7 +105,7 @@ const readTextFileToolData = {
 const readMediaFileToolData = {
     name: "filesystem--read_media_file",
     title: "Read Media File",
-    description: "Read an image or audio file. Returns the base64 encoded data and MIME type. Only works within allowed directories.",
+    description: "Read a file and return it as a base64-encoded content block with its MIME type. Image and audio files are returned as image/audio content; any other file type is returned as an embedded resource. Only works within allowed directories.",
     inputSchema: {
         type: "object",
         properties: {
@@ -121,21 +123,52 @@ const readMediaFileToolData = {
             content: {
                 type: "array",
                 items: {
-                    type: "object",
-                    properties: {
-                        type: {
-                            type: "string",
-                            enum: ["image", "audio", "blob"],
+                    anyOf: [
+                        {
+                            type: "object",
+                            properties: {
+                                type: {
+                                    type: "string",
+                                    enum: ["image", "audio"],
+                                },
+                                data: {
+                                    type: "string",
+                                },
+                                mimeType: {
+                                    type: "string",
+                                },
+                            },
+                            required: ["type", "data", "mimeType"],
+                            additionalProperties: false,
                         },
-                        data: {
-                            type: "string",
+                        {
+                            type: "object",
+                            properties: {
+                                type: {
+                                    type: "string",
+                                    const: "resource",
+                                },
+                                resource: {
+                                    type: "object",
+                                    properties: {
+                                        uri: {
+                                            type: "string",
+                                        },
+                                        mimeType: {
+                                            type: "string",
+                                        },
+                                        blob: {
+                                            type: "string",
+                                        },
+                                    },
+                                    required: ["uri", "blob"],
+                                    additionalProperties: false,
+                                },
+                            },
+                            required: ["type", "resource"],
+                            additionalProperties: false,
                         },
-                        mimeType: {
-                            type: "string",
-                        },
-                    },
-                    required: ["type", "data", "mimeType"],
-                    additionalProperties: false,
+                    ],
                 },
             },
         },
@@ -145,6 +178,7 @@ const readMediaFileToolData = {
     },
     annotations: {
         readOnlyHint: true,
+        openWorldHint: false,
     },
     execution: {
         taskSupport: "forbidden",
@@ -183,6 +217,7 @@ const readMultipleFilesToolData = {
     },
     annotations: {
         readOnlyHint: true,
+        openWorldHint: false,
     },
     execution: {
         taskSupport: "forbidden",
@@ -221,6 +256,7 @@ const writeFileToolData = {
         readOnlyHint: false,
         destructiveHint: true,
         idempotentHint: true,
+        openWorldHint: false,
     },
     execution: {
         taskSupport: "forbidden",
@@ -279,6 +315,7 @@ const editFileToolData = {
         readOnlyHint: false,
         destructiveHint: true,
         idempotentHint: false,
+        openWorldHint: false,
     },
     execution: {
         taskSupport: "forbidden",
@@ -314,6 +351,7 @@ const createDirectoryToolData = {
         readOnlyHint: false,
         destructiveHint: false,
         idempotentHint: true,
+        openWorldHint: false,
     },
     execution: {
         taskSupport: "forbidden",
@@ -347,6 +385,7 @@ const listDirectoryToolData = {
     },
     annotations: {
         readOnlyHint: true,
+        openWorldHint: false,
     },
     execution: {
         taskSupport: "forbidden",
@@ -386,6 +425,7 @@ const listDirectoryWithSizesToolData = {
     },
     annotations: {
         readOnlyHint: true,
+        openWorldHint: false,
     },
     execution: {
         taskSupport: "forbidden",
@@ -426,6 +466,7 @@ const directoryTreeToolData = {
     },
     annotations: {
         readOnlyHint: true,
+        openWorldHint: false,
     },
     execution: {
         taskSupport: "forbidden",
@@ -462,8 +503,9 @@ const moveFileToolData = {
     },
     annotations: {
         readOnlyHint: false,
-        destructiveHint: false,
+        destructiveHint: true,
         idempotentHint: false,
+        openWorldHint: false,
     },
     execution: {
         taskSupport: "forbidden",
@@ -507,6 +549,7 @@ const searchFilesToolData = {
     },
     annotations: {
         readOnlyHint: true,
+        openWorldHint: false,
     },
     execution: {
         taskSupport: "forbidden",
@@ -540,6 +583,7 @@ const getFileInfoToolData = {
     },
     annotations: {
         readOnlyHint: true,
+        openWorldHint: false,
     },
     execution: {
         taskSupport: "forbidden",
@@ -567,6 +611,7 @@ const listAllowedDirectoriesToolData = {
     },
     annotations: {
         readOnlyHint: true,
+        openWorldHint: false,
     },
     execution: {
         taskSupport: "forbidden",
