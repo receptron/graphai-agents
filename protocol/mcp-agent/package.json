@@ -8,6 +8,7 @@
   ],
   "scripts": {
     "build": "tsc",
+    "typecheck": "tsc --noEmit",
     "eslint": "eslint src --fix",
     "format": "prettier --write '{src,tests}/**/*.ts'",
     "doc": "npx agentdoc",
@@ -23,7 +24,7 @@
   },
   "dependencies": {
     "@graphai/input_agents": "^1.0.2",
-    "@modelcontextprotocol/sdk": "1.29.0"
+    "@modelcontextprotocol/sdk": "1.30.0"
   },
   "types": "./lib/index.d.ts",
   "directories": {

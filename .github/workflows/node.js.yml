@@ -2,9 +2,14 @@ name: Node.js CI
 
 on:
   pull_request:
+    branches:
+      - main
   push:
     branches:
       - main
+
+permissions:
+  contents: read
 
 jobs:
   build:
@@ -17,12 +22,15 @@ jobs:
 
     steps:
     - uses: actions/checkout@v6
+      with:
+        persist-credentials: false
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v6
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'yarn'
-    - run: yarn install
+    - run: yarn install --frozen-lockfile
     - run: yarn run build
+    - run: yarn run typecheck
     - run: yarn run lint
     - run: yarn run test

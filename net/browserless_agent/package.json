@@ -8,6 +8,7 @@
   ],
   "scripts": {
     "build": "tsc",
+    "typecheck": "tsc --noEmit",
     "eslint": "eslint src --fix",
     "format": "prettier --write '{src,tests}/**/*.ts'",
     "doc": "npx agentdoc",
@@ -27,7 +28,7 @@
   },
   "homepage": "https://github.com/receptron/graphai-agents/blob/main/net/browserless_agent/README.md",
   "devDependencies": {
-    "undici": "^8.8.0"
+    "undici": "^8.9.0"
   },
   "types": "./lib/index.d.ts",
   "directories": {

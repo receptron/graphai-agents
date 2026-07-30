@@ -8,6 +8,7 @@
   ],
   "scripts": {
     "build": "rm -r lib/* && tsc && tsc-alias",
+    "typecheck": "tsc --noEmit",
     "eslint": "eslint",
     "format": "prettier --write '{src,tests,samples}/**/*.ts'",
     "doc": "echo nothing",

@@ -8,6 +8,7 @@
   ],
   "scripts": {
     "build": "tsc",
+    "typecheck": "tsc --noEmit",
     "eslint": "eslint src --fix",
     "format": "prettier --write '{src,tests}/**/*.ts'",
     "doc": "npx agentdoc",
@@ -31,7 +32,7 @@
   "dependencies": {
     "@mozilla/readability": "^0.6.0",
     "jsdom": "^29.1.1",
-    "puppeteer": "^25.3.0"
+    "puppeteer": "^25.4.0"
   },
   "types": "./lib/index.d.ts",
   "directories": {
