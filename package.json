@@ -6,6 +6,7 @@
     "test": "yarn workspaces run test",
     "build": "yarn workspaces run build",
     "lint": "yarn workspaces run eslint",
+    "typecheck": "yarn workspaces run typecheck",
     "doc": "yarn workspaces run doc",
     "format": "yarn workspaces run format",
     "monoRepoAgentDoc": "npx tsx src/monoRepoAgentDocs.ts"
@@ -44,10 +45,10 @@
     "@rollup/plugin-commonjs": "^29.0.3",
     "@rollup/plugin-terser": "^1.0.0",
     "@rollup/plugin-typescript": "^12.3.0",
-    "@types/node": "^26.1.1",
+    "@types/node": "^26.1.2",
     "dotenv": "^17.2.4",
-    "eslint": "^10.7.0",
-    "globals": "^17.7.0",
+    "eslint": "^10.8.0",
+    "globals": "^17.8.0",
     "graphai": "2.0.18",
     "graphai_agent_utils": "^0.0.1",
     "prettier": "^3.9.6",
@@ -57,5 +58,9 @@
     "tslib": "^2.8.1",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.65.0"
+  },
+  "resolutions": {
+    "brace-expansion": "^5.0.8",
+    "gaxios": "7.1.3"
   }
 }
