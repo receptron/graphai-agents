@@ -9,7 +9,8 @@
     "typecheck": "yarn workspaces run typecheck",
     "doc": "yarn workspaces run doc",
     "format": "yarn workspaces run format",
-    "monoRepoAgentDoc": "npx tsx src/monoRepoAgentDocs.ts"
+    "monoRepoAgentDoc": "npx tsx src/monoRepoAgentDocs.ts",
+    "knip": "knip"
   },
   "private": true,
   "repository": {
@@ -51,6 +52,7 @@
     "globals": "^17.8.0",
     "graphai": "2.0.18",
     "graphai_agent_utils": "^0.0.1",
+    "knip": "^6",
     "prettier": "^3.9.6",
     "ts-node": "^10.9.2",
     "tsc-alias": "^1.9.1",
