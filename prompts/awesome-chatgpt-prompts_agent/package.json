@@ -1,6 +1,6 @@
 {
   "name": "@graphai/awesome_chatgpt_prompts_agent",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "prompt agent using https://github.com/f/awesome-chatgpt-prompts/",
   "main": "lib/index.js",
   "files": [
