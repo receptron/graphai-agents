@@ -19,6 +19,6 @@
   "author": "Masashi Homma",
   "license": "MIT",
   "dependencies": {
-    "@googleapis/customsearch": "^7.0.1"
+    "@googleapis/customsearch": "^12.0.0"
   }
 }
