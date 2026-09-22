@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/receptron/graphai-agents/blob/main/net/brave_search_agent/README.md",
   "devDependencies": {
-    "undici": "^8.9.0"
+    "undici": "^8.10.2"
   },
   "types": "./lib/index.d.ts",
   "directories": {
