@@ -39,7 +39,6 @@ const readFileToolData = {
       },
     },
     required: ["path"],
-    additionalProperties: false,
     $schema: "http://json-schema.org/draft-07/schema#",
   },
   outputSchema: {
@@ -83,7 +82,6 @@ const readTextFileToolData = {
       },
     },
     required: ["path"],
-    additionalProperties: false,
     $schema: "http://json-schema.org/draft-07/schema#",
   },
   outputSchema: {
@@ -119,7 +117,6 @@ const readMediaFileToolData = {
       },
     },
     required: ["path"],
-    additionalProperties: false,
     $schema: "http://json-schema.org/draft-07/schema#",
   },
   outputSchema: {
@@ -208,7 +205,6 @@ const readMultipleFilesToolData = {
       },
     },
     required: ["paths"],
-    additionalProperties: false,
     $schema: "http://json-schema.org/draft-07/schema#",
   },
   outputSchema: {
@@ -247,7 +243,6 @@ const writeFileToolData = {
       },
     },
     required: ["path", "content"],
-    additionalProperties: false,
     $schema: "http://json-schema.org/draft-07/schema#",
   },
   outputSchema: {
@@ -298,7 +293,6 @@ const editFileToolData = {
             },
           },
           required: ["oldText", "newText"],
-          additionalProperties: false,
         },
       },
       dryRun: {
@@ -308,7 +302,6 @@ const editFileToolData = {
       },
     },
     required: ["path", "edits"],
-    additionalProperties: false,
     $schema: "http://json-schema.org/draft-07/schema#",
   },
   outputSchema: {
@@ -346,7 +339,6 @@ const createDirectoryToolData = {
       },
     },
     required: ["path"],
-    additionalProperties: false,
     $schema: "http://json-schema.org/draft-07/schema#",
   },
   outputSchema: {
@@ -384,7 +376,6 @@ const listDirectoryToolData = {
       },
     },
     required: ["path"],
-    additionalProperties: false,
     $schema: "http://json-schema.org/draft-07/schema#",
   },
   outputSchema: {
@@ -426,7 +417,6 @@ const listDirectoryWithSizesToolData = {
       },
     },
     required: ["path"],
-    additionalProperties: false,
     $schema: "http://json-schema.org/draft-07/schema#",
   },
   outputSchema: {
@@ -469,7 +459,6 @@ const directoryTreeToolData = {
       },
     },
     required: ["path"],
-    additionalProperties: false,
     $schema: "http://json-schema.org/draft-07/schema#",
   },
   outputSchema: {
@@ -508,7 +497,6 @@ const moveFileToolData = {
       },
     },
     required: ["source", "destination"],
-    additionalProperties: false,
     $schema: "http://json-schema.org/draft-07/schema#",
   },
   outputSchema: {
@@ -556,7 +544,6 @@ const searchFilesToolData = {
       },
     },
     required: ["path", "pattern"],
-    additionalProperties: false,
     $schema: "http://json-schema.org/draft-07/schema#",
   },
   outputSchema: {
@@ -592,7 +579,6 @@ const getFileInfoToolData = {
       },
     },
     required: ["path"],
-    additionalProperties: false,
     $schema: "http://json-schema.org/draft-07/schema#",
   },
   outputSchema: {
