@@ -1,6 +1,6 @@
 {
   "name": "node_browser_detect_agent",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "test agent",
   "main": "lib/index.js",
   "module": "lib/bundle.esm.js",
